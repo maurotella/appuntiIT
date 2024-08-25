@@ -1,0 +1,65 @@
+
+\section{Prerequisiti matematici}
+
+\subsection*{Classi di funzioni $f:A\rightarrow B$}
+\subsubsection*{Iniettive}
+$ f \text{ è iniettiva se } \forall a_1,a_2 \in A: a_1\neq a_2
+\Rightarrow f(a_1)\neq f(a_2) $
+\subsubsection*{Suriettive}
+$ f \text{ è suriettiva se } \forall b\in B \ \ \exists a\in A : f(a)=b $
+\subsubsection*{Biettive}
+$f$ è biettiva se è sia iniettiva che suriettiva.
+
+\subsection*{Composizione di funzioni}
+Date $f:A\rightarrow B$ e $g:B\rightarrow C$, si definisce $f$ composto $g$
+come la funzione $g\circ f:A\rightarrow C$ come:
+$$ g\circ f(a) = g(f(a)) $$
+La composizione non è un operatore commutativo.
+
+\subsection*{Funzioni parziali e totali}
+La notazione $f(a)$\textdownarrow \ indica che la funzione è definita su $a$, ovvero
+che esiste un valore $b$ del codominio tale che $f(a)=b$.
+
+Al contrario, la notazione $f(a)$\textuparrow \ indica che la funzione \textbf{non} è
+definita su $a$.
+
+Una funzione $f:A\rightarrow B$ definita su tutto il suo dominio è detta totale. Se 
+invece esistono dei valori del dominio nei quali $f$ non è definita, $f$ è detta 
+parziale:
+$$ f \text{ è \textbf{totale} se } \forall a\in A \ \ f(a)\text{\textdownarrow} $$
+$$ f \text{ è \textbf{parziale} se } \exists a\in A : f(a)\text{\textuparrow} $$
+
+\subsubsection*{Campo di esistenza}
+Dalla definizione di funzione parziale si intuisce come l'insieme di tutti i valori
+nel quale la funzione $f:A\rightarrow B$ è definita, non sempre coincide con il dominio
+$A$. Questo insieme è detto \textbf{campo di esistenza di $f$} e si denota con $Dom_f$:
+$$ Dom_f = \{ a\in A: f(a)\text{\textdownarrow} \} \subseteq  A $$
+
+\subsubsection*{Totalizzazione di una funzione parziale}
+Presa una funzione $f:A\rightarrow B$ parziale, la si può totalizzare, ovvero rendere
+totale, aggiungendo al codominio un valore $\perp$ che rappresenta il caso indefinito:
+$$ f:A\rightarrow B \ \underset{\text{totalizzazione}}{\longrightarrow} \ 
+f:A\rightarrow B \cup \{\perp\}$$
+$$ f(a) = \begin{cases}
+f(a) & a\in Dom_f\\
+\perp & \text{altrimenti}\\
+\end{cases} $$
+L'insieme $B \cup \{\perp\}$ viene abbreviato con $B_\perp$.
+
+\subsection*{Prodotto cartesiano}
+$$ A\times B = \{(a,b):a\in A \wedge b\in B\} $$
+L'operatore $\times$ non gode della proprietà commutativa.
+$$ \underbrace{A\times A\times\dots\times A}_{n \text{ volte}} = A^n $$
+
+\subsection*{Insiemi di funzioni}
+Tutte le funzioni che vanno da $A$ a $B$ è detto $B^A$:
+$$ B^A = \{f:A\rightarrow B\} $$
+$$ B^A_\perp = \{f:A\rightarrow B_\perp\} $$
+
+\subsection*{Funzione di valutazione}
+Si definisce funzione di valutazione $\omega:B_\perp^A\times A \rightarrow B$ con:
+$$ w(f,a) = f(a) $$
+\begin{itemize}
+    \item Fissando $a$ provo tutte le funzioni su $a$;
+    \item Fissando $f$ ottengo il suo grafico.
+\end{itemize}

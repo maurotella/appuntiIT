@@ -1,0 +1,26 @@
+\begin{tikzpicture}[scale=2]
+
+    \draw (-1.7,0) -- (1.7,0);
+    \draw[densely dashed] (-1.7,0) -- (-2,0);
+    \draw[densely dashed] (1.7,0) -- (2,0);
+    \draw (0,.05) -- (0,-.05) node[below] {0};
+    
+    \draw[cyan] (1,1.5) arc[start angle=0, end angle=-180,radius=1];
+
+    \draw (-1,1.5) -- (1,1.5);
+    \draw (-1,1.55) -- (-1,1.45) node[left] {0};
+    \draw (1,1.55) -- (1,1.45) node[right] {1};
+
+    \draw[densely dashed, cyan] (-.515,.64) --  (0,1.5);
+    \draw[red] (-.9,0) -- (-.515,.64) -- (-.515,1.5);
+    \draw (-.515,1.45) -- (-.515,1.55) node[above] {$f(a)$};
+    \draw (-.9,.05) -- (-.9,-.05) node[below] {$a$};
+
+    \draw[densely dashed, cyan] (.68,.77) -- (0,1.5);
+    \draw[red] (1.4,0) -- (.68,.77) -- (.68,1.5);
+    \draw (.68,1.45) -- (.68,1.55) node[above] {$f(b)$};
+    \draw (1.4,.05) -- (1.4,-.05) node[below] {$b$};
+
+    \draw [fill] (0,1.5) circle (.02);
+
+\end{tikzpicture}
