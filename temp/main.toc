@@ -12,4 +12,5 @@
 \contentsline {subsubsection}{\numberline {2.3.4}Insiemi isomorfi}{6}{subsubsection.2.3.4}%
 \contentsline {subsubsection}{\numberline {2.3.5}Insiemi numerabili}{7}{subsubsection.2.3.5}%
 \contentsline {subsubsection}{\numberline {2.3.6}Insiemi non numerabili}{7}{subsubsection.2.3.6}%
-\contentsline {subsection}{\numberline {2.4}Cosa è calcolabile?}{8}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.4}Esistono funzioni non calcolabili?}{8}{subsection.2.4}%
+\contentsline {subsubsection}{\numberline {2.4.1}DATI numerabile}{9}{subsubsection.2.4.1}%

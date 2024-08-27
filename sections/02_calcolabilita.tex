@@ -95,7 +95,7 @@ $$ [a]_R =\{b\in A: a \ R \ b\} $$
 
 Tutte le classi di equivalenza di $R$ formano una partizione di $A$. L'insieme $A$
 partizionato attraverso le classi di equivalenza di $R$ è detto \textbf{quoziente}
-di $A$ rispetto a $R$ ed è denotato da $A/R$.
+di $A$ rispetto a $R$ ed è denotato da $\sfrac{A}{R}$.
 
 \subsubsection*{Esempio}
 Si consideri la relazione $\equiv_4\subseteq\N^2$ di equivalenza modulo 4. Due numeri
@@ -110,7 +110,7 @@ Le classi di equivalenza sono:
     [2]_4&=\{4k+2\}\tag{Resto 2}\\
     [3]_4&=\{4k+3\}\tag{Resto 3}
 \end{align}
-L'insieme $\{[0]_4,[1]_4,[2]_4,[3]_4\}=\N/\equiv_4$ è una partizione di $\N$.
+L'insieme $\{[0]_4,[1]_4,[2]_4,[3]_4\}=\sfrac{\N}{\equiv_4}$ è una partizione di $\N$.
 
 \subsubsection{Insiemi isomorfi}
 Due insiemi $A$ e $B$ sono \textbf{isomorfi} (o equinumerosi) se esiste una funzione
@@ -125,7 +125,7 @@ La relazione di isomorfismo $\sim$ è una relazione di equivalenza in quanto:
 \end{enumerate}
 
 Sia $\mathcal{U}$ l'insieme universo, ovvero l'insieme che contiene tutti gli insiemi.
-Il quoziente di $\mathcal{U}$ rispetto a $\sim$ ($\mathcal{U}/\sim$) definisce il 
+Il quoziente di $\mathcal{U}$ rispetto a $\sim$ ($\sfrac{\mathcal{U}}{\sim}$) definisce il 
 concetto di cardinalità:
 
 \begin{figure}[H]
@@ -133,7 +133,7 @@ concetto di cardinalità:
     \input{figures/cardinalita.tex}
 \end{figure}
 
-Ogni partizione di $\mathcal{U}/\sim$ contiene gli insiemi tra loro isomorfi, ovvero
+Ogni partizione di $\sfrac{\mathcal{U}}{\sim}$ contiene gli insiemi tra loro isomorfi, ovvero
 che hanno la stessa cardinalità.
 
 \subsubsection*{Insiemi finiti}
@@ -230,7 +230,7 @@ Tutti gli insiemi isomorfi a $\RN$ sono detti continui. Altri insiemi non numera
         $\N^\N_\perp = \{f:\N\rightarrow\N_\perp\}$
 \end{itemize}
 
-\subsection{Cosa è calcolabile?}
+\subsection{Esistono funzioni non calcolabili?}
 Ora che il concetto di cardinalità è più chiaro, si riprenda il concetto di 
 potenza computazionale di un sistema di calcolo $\C$ (paragrafo \ref{sec:pot_comp}):
 $$
@@ -247,4 +247,115 @@ Ragionevolmente, \textbf{ma non formalmente}, si può notare che:
     \item DATI$\sim\N$: si applichi lo stesso ragionamento del punto precedente.
 \end{itemize}
 Ne segue che:
-$$ F(\C) \sim \text{PROG} \sim \N $$
+$$ F(\C) \sim \text{PROG} \sim \N \nsim\N^\N_\perp\sim \text{DATI}^\text{DATI}_\perp$$
+$$ \Downarrow $$
+$$ F(\C) \nsim \text{DATI}^\text{DATI}_\perp $$
+$$ \Downarrow $$
+$$ F(\C) \subset \text{DATI}^\text{DATI}_\perp $$
+
+Quello che questa osservazione dice è che ho pochi programmi ($\N$) e troppe
+funzioni ($\N^\N_\perp$).
+\textbf{Alla domanda \quotes{Esistono funzioni non calcolabili?} si può quindi 
+rispondere con un sì!}
+
+\subsubsection{DATI numerabile}
+Obiettivo di questa sezione è dimostrare formalmente che:
+$$ \text{DATI} \sim \N $$
+Vogliamo quindi trovare una biezione che è in grado di associare biunivocamente
+dei dati a un numero e quindi anche di ottenere i dati di partenza dal
+numero. Per farlo si userà il seguente teorema.
+
+\begin{theorem}
+    $\N\times\N\sim\N^+$
+\end{theorem}
+\begin{proof}
+    Si definisca la funzione coppia di Cantor $\cantor{\ ,\ }$:
+    $$ \cantor{\ ,\ }:\N\times\N\rightarrow\N^+ $$
+    $\cantor{\ ,\ }$ associa biunivocamente una coppia di numeri $x$ e 
+    $y$ a un numero $n$:
+    $$ \cantor{x,y} = n $$
+    La mappa che $\cantor{\ ,\ }$ usa per assegnare i valori di ogni coppia viene 
+    descritta nelle seguenti tabelle:
+
+    \begin{minipage}{.48\textwidth}
+        \centering
+        \begin{tabular}{c|c c c c c c}
+            $x\backslash y$&0 &1 &2 &3 &4\\ \hline
+               0 &1 &3 &6 &10&15\\
+               1 &2 &5 &9 &14&...\\
+               2 &4 &8 &13&...&  \\
+               3 &7 &12&...&  &  \\
+               4 &11&...&  &  &  \\
+               5 &$\nearrow$&&&&\\
+        \end{tabular}
+    \end{minipage}
+    \begin{minipage}{.48\textwidth}
+        \centering
+        \input{figures/tabella_cantor.tex}
+    \end{minipage}
+
+    Si vuole calcolare ora la forma analitica di $\cantor{\ ,\ }$; si prenda una generica
+    coppia di numeri $\cantor{x,y}$:
+
+    \begin{minipage}{.4\textwidth}
+        \centering
+        \input{figures/cantor_analitica.tex}
+    \end{minipage}
+    \begin{minipage}{.58\textwidth}
+        Per come è definita $\cantor{x,y}$ (vedi tabella precedente) si ha che:
+        \begin{equation}\label{eq:cantor_analytic}
+            \cantor{x,y} = {\color{blue}\cantor{x+y,0}}{\color{red}+y}
+        \end{equation}
+
+        Ora l'incognita da calcolare resta $\color{blue}\cantor{z,0}$ che,
+        si può ottenere come:
+        \begin{equation}\label{eq:cantor_analytic_2}
+            \cantor{z,0} = \sum_{i=0}^z i+1 = \frac{z(z+1)}{2}+1
+        \end{equation}
+    \end{minipage}
+    
+    Da (\ref{eq:cantor_analytic}) e (\ref{eq:cantor_analytic_2}) segue che:
+    $$ \cantor{x,y} = \cantor{x+y,0}+y = \frac{(x+y)(x+y+1)}{2}+y+1 $$
+    
+    $\cantor{\ ,\ }$ si dimostra quindi mappare univocamente le coppie di numeri
+    in numeri ($\N^2\rightarrow\N^+$). Si cercherà ora di mostrare il passaggio inverso, 
+    ovvero come riottenere la coppia di numeri dal numero risultante
+    ($\N^+\rightarrow\N^2$).
+
+    Si definiscano le seguenti funzioni:
+    $$ \cantor{x,y} = n \quad , \quad sin(n) = x \quad , \quad des(n) = y $$
+
+    Da (\ref{eq:cantor_analytic}) si ha che:
+    $$ \begin{aligned}
+        y &= \cantor{x,y}-\cantor{x+y,0} \\
+          &= n-\cantor{x+y,0} \\
+          &= n-\cantor{\gamma,0} \\
+    \end{aligned} $$
+    Il valore di $\gamma$ è il più grande valore che, messo sulla prima colonna
+    ($\cantor{\gamma,0}$) non supera $n$:
+    $$ \gamma = \max\{z\in\N:\cantor{z,0}\leq n\} $$
+    $$ \cantor{z,0}\leq n $$
+    $$ \frac{z(z+1)}{2}+1 \leq n $$
+    $$ z^2+z+2-2n\leq 0 $$
+    $$ \frac{-1-\sqrt{8n-7}}{2}\leq z \leq \frac{-1+\sqrt{8n-7}}{2} $$
+    $$ \Downarrow $$
+    $$ \gamma=\left\lfloor\frac{-1+\sqrt{8n-7}}{2}\right\rfloor $$
+    
+    In conclusione:
+    $$ des(x) = n-\cantor{\gamma,0} $$
+    $$ sin(x) = \gamma-des(x) $$
+
+    La funzione coppia di Cantor $\cantor{\ ,\ }$ si è quindi mostrata
+    essere una biezione tra $\N^+$ e $\N^2$ mostrando che i due insiemi
+    hanno la stessa cardinalità.
+\end{proof}
+
+È facile poi, partendo da $\cantor{\ ,\ }$, creare una biezione tra $\N$ e $\N^2$
+(dimostrando che $\N\times\N\sim\N$):
+$$ [\ ,\ ]:\N\times\N\rightarrow\N $$
+$$ [x,y] = \cantor{x,y}-1 $$
+
+Il precedente risultato mette alla luce anche che:
+$$ \mathbb{Q}\sim\N $$
+in quanto ogni suo elemento non è altro che una coppia di numeri messi
+a frazione.
