@@ -1,0 +1,29 @@
+\begin{tikzpicture}[
+    level distance=13mm,
+    sibling distance=30mm,
+]
+    \node {\Large$n_0$} 
+        child {node[blue] {\Large$x_1$} 
+            edge from parent node[xshift=-3,yshift=4,rotate=40.8] {\scriptsize$\sx(n_0)$}
+        }
+        child {node {\Large$n_1$}
+            child {node[blue] {\Large$x_2$}
+                edge from parent node[xshift=-3,yshift=4,rotate=40.8] {\scriptsize$\sx(n_1)$}  
+            }
+            child {node {\Large$n_2$}
+                child {node[blue] {\Large$\phantom{n_1}\dots\phantom{n_1}$}
+                    edge from parent node[xshift=-3,yshift=4,rotate=40.8] {\scriptsize$\sx(n_2)$}  
+                }
+                child {node {\Large$\phantom{n_1}\dots\phantom{n_1}$}
+                    child {node[blue] {\Large$x_m$}
+                        edge from parent node[xshift=-3,yshift=4,rotate=40.8] {\scriptsize$\sx(n_{m-1})$}  
+                    }
+                    child {node {\Large$0$} edge from parent 
+                        node[xshift=3,yshift=4,rotate=-40.8] {\scriptsize$\dx(n_{m-1})$}}
+                    edge from parent node[xshift=3,yshift=4,rotate=-40.8] {\scriptsize$\dx(n_2)$}
+                }
+                edge from parent node[xshift=3,yshift=4,rotate=-40.8] {\scriptsize$\dx(n_1)$}
+            }
+            edge from parent node[xshift=3,yshift=4,rotate=-40.8] {\scriptsize$\dx(n_0)$}
+        };
+\end{tikzpicture}

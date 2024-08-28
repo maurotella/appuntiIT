@@ -323,7 +323,7 @@ numero. Per farlo si userà il seguente teorema.
     ($\N^+\rightarrow\N^2$).
 
     Si definiscano le seguenti funzioni:
-    $$ \cantor{x,y} = n \quad , \quad sin(n) = x \quad , \quad des(n) = y $$
+    $$ \cantor{x,y} = n \quad , \quad \sx(n) = x \quad , \quad \dx(n) = y $$
 
     Da (\ref{eq:cantor_analytic}) si ha che:
     $$ \begin{aligned}
@@ -342,8 +342,8 @@ numero. Per farlo si userà il seguente teorema.
     $$ \gamma=\left\lfloor\frac{-1+\sqrt{8n-7}}{2}\right\rfloor $$
     
     In conclusione:
-    $$ des(x) = n-\cantor{\gamma,0} $$
-    $$ sin(x) = \gamma-des(x) $$
+    $$ \dx(x) = n-\cantor{\gamma,0} $$
+    \begin{equation} \sx(x) = \gamma-des(x) \tag{non è il seno} \end{equation}
 
     La funzione coppia di Cantor $\cantor{\ ,\ }$ si è quindi mostrata
     essere una biezione tra $\N^+$ e $\N^2$ mostrando che i due insiemi
@@ -359,3 +359,32 @@ Il precedente risultato mette alla luce anche che:
 $$ \mathbb{Q}\sim\N $$
 in quanto ogni suo elemento non è altro che una coppia di numeri messi
 a frazione.
+
+Ora che si ha appurato l'esistenza di una biezione tra coppie di numeri e numeri si può
+facilmente estendere questa relazione a liste d'interi, dove con lista si intende una
+sequenza di numeri di lunghezza non nota:
+$$ x_1,x_2,\dots,x_m \rightarrow \cantor{x_1,x_2,\dots,x_m} $$
+Per farlo basterà applicare $\cantor{\ ,\ }$ come segue:
+$$ \cantor{x_1,x_2,\dots,x_m} = 
+\cantor{x_1,\cantor{x_2,\cantor{\dots,\cantor{x_m,0}\dots}}} $$
+Dove lo 0 a destra della coppia di Cantor più interna rappresenta il fine lista.
+
+La decodifica invece avverà nel seguente modo:
+\begin{figure}[H]
+    \centering
+    \input{figures/cantor_list_dec.tex}
+\end{figure}
+
+Qualsiasi tipo di dato può essere convertito a una lista di numeri:
+\begin{itemize}
+    \item Testi: non sono altro che liste di caratteri i quali possono essere convertiti
+        in numeri tramite tabella ASCII;
+    \item Suoni: si usa un campionamento a una data frequenza ottenendo una lista di
+        valori;
+    \item Matrici: una matrice è una lista di liste;
+    \item Immagini: ogni pixel contiene la codifica numerica di un colore; in questo modo
+    un'immagine non è altro che una matrice di numeri grande quanto la sua risoluzione;
+    \item Grafi: uso liste o matrici di adiacenza.
+\end{itemize}
+
+\textbf{Si può quindi affermare che $\bm{\text{DATI}\sim\N}$}.

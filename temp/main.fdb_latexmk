@@ -1,10 +1,10 @@
 # Fdb version 4
-["xdvipdfmx"] 1724744475.28635 "temp/main.xdv" "temp/main.pdf" "temp/main" 1724744475.43153 0
-  "temp/main.xdv" 1724744475 161400 8e52c5f0f895c0f4765b4a344690c6dd "xelatex"
+["xdvipdfmx"] 1724844951.21278 "temp/main.xdv" "temp/main.pdf" "temp/main" 1724844951.36616 0
+  "temp/main.xdv" 1724844951 181292 acd2fc7868ab5cf220a0a8bc0d6cd963 "xelatex"
   (generated)
   "temp/main.pdf"
   (rewritten before read)
-["xelatex"] 1724744474.32568 "d:/OneDrive - Università degli Studi di Milano/Università/Magistrale/Informatica teorica/Appunti Latex/main.tex" "temp/main.xdv" "main" 1724744475.42091 0
+["xelatex"] 1724844950.23122 "d:/OneDrive - Università degli Studi di Milano/Università/Magistrale/Informatica teorica/Appunti Latex/main.tex" "temp/main.xdv" "main" 1724844951.35545 0
   "c:/texlive/2024/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1714641880 1528 7e12f4c0fcf5a072cebdcfbfc610f54c ""
   "c:/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1714641792 916 f87d7c45f9c908e672703b83b72241a3 ""
   "c:/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam5.tfm" 1714641792 924 9904cf1d39e9767e7a3622f2a125a565 ""
@@ -204,19 +204,20 @@
   "c:/texlive/2024/texmf-dist/web2c/texmf.cnf" 1724364059 42007 0b741a3c21a5ca32b40e3846e75b3548 ""
   "c:/texlive/2024/texmf-var/web2c/xetex/xelatex.fmt" 1724364162 9132955 464e57addb0ba34fbbd4e3f5313a895e ""
   "c:/texlive/2024/texmf.cnf" 1714641880 801 3c495eb8f23f145306d09b4ffa3d382c ""
-  "d:/OneDrive - Università degli Studi di Milano/Università/Magistrale/Informatica teorica/Appunti Latex/main.tex" 1724703762 1256 c96bf2f636f7d51b9b89372a78a3430d ""
+  "d:/OneDrive - Università degli Studi di Milano/Università/Magistrale/Informatica teorica/Appunti Latex/main.tex" 1724844916 1342 e94619d06b348902c9d098651171031b ""
   "figures/cantor_analitica.tex" 1724705450 989 c8fa4e99ac526cffee4d59024a21b9e6 ""
+  "figures/cantor_list_dec.tex" 1724840915 1435 64ddfcab8fee51552abb57626bf34e9e ""
   "figures/cardinalita.tex" 1724703781 463 8e802c69fa9c7760c176219e77ea0784 ""
   "figures/reali_zero_uno.tex" 1724598181 925 3eb376cda23e9d13c845134eeb302c48 ""
   "figures/sistema_calcolo.tex" 1724687036 456 68655d3a96e684642e81629723092104 ""
   "figures/tabella_cantor.tex" 1724688036 1326 124437e2f4bb7aefbd6c7b53b96ac33f ""
-  "main.tex" 1724703762 1256 c96bf2f636f7d51b9b89372a78a3430d ""
+  "main.tex" 1724844916 1342 e94619d06b348902c9d098651171031b ""
   "sections/00_intro.tex" 1724363728 575 c991f274d05045569a5f66e9298cdce4 ""
   "sections/01_prerequisiti_matematici.tex" 1724362623 2850 978f97aaebe9592c6c4bed673ca69667 ""
-  "sections/02_calcolabilita.tex" 1724744474 15285 cc720e13e8e5016f4e19f1d6befabe59 ""
-  "temp/main.aux" 1724744475 2621 9893213bd2eee91f261aa310d0c564c8 "xelatex"
-  "temp/main.out" 1724744475 2450 4976f93f225e807d6f8e331e2d8d3f47 "xelatex"
-  "temp/main.toc" 1724744475 1389 91cf1df1f047ab42b0dcdb47566760ec "xelatex"
+  "sections/02_calcolabilita.tex" 1724844950 16696 538dbcd76fcf191bd8f7f2e79b68e81f ""
+  "temp/main.aux" 1724844951 2621 7666a0591c153e0b8b3619c46ae2efd2 "xelatex"
+  "temp/main.out" 1724844951 2450 4976f93f225e807d6f8e331e2d8d3f47 "xelatex"
+  "temp/main.toc" 1724844951 1389 91cf1df1f047ab42b0dcdb47566760ec "xelatex"
   (generated)
   "temp/main.aux"
   "temp/main.log"
