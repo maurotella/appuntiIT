@@ -124,8 +124,8 @@ La relazione di isomorfismo $\sim$ è una relazione di equivalenza in quanto:
     \item Transitiva: la composizione di due funzioni biettive è una funzione biettiva.
 \end{enumerate}
 
-Sia $\mathcal{U}$ l'insieme universo, ovvero l'insieme che contiene tutti gli insiemi.
-Il quoziente di $\mathcal{U}$ rispetto a $\sim$ ($\sfrac{\mathcal{U}}{\sim}$) definisce il 
+Sia $\mathscr{U}$ l'insieme universo, ovvero l'insieme che contiene tutti gli insiemi.
+Il quoziente di $\mathscr{U}$ rispetto a $\sim$ ($\sfrac{\mathscr{U}}{\sim}$) definisce il 
 concetto di cardinalità:
 
 \begin{figure}[H]
@@ -133,7 +133,7 @@ concetto di cardinalità:
     \input{figures/cardinalita.tex}
 \end{figure}
 
-Ogni partizione di $\sfrac{\mathcal{U}}{\sim}$ contiene gli insiemi tra loro isomorfi, ovvero
+Ogni partizione di $\sfrac{\mathscr{U}}{\sim}$ contiene gli insiemi tra loro isomorfi, ovvero
 che hanno la stessa cardinalità.
 
 \subsubsection*{Insiemi finiti}
@@ -225,8 +225,8 @@ $\N$ (sono \quotes{più fitti}). Il re di questi insiemi è $\RN$.
 
 Tutti gli insiemi isomorfi a $\RN$ sono detti continui. Altri insiemi non numerabili sono:
 \begin{itemize}
-    \item Insieme delle parti di $\N$: $2^\N = \{\text{sottoinsiemi di } \N\}$
-    \item Insieme delle funzioni da $\N$ a $\N$:
+    \item $2^\N\nsim\N$: insieme delle parti di $\N$ ovvero $2^\N = \{\text{sottoinsiemi di } \N\}$
+    \item $\N^\N_\perp\nsim\N$: insieme delle funzioni da $\N$ a $\N$ ovvero
         $\N^\N_\perp = \{f:\N\rightarrow\N_\perp\}$
 \end{itemize}
 
@@ -258,7 +258,7 @@ funzioni ($\N^\N_\perp$).
 \textbf{Alla domanda \quotes{Esistono funzioni non calcolabili?} si può quindi 
 rispondere con un sì!}
 
-\subsubsection{DATI numerabile}
+\subsection{\texorpdfstring{DATI$\bm{\sim\N}$}{DATI~N}}
 Obiettivo di questa sezione è dimostrare formalmente che:
 $$ \text{DATI} \sim \N $$
 Vogliamo quindi trovare una biezione che è in grado di associare biunivocamente
@@ -369,7 +369,7 @@ $$ \cantor{x_1,x_2,\dots,x_m} =
 \cantor{x_1,\cantor{x_2,\cantor{\dots,\cantor{x_m,0}\dots}}} $$
 Dove lo 0 a destra della coppia di Cantor più interna rappresenta il fine lista.
 
-La decodifica invece avverà nel seguente modo:
+La decodifica invece avverrà nel seguente modo:
 \begin{figure}[H]
     \centering
     \input{figures/cantor_list_dec.tex}
@@ -388,3 +388,239 @@ Qualsiasi tipo di dato può essere convertito a una lista di numeri:
 \end{itemize}
 
 \textbf{Si può quindi affermare che $\bm{\text{DATI}\sim\N}$}.
+
+\subsection{\texorpdfstring{PROG$\bm{\sim\N}$}{PROG~N}}
+Obiettivo di questa sezione è dimostrare formalmente che:
+$$ \text{PROG} \sim \N $$
+Per poterlo fare si dovrà definire formalmente un sistema di calcolo specifico: il sistema 
+di calcolo RAM, composto dalla macchina RAM e il linguaggio RAM. Quest'ultimo si può 
+riassumere come un assembly molto semplificato.
+
+L'idea è di usare il sistema RAM come rappresentativo di tutti i possibili sistemi di calcolo;
+ne segue che $F(\RAM)$, ovvero la potenza computazionale di un sistema RAM, permetterà
+di capire cosa i sistemi di calcolo sono in grado di calcolare.
+
+Può però sorgere spontaneo un dubbio: il sistema RAM non è troppo semplice per rappresentare
+tutti i sistemi di calcolo? Se un sistema RAM non fosse in grado di risolvere
+certi problemi, magari altri sistemi più complessi lo sarebbero.
+
+Per verificare questo caso si vedrà successivamente un altro sistema di calcolo più
+sofisticato: quello WHILE. Il confronto tra le due potenze computazionali porterebbe a:
+\begin{itemize}
+    \item $F(\WHILE)\neq F(RAM) \Rightarrow$ la computabilità dipende dallo strumento usato;
+    \item $F(\WHILE)=F(RAM) \Rightarrow$ la computabilità è intrinseca nei problemi 
+        (tesi di Church-Turing).
+\end{itemize}
+
+\subsubsection{Sistema di calcolo RAM}
+\subsubsection*{Macchina RAM}
+\begin{figure}[H]
+    \centering
+    \input{figures/macchina_ram.tex}
+\end{figure}
+\begin{itemize}
+    \item $L$ contiene l'indirizzo della prossima istruzione da eseguire ($1\leq L\leq |P|$)
+    \item $P$ è il programma ovvero una lista di istruzioni $\text{Istr}_i$
+    \item $R_i$ è un generico registro di memoria che può contenere un numero naturale:
+    \begin{itemize}
+        \item $R_0$ è il registro specifico dove verrà deposto l'output del programma
+        \item $R_1$ è il registro specifico dove verrà letto l'input del programma
+        \item Il numero dei registri è illimitato
+    \end{itemize}
+\end{itemize}
+\subsubsection*{Linguaggio RAM}
+La sintassi del linguaggio RAM è molto intuitiva; ci sono tre tipi di istruzioni:
+
+\begin{minipage}{.4\textwidth}
+    \begin{enumerate}
+        \itemsep.5em 
+        \item $R_k \leftarrow R_k +1$ 
+        \item $R_k \leftarrow R_k \dotminus 1$
+        \item $\goto{R_k}{m}$
+    \end{enumerate}
+\end{minipage}
+\begin{minipage}{.49\textwidth}
+    $$x\dotminus y =\begin{cases}x-y&x\geq y\\ 0 &\text{altrimenti}\end{cases}$$
+\end{minipage}
+
+Si noti che il numero di istruzione $m$ usato nel terzo comando deve essere compreso tra
+1 e $|P|$.
+
+\subsubsection*{Esecuzione}
+Per eseguire un programma $P$ su input $\color{red}n$ la macchina verrà inizializzata come segue:
+\begin{figure}[H]
+    \centering
+    \input{figures/macchina_ram_init.tex}
+\end{figure}
+
+Successivamente si eseguirà un'istruzione dopo l'altra, a partire dalla prima, facendo quindi
+incrementare di uno il program counter ($L\leftarrow L+1$) dopo l'esecuzione di ogni istruzione.
+Se l'istruzione è un'istruzione di salto ($\goto{R_k}{m}$) e la sua condizione $R_k=0$
+è verificata, il program counter verrà cambiato in $L\leftarrow m$.
+
+Per convenzione $L=0 \Rightarrow \text{ Fine del programma}$ (con possibiliità di loop infinito).
+
+L'output del programma sarà il contenuto di $R_0$ o $\perp$ in presenza di loop.
+
+\subsubsection*{Semantica operazionale}
+La semantica operazionale descrive formalmente il significato di ogni istruzione; per farlo
+specifica l'effetto che l'istruzione ha sui registri della macchina.
+
+L'esecuzione di un programma è una sequenza di stati della macchina, dove uno stato descrive
+precisamente l'attuale situazione della macchina. Ogni istruzione fa passare la macchina da
+uno stato ad un altro:
+$$ \text{STATO}_1 \rightarrow \boxed{\text{Istr}_i} \rightarrow \text{STATO}_2 $$
+$$ (\text{STATO}_1,\text{STATO}_2) = \text{semantica operazionale di Istr}_i $$
+
+Ampliando il concetto di semantica dalla singola istruzione all'intero programma si ha che 
+quest'ultimo induce una sequenza di stati:
+\begin{figure}[H]
+    \centering
+    \input{figures/macchina_ram_stati.tex}
+\end{figure}
+
+La semantica di $P$ è:
+$$ \semantica_P:\N\to\N_\perp $$
+$$ \semantica_P(n) = \begin{cases}
+\perp & \text{se $P$ va in loop}\\
+y & \text{altrimenti}
+\end{cases} $$
+
+\subsubsection*{Stato}
+Come già anticipato, uno stato è una \quotes{foto} di tutte le componenti della macchina
+in un dato istante. Formalmente si definisca uno stato come una funzione:
+$$ \Stato:\{L,R_i\}\to\N $$
+$$ \Stato(R_j) = \text{contenuto del registro $R_j$ quando la macchina è nello stato 
+$\Stato$}$$
+
+I possibili stati della macchina sono:
+$$ \text{STATI} = \N^{\{L,R_i\}} $$
+
+Uno stato è finale se $\Stato(L)=0$.
+
+La funzione di inizializzazione $in$, preso l'input del programma, restituisce lo stato
+iniziale:
+$$ in:\text{DATI}\to\text{STATI} $$
+$$ in(n) = \Stato_{init} $$
+$$ \Stato_{init}(L) = 1 \qquad\qquad \Stato_{init}(R_i) = \begin{cases}
+n & i=1\\
+0 & i\neq 1
+\end{cases} $$
+
+\subsubsection*{Funzione stato prossimo}
+A definire la dinamica del programma è la funzione stato prossimo $\delta$:
+$$ \delta : \text{STATI}\times\text{PROG}\to\text{STATI}_\perp $$
+$$ \delta({\color{red}\Stato},P) = {\color{blue}\Stato'} $$
+$$ {\color{red}\text{Stato attuale}} \qquad {\color{blue}\text{Stato prossimo}} $$
+
+\begin{enumerate}
+    \item Se $\Stato(L)=0$ allora $\Stato'=\perp$
+    \item Se $\Stato(L)>|P|$ allora $\Stato'(L)=0$ e $\forall i:\Stato'(R_i)=\Stato(R_i)$
+    \item Se $1\leq\Stato(L)\leq |P|$: considera la $\Stato(L)$-esima istruzione:
+        \begin{enumerate}
+            \item Se $R_k \leftarrow R_k +/\dotminus 1$ allora:
+                \begin{itemize}
+                    \item $\Stato'(R_k) = \Stato(R_k)+/\dotminus 1$
+                    \item $\Stato'(L) = \Stato(L)+1$
+                    \item $\forall i:i\neq k \quad \Stato'(R_i) = \Stato(R_i)$
+                \end{itemize}
+            \item Se $\goto{R_k}{m}$ allora:
+                \begin{itemize}
+                    \item Se $\Stato(R_k)=0$ allora $\Stato'(L) = m$
+                    \item Altrimenti $\Stato'(L) = \Stato(L)+1$
+                \end{itemize}
+        \end{enumerate}
+\end{enumerate}
+
+\subsubsection*{Potenza computazionale del sistema RAM}
+$$ \begin{aligned}
+        F(\RAM) &= \{f\in\N_\perp^\N:\exists P \in \PROG: \semantica_P=f\}\\
+                &= \{\semantica_P:P\in\PROG\} \subset \N_\perp^\N
+\end{aligned} $$
+
+\subsubsection*{Esempio di programma}
+\vspace{-1em}
+\begin{minipage}{.48\textwidth}
+    \begin{align}
+        P \equiv\ & \goto{R_1}{6}       \notag\\
+        & R_0 \leftarrow R_0+1          \notag\\
+        & R_0 \leftarrow R_0+1          \notag\\[-.3em]
+        & R_1 \leftarrow R_1\dotminus 1 \notag\\
+        & \goto{R_2}{1}                 \notag\\[-.3em]
+        & R_1 \leftarrow R_1\dotminus 1 \notag
+    \end{align}
+\end{minipage}
+\begin{minipage}{.48\textwidth}
+    $ \semantica_P(n) = 2n $
+\end{minipage}
+
+\subsubsection*{Aritmetizzazione di un programma RAM}
+Essendo un programma RAM una lista di istruzioni, per poter codificare e decodificare
+dei programmi basterà trovare una funzione $Ar$ che codifica le singole istruzioni, 
+ottenenendo una lista di numeri che si può facilmente codificare con $\cantor{\ ,\ }$:
+\begin{figure}[H]
+    \centering
+    \input{figures/ram_codifica.tex}
+\end{figure}
+
+L'associazione biunivoca di un numero ad una struttura si dice aritmetizzazione o
+Gödellizzazione.
+
+\subsubsection*{Aritmetizzazione delle istruzioni RAM}
+Per poter aritmetizzare un'istruzione RAM c'è bisogno di una funzione che:
+$$ Ar:\text{Istr}\to\N \quad , \quad Ar^{-1}:\N\to\text{Istr} $$
+Il linguaggio RAM è formato da tre tipi di istruzioni; si può quindi ottenere la
+seguente aritmetizzazione:
+$$ \begin{aligned}
+    Ar(R_k\leftarrow R_k+1) &= 3k\\
+    Ar(R_k\leftarrow R_k\dotminus1) &= 3k+1\\
+    Ar(\goto{R_k}{m}) &= 3\cantor{k,m}-1
+\end{aligned} $$
+Mentre per calcolare la sua inversa $Ar^{-1}$, ovvero a partire da un numero $n$ decodificare
+l'istruzione:
+\begin{itemize}
+    \item Se $n\bmod{3}=0$:
+        \begin{itemize}
+            \begin{minipage}{.35\textwidth}
+                \item È un'istruzione di primo tipo
+                \item $n=3k$
+            \end{minipage}
+            \begin{minipage}{.3\textwidth}
+                $\Rightarrow \qquad R_{\frac{n}{3}} \leftarrow R_{\frac{n}{3}}+1$
+            \end{minipage}
+        \end{itemize}
+    \item Se $n\bmod{3}=1$:
+        \begin{itemize}
+            \begin{minipage}{.35\textwidth}
+                \item È un'istruzione di secondo tipo
+                \item $n=3k+1$
+            \end{minipage}
+            \begin{minipage}{.3\textwidth}
+                $\Rightarrow \qquad R_{\frac{n-1}{3}} \leftarrow R_{\frac{n-1}{3}}\dotminus1$
+            \end{minipage}
+        \end{itemize}
+    \item Se $n\bmod{3}=2$:
+        \begin{itemize}
+            \begin{minipage}{.35\textwidth}
+                \item È un'istruzione di terzo tipo
+                \item $n=3\cantor{k,m}-1$
+            \end{minipage}
+            \begin{minipage}{.5\textwidth}
+                $\Rightarrow \qquad \goto{R_{\sx(\frac{n+1}{3})}}{\dx(\frac{n+1}{3})}$
+            \end{minipage}
+        \end{itemize}
+\end{itemize}
+
+\subsubsection*{Conclusioni}
+Nelle ultime due sezioni si è mostrata una biezione tra programmi RAM (PROG) e numeri
+($\N$):
+    \begin{itemize}
+        \item Da programmi a numeri:
+            $cod(P)=\cantor{Ar(\text{Istr}_1),Ar(\text{Istr}_2),\dots,Ar(\text{Istr}_m)}$
+        \item Da numeri a programmi: si decodifichi la lista di numeri e si applichi su
+            ogni numero $Ar^{-1}$
+    \end{itemize}
+Per quanto riguarda i programmi RAM, \textbf{si può quindi affermare che}:
+$$ \text{PROG} \sim \N $$
+
+\subsubsection{Sistema di calcolo WHILE}

@@ -14,6 +14,7 @@
 \usepackage{float}
 \usepackage[normalem]{ulem}
 \usepackage{mathtools}
+\usepackage{relsize}
 \usepackage{pgfmath}
 \usepackage{esint}
 \usepackage{xfrac}
@@ -23,16 +24,28 @@
 \usepackage{calrsfs} %corsivo strano
 \usepackage{amsfonts}
 \usepackage{mathdots}
+\usepackage[scr=boondoxo,scrscaled=1.05]{mathalfa}
 \usepackage{tikz}
 \usepackage{bm}
 
 \newcommand{\quotes}[1]{``#1''}
 \newcommand{\cantor}[1]{\ensuremath{\langle}#1\ensuremath{\rangle}}
-\newcommand{\C}{\ensuremath{\mathcal{C}}}
+\newcommand{\C}{\ensuremath{\mathscr{C}}}
 \newcommand{\RN}{\ensuremath{\mathbb{R}}}
 \newcommand{\N}{\ensuremath{\mathbb{N}}}
 \newcommand{\dx}{\ensuremath{\text{des}}}
 \newcommand{\sx}{\ensuremath{\text{sin}}}
+\newcommand{\RAM}{\ensuremath{\text{RAM}}}
+\newcommand{\PROG}{\ensuremath{\text{PROG}}}
+\newcommand{\WHILE}{\ensuremath{\text{WHILE}}}
+\newcommand{\dotminus}{\ensuremath{
+    \text{\(\begin{array}{@{\hspace{.2em}}c@{\hspace{-.05em}}}\cdot\\[-10pt]-\end{array}\)
+}}}
+\newcommand{\goto}[2]{
+    \ensuremath{\texttt{IF $#1=0$ THEN GOTO $#2$}}
+}
+\newcommand{\Stato}{\ensuremath{\mathscr{S}}}
+\newcommand{\semantica}{\ensuremath{{\mathlarger\varphi}}}
 
 \newtheorem{theorem}{Teorema}
 
@@ -40,7 +53,7 @@
 
 \title{Informatica Teorica}
 \author{Mauro Tellaroli}
-\date{}
+\date{Prof. Mereghetti}
 \maketitle
 
 \tableofcontents

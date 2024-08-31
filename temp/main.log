@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.8.23)  28 AUG 2024 13:35
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.8.23)  31 AUG 2024 12:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -530,6 +530,19 @@ Package: mathdots 2014/06/11 v0.9 Improve and add various macros for dots in mat
 \MDoprekern=\muskip21
 \MDopostkern=\muskip22
 \MDodotkern=\muskip23
+) (c:/texlive/2024/texmf-dist/tex/latex/mathalpha/mathalfa.sty) (c:/texlive/2024/texmf-dist/tex/latex/mathalpha/mathalpha.sty
+Package: mathalpha 2021/11/18 - 1.143mathalpha (License LPPL) Michael Sharpe
+ `mathalpha' v1.143, 2021/11/18, a renaming of mathalfa (msharpe) (c:/texlive/2024/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
+ (c:/texlive/2024/texmf-dist/tex/generic/xkeyval/xkeyval.tex (c:/texlive/2024/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks42
+\XKV@tempa@toks=\toks43
+)
+\XKV@depth=\count320
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+LaTeX Font Info:    Overwriting math alphabet `\mathscr' in version `bold'
+(Font)                  U/BOONDOX-scro/m/n --> U/BOONDOX-scro/b/n on input line 938.
 ) (c:/texlive/2024/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (c:/texlive/2024/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
 Package: pgf 2023-01-15 v3.1.10 (3.1.10)
  (c:/texlive/2024/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty (c:/texlive/2024/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty (c:/texlive/2024/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
@@ -546,14 +559,14 @@ Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
 \pgf@yd=\dimen277
 \w@pgf@writea=\write3
 \r@pgf@reada=\read3
-\c@pgf@counta=\count320
-\c@pgf@countb=\count321
-\c@pgf@countc=\count322
-\c@pgf@countd=\count323
-\t@pgf@toka=\toks42
-\t@pgf@tokb=\toks43
-\t@pgf@tokc=\toks44
-\pgf@sys@id@count=\count324
+\c@pgf@counta=\count321
+\c@pgf@countb=\count322
+\c@pgf@countc=\count323
+\c@pgf@countd=\count324
+\t@pgf@toka=\toks44
+\t@pgf@tokb=\toks45
+\t@pgf@tokc=\toks46
+\pgf@sys@id@count=\count325
  (c:/texlive/2024/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
 )
@@ -565,11 +578,11 @@ File: pgfsys-dvipdfmx.def 2023-01-15 v3.1.10 (3.1.10)
  (c:/texlive/2024/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
 File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
 )
-\pgfsys@objnum=\count325
+\pgfsys@objnum=\count326
 ))) (c:/texlive/2024/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfsyssoftpath@smallbuffer@items=\count326
-\pgfsyssoftpath@bigbuffer@items=\count327
+\pgfsyssoftpath@smallbuffer@items=\count327
+\pgfsyssoftpath@bigbuffer@items=\count328
 ) (c:/texlive/2024/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )) (c:/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
@@ -603,7 +616,7 @@ File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgfpic=\box76
 \pgf@hbox=\box77
 \pgf@layerbox@main=\box78
-\pgf@picture@serial@count=\count328
+\pgf@picture@serial@count=\count329
 ) (c:/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgflinewidth=\dimen296
@@ -624,8 +637,8 @@ File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (c:/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@max=\dimen301
-\pgf@sys@shading@range@num=\count329
-\pgf@shadingcount=\count330
+\pgf@sys@shading@range@num=\count330
+\pgf@shadingcount=\count331
 ) (c:/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (c:/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
@@ -654,13 +667,13 @@ Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
 Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
 \pgffor@iter=\dimen304
 \pgffor@skip=\dimen305
-\pgffor@stack=\toks45
-\pgffor@toks=\toks46
+\pgffor@stack=\toks47
+\pgffor@toks=\toks48
 )) (c:/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
 Package: tikz 2023-01-15 v3.1.10 (3.1.10)
  (c:/texlive/2024/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@plot@mark@count=\count331
+\pgf@plot@mark@count=\count332
 \pgfplotmarksize=\dimen306
 )
 \tikz@lastx=\dimen307
@@ -675,17 +688,17 @@ File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \tikz@figbox@bg=\box82
 \tikz@tempbox=\box83
 \tikz@tempbox@bg=\box84
-\tikztreelevel=\count332
-\tikznumberofchildren=\count333
-\tikznumberofcurrentchild=\count334
-\tikz@fig@count=\count335
+\tikztreelevel=\count333
+\tikznumberofchildren=\count334
+\tikznumberofcurrentchild=\count335
+\tikz@fig@count=\count336
  (c:/texlive/2024/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfmatrixcurrentrow=\count336
-\pgfmatrixcurrentcolumn=\count337
-\pgf@matrix@numberofcolumns=\count338
+\pgfmatrixcurrentrow=\count337
+\pgfmatrixcurrentcolumn=\count338
+\pgf@matrix@numberofcolumns=\count339
 )
-\tikz@expandcount=\count339
+\tikz@expandcount=\count340
  (c:/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))) (c:/texlive/2024/texmf-dist/tex/latex/tools/bm.sty
@@ -700,40 +713,40 @@ Package bm Info: No bold for \U/esint/m/n, using \pmb.
 Package bm Info: No bold for \OMS/rsfs/m/n, using \pmb.
 LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 149.
 )
-\c@theorem=\count340
+\c@theorem=\count341
  (c:/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
 File: l3backend-xetex.def 2024-05-08 L3 backend support: XeTeX
-\g__graphics_track_int=\count341
+\g__graphics_track_int=\count342
 \l__pdf_internal_box=\box85
-\g__pdf_backend_annotation_int=\count342
-\g__pdf_backend_link_int=\count343
+\g__pdf_backend_annotation_int=\count343
+\g__pdf_backend_link_int=\count344
 ) (temp/main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 39.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 39.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 52.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 52.
  (c:/texlive/2024/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -769,48 +782,48 @@ LaTeX Font Info:    ... okay on input line 39.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 39.
+Package hyperref Info: Link coloring OFF on input line 52.
 (temp/main.out) (temp/main.out)
 \@outlinefile=\write4
 \openout4 = `main.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 45.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 58.
  (c:/texlive/2024/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 45.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 58.
  (c:/texlive/2024/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 45.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 58.
  (c:/texlive/2024/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 45.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 58.
  (c:/texlive/2024/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 45.
+(Font)              <12> on input line 58.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 45.
+(Font)              <8> on input line 58.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 45.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 45.
+(Font)              <6> on input line 58.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 58.
  (c:/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 45.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 58.
  (c:/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+esint on input line 45.
+LaTeX Font Info:    Trying to load font information for U+esint on input line 58.
  (c:/texlive/2024/texmf-dist/tex/latex/esint/uesint.fd
 File: uesint.fd 
 )
-LaTeX Font Info:    Trying to load font information for OMS+rsfs on input line 45.
+LaTeX Font Info:    Trying to load font information for OMS+rsfs on input line 58.
  (c:/texlive/2024/texmf-dist/tex/latex/calrsfs/OMSrsfs.fd) (temp/main.toc
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10> on input line 6.
@@ -818,6 +831,12 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 6.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 6.
+LaTeX Font Info:    Font shape `U/BOONDOX-scro/m/n' will be
+(Font)              scaled to size 10.50003pt on input line 6.
+LaTeX Font Info:    Font shape `U/BOONDOX-scro/m/n' will be
+(Font)              scaled to size 7.35002pt on input line 6.
+LaTeX Font Info:    Font shape `U/BOONDOX-scro/m/n' will be
+(Font)              scaled to size 5.25002pt on input line 6.
 )
 \tf@toc=\write5
 \openout5 = `main.toc'.
@@ -831,6 +850,13 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 [2
 
 ] (./sections/01_prerequisiti_matematici.tex
+LaTeX Font Info:    Font shape `U/BOONDOX-scro/m/n' will be
+(Font)              scaled to size 12.60004pt on input line 4.
+LaTeX Font Info:    Font shape `U/BOONDOX-scro/m/n' will be
+(Font)              scaled to size 8.40002pt on input line 4.
+LaTeX Font Info:    Font shape `U/BOONDOX-scro/m/n' will be
+(Font)              scaled to size 6.30002pt on input line 4.
+
 
 [3
 
@@ -857,11 +883,21 @@ File: pgflibraryarrows.meta.code.tex 2023-01-15 v3.1.10 (3.1.10)
 [9] (./figures/cantor_list_dec.tex
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <14.4> on input line 5.
+LaTeX Font Info:    Font shape `U/BOONDOX-scro/m/n' will be
+(Font)              scaled to size 15.12003pt on input line 5.
 )
 
-[10])
+[10] (./figures/macchina_ram.tex)
 
-[11] (temp/main.aux)
+[11] (./figures/macchina_ram_init.tex)
+
+[12] (./figures/macchina_ram_stati.tex)
+
+[13] (./figures/ram_codifica.tex)
+
+[14])
+
+[15] (temp/main.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-07-20>
@@ -872,15 +908,15 @@ LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 3.25pt have occurred.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 4976F93F225E807D6F8E331E2D8D3F47;2450.
+(rerunfilecheck)             Checksum: E870008E39775CF77FB470605473FFA8;2870.
  ) 
 Here is how much of TeX's memory you used:
- 26521 strings out of 476178
- 493707 string characters out of 5785805
- 1944612 words of memory out of 5000000
- 48572 multiletter control sequences out of 15000+600000
- 659688 words of font info for 177 fonts, out of 8000000 for 9000
+ 26995 strings out of 476178
+ 502417 string characters out of 5785805
+ 1945612 words of memory out of 5000000
+ 49012 multiletter control sequences out of 15000+600000
+ 663027 words of font info for 193 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 81i,18n,87p,646b,1446s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 81i,19n,87p,646b,1446s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on temp/main.xdv (11 pages, 181292 bytes).
+Output written on temp/main.xdv (15 pages, 277444 bytes).
