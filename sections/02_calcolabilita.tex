@@ -1,24 +1,24 @@
 \section{Teoria della calcolabilità}
 
-\subsection{Sistema di calcolo \texorpdfstring{$\C$}{C}}
-Si vuole modellare matematicamente un calcolatore o sistema di calcolo $\C$:
+\subsection{Sistema di calcolo \texorpdfstring{$\SC$}{C}}
+Si vuole modellare matematicamente un calcolatore o sistema di calcolo $\SC$:
 \vspace{.4cm}
 \begin{figure}[h]
     \centering
     \input{figures/sistema_calcolo.tex}
 \end{figure}
 
-La figura mostra il sistema di calcolo $\C$ che, preso un programma $P$
+La figura mostra il sistema di calcolo $\SC$ che, preso un programma $P$
 su input $x$, restituisce in output il risultato $y$ o il valore $\perp$
 se il programma va in loop.
 
 DATI è l'insieme di tutti i possibili dati di input e PROG l'insieme di
 tutti i possibili programmi.
 
-Il sistema di calcolo $\C$ non fa altro che eseguire il programma $P$ su input
+Il sistema di calcolo $\SC$ non fa altro che eseguire il programma $P$ su input
 $x$ ricavandone il risultato $y$:
 \begin{equation}\label{eq:sistema_calcolo}
-\C:\text{PROG}\times\text{DATI}\rightarrow\text{DATI}_\perp
+\SC:\text{PROG}\times\text{DATI}\rightarrow\text{DATI}_\perp
 \end{equation}
 
 Quello che fa il programma $P$ è trasformare il dato di input $x$ in un dato
@@ -32,34 +32,34 @@ $$ \Downarrow $$
 La funzione associata al programma $P$ è detta \textbf{semantica di $P$}.
 
 Da (\ref{eq:sistema_calcolo}) e (\ref{eq:prog_dati}) si ottiene che:
-$$ \C:\text{DATI}^{\text{DATI}}_\perp\times\text{DATI}
+$$ \SC:\text{DATI}^{\text{DATI}}_\perp\times\text{DATI}
 \rightarrow\text{DATI}_\perp $$
 
-$\C$ è una funzione di valutazione; $\C(P,x)$ è infatti la semantica di $P$.
+$\SC$ è una funzione di valutazione; $\SC(P,x)$ è infatti la semantica di $P$.
 
-\subsection{Potenza computazionale di \texorpdfstring{$\C$}{C}
+\subsection{Potenza computazionale di \texorpdfstring{$\SC$}{C}
 \label{sec:pot_comp}}
-Si definisce potenza computazionale di $\C$:
-$$ F(\C) = \{\C(P,\_):P\in\text{PROG}\} \subseteq \text{DATI}^{\text{DATI}}_\perp $$
-\textbf{$F(\C)$ contiene tutto ciò che un qualsiasi sistema di calcolo $\C$
+Si definisce potenza computazionale di $\SC$:
+$$ F(\SC) = \{\SC(P,\_):P\in\text{PROG}\} \subseteq \text{DATI}^{\text{DATI}}_\perp $$
+\textbf{$F(\SC)$ contiene tutto ciò che un qualsiasi sistema di calcolo $\SC$
 può calcolare}. Quindi, per stabilire cosa l'informatica può risolvere, basta stabilire
 il carattere dell'inclusione:
 \begin{itemize}
-    \item $F(\C)\subset\text{DATI}^{\text{DATI}}_\perp \Rightarrow $
+    \item $F(\SC)\subset\text{DATI}^{\text{DATI}}_\perp \Rightarrow $
         esistono problemi che l'informatica non può risolvere;
-    \item $F(\C)=\text{DATI}^{\text{DATI}}_\perp \Rightarrow $
+    \item $F(\SC)=\text{DATI}^{\text{DATI}}_\perp \Rightarrow $
         l'informatica può risolvere tutto.
 \end{itemize}
 
 \subsection{Cardinalità di insiemi infiniti}
 Per riuscire a capire se l'inclusione
-$F(\C)\subseteq\text{DATI}^{\text{DATI}}_\perp$ sia propria o meno, si confronterà
+$F(\SC)\subseteq\text{DATI}^{\text{DATI}}_\perp$ sia propria o meno, si confronterà
 la cardinalità dei due insiemi. Infatti dalla cardinalità si può ricavare che:
 \begin{itemize}
-    \item Se $|F(\C)|<\left|\text{DATI}^{\text{DATI}}_\perp\right|
-    \quad \Rightarrow \quad F(\C)\subset\text{DATI}^{\text{DATI}}_\perp$;
-    \item Se $|F(\C)|=\left|\text{DATI}^{\text{DATI}}_\perp\right|
-    \quad \Rightarrow \quad F(\C)=\text{DATI}^{\text{DATI}}_\perp$.
+    \item Se $|F(\SC)|<\left|\text{DATI}^{\text{DATI}}_\perp\right|
+    \quad \Rightarrow \quad F(\SC)\subset\text{DATI}^{\text{DATI}}_\perp$;
+    \item Se $|F(\SC)|=\left|\text{DATI}^{\text{DATI}}_\perp\right|
+    \quad \Rightarrow \quad F(\SC)=\text{DATI}^{\text{DATI}}_\perp$.
 \end{itemize}
 
 Il concetto di cardinalità è semplice quando si tratta di insiemi finiti: basta
@@ -232,13 +232,13 @@ Tutti gli insiemi isomorfi a $\RN$ sono detti continui. Altri insiemi non numera
 
 \subsection{Esistono funzioni non calcolabili?}
 Ora che il concetto di cardinalità è più chiaro, si riprenda il concetto di 
-potenza computazionale di un sistema di calcolo $\C$ (paragrafo \ref{sec:pot_comp}):
+potenza computazionale di un sistema di calcolo $\SC$ (paragrafo \ref{sec:pot_comp}):
 $$
-F(\C) = \{\C(P,\_):P\in\text{PROG}\} \subseteq \text{DATI}^{\text{DATI}}_\perp
+F(\SC) = \{\SC(P,\_):P\in\text{PROG}\} \subseteq \text{DATI}^{\text{DATI}}_\perp
 $$
 
-Per definizione $F(\C)$ ha la stessa numerosità di PROG:
-$$ F(\C) \sim \text{PROG} $$
+Per definizione $F(\SC)$ ha la stessa numerosità di PROG:
+$$ F(\SC) \sim \text{PROG} $$
 
 Ragionevolmente, \textbf{ma non formalmente}, si può notare che:
 \begin{itemize}
@@ -247,11 +247,11 @@ Ragionevolmente, \textbf{ma non formalmente}, si può notare che:
     \item DATI$\sim\N$: si applichi lo stesso ragionamento del punto precedente.
 \end{itemize}
 Ne segue che:
-$$ F(\C) \sim \text{PROG} \sim \N \nsim\N^\N_\perp\sim \text{DATI}^\text{DATI}_\perp$$
+$$ F(\SC) \sim \text{PROG} \sim \N \nsim\N^\N_\perp\sim \text{DATI}^\text{DATI}_\perp$$
 $$ \Downarrow $$
-$$ F(\C) \nsim \text{DATI}^\text{DATI}_\perp $$
+$$ F(\SC) \nsim \text{DATI}^\text{DATI}_\perp $$
 $$ \Downarrow $$
-$$ F(\C) \subset \text{DATI}^\text{DATI}_\perp $$
+$$ F(\SC) \subset \text{DATI}^\text{DATI}_\perp $$
 
 Quello che questa osservazione dice è che ho pochi programmi ($\N$) e troppe
 funzioni ($\N^\N_\perp$).
@@ -779,52 +779,52 @@ $$ \begin{aligned}
 $$
 
 \subsubsection{Traduzione}
-Dati i sistemi di calcolo $\C_1$ e $\C_2$, una traduzione da $\C_1$ a $\C_2$ è una funzione
-$$ T:\C_1\text{-PROG}\to\C_2\text{-PROG} $$
+Dati i sistemi di calcolo $\SC_1$ e $\SC_2$, una traduzione da $\SC_1$ a $\SC_2$ è una funzione
+$$ T:\SC_1\text{-PROG}\to\SC_2\text{-PROG} $$
 tale che $T$ sia:
 \begin{enumerate}
     \item Programmabile: è programmabile effettivamente
     \item Completa: traduce ogni programma
     \item Corretta: mantiene la semantica:
-        $$\forall P\in\C_1\text{-PROG} \quad \semanticaRAM_{T(P)}=\semanticaWHILE_{P}$$
+        $$\forall P\in\SC_1\text{-PROG} \quad \semanticaRAM_{T(P)}=\semanticaWHILE_{P}$$
 \end{enumerate}
 \subsubsection{Confronto tra F(RAM) e F(WHILE)}
-Si prendano due sistemi di calcolo $\C_1$ e $\C_2$ con le rispettive potenze computazionali:
-$$ F(\C_1) = \{\semanticaRAM_{P_1}:P_1\in\C_1\text{-PROG}\} $$
-$$ F(\C_2) = \{\semanticaWHILE_{P_2}:P_2\in\C_2\text{-PROG}\} $$
+Si prendano due sistemi di calcolo $\SC_1$ e $\SC_2$ con le rispettive potenze computazionali:
+$$ F(\SC_1) = \{\semanticaRAM_{P_1}:P_1\in\SC_1\text{-PROG}\} $$
+$$ F(\SC_2) = \{\semanticaWHILE_{P_2}:P_2\in\SC_2\text{-PROG}\} $$
 
-Si vuole mostrare che $F(\C_1)\subseteq F(\C_2)$, ovvero che $\C_1$ non è più potente di $\C_2$;
+Si vuole mostrare che $F(\SC_1)\subseteq F(\SC_2)$, ovvero che $\SC_1$ non è più potente di $\SC_2$;
 per farlo bisogna dimostrare che:
 \begin{table}[H]
     \centering
     \begin{tabular}{c}
-        $\forall f \in F(\C_1) \quad f\in F(\C_2)$\\[1em]
+        $\forall f \in F(\SC_1) \quad f\in F(\SC_2)$\\[1em]
         \rotatebox[origin=c]{90}{$\equiv$}\\[1em]
-        $\exists P_1\in\C_1\text{-PROG}:f=\semanticaRAM_{P_1}
-    \ \Rightarrow \ \exists P_2\in\C_2\text{-PROG}:f=\semanticaWHILE_{P_2}$
+        $\exists P_1\in\SC_1\text{-PROG}:f=\semanticaRAM_{P_1}
+    \ \Rightarrow \ \exists P_2\in\SC_2\text{-PROG}:f=\semanticaWHILE_{P_2}$
     \end{tabular}
 \end{table}
-In altre parole, per ogni programma di $\C_1$ ne esiste uno equivalente in $\C_2$.
+In altre parole, per ogni programma di $\SC_1$ ne esiste uno equivalente in $\SC_2$.
 \\
 \begin{theorem}
-    Se esiste una traduzione $T$ da $\C_1$ a $\C_2$, allora $F(\C_1)\subseteq F(\C_2)$.
+    Se esiste una traduzione $T$ da $\SC_1$ a $\SC_2$, allora $F(\SC_1)\subseteq F(\SC_2)$.
 \end{theorem}
 \begin{proof}
     Si prenda una funzione $f$ tale che:
-    $$ f\in F(\C_1) $$
-    Si ha quindi che esiste un programma in $\C_1\text{-PROG}$ che può calcolare $f$:
+    $$ f\in F(\SC_1) $$
+    Si ha quindi che esiste un programma in $\SC_1\text{-PROG}$ che può calcolare $f$:
     \begin{equation} \label{eq:traduzione_proof1}
-        \exists P\in\C_1\text{-PROG}:f=\semanticaWHILE_P
+        \exists P\in\SC_1\text{-PROG}:f=\semanticaWHILE_P
     \end{equation}
-    Si prenda la traduzione $T$ da $\C_1$ a $\C_2$; vista la completezza di $T$ si ha che:
+    Si prenda la traduzione $T$ da $\SC_1$ a $\SC_2$; vista la completezza di $T$ si ha che:
     \begin{equation} \label{eq:traduzione_proof2}
-        T(P)\in\C_2\text{-PROG}
+        T(P)\in\SC_2\text{-PROG}
     \end{equation}
     e vista la correttezza si ha che:
     \begin{equation} \label{eq:traduzione_proof3}
         \semanticaRAM_{T(P)}=\semanticaWHILE_P\underset{(\ref{eq:traduzione_proof1})}{=}f
     \end{equation}
-    Si ha quindi che esiste un programma $T(P)$ in $\C_2$-PROG (\ref{eq:traduzione_proof2})
+    Si ha quindi che esiste un programma $T(P)$ in $\SC_2$-PROG (\ref{eq:traduzione_proof2})
     la cui semantica è $f$ (\ref{eq:traduzione_proof3}). Si può concludere che:
-    $$ f\in F(\C_2) $$ 
+    $$ f\in F(\SC_2) $$ 
 \end{proof}
