@@ -480,8 +480,8 @@ quest'ultimo induce una sequenza di stati:
 \end{figure}
 
 La semantica di $P$ è:
-$$ \semantica_P:\N\to\N_\perp $$
-$$ \semantica_P(n) = \begin{cases}
+$$ \semanticaRAM_P:\N\to\N_\perp $$
+$$ \semanticaRAM_P(n) = \begin{cases}
 \perp & \text{se $P$ va in loop}\\
 y & \text{altrimenti}
 \end{cases} $$
@@ -532,12 +532,6 @@ $$ {\color{red}\text{Stato attuale}} \qquad {\color{blue}\text{Stato prossimo}} 
         \end{enumerate}
 \end{enumerate}
 
-\subsubsection*{Potenza computazionale del sistema RAM}
-$$ \begin{aligned}
-        F(\RAM) &= \{f\in\N_\perp^\N:\exists P \in \PROG: \semantica_P=f\}\\
-                &= \{\semantica_P:P\in\PROG\} \subset \N_\perp^\N
-\end{aligned} $$
-
 \subsubsection*{Esempio di programma}
 \vspace{-1em}
 \begin{minipage}{.48\textwidth}
@@ -551,7 +545,7 @@ $$ \begin{aligned}
     \end{align}
 \end{minipage}
 \begin{minipage}{.48\textwidth}
-    $ \semantica_P(n) = 2n $
+    $ \semanticaRAM_P(n) = 2n $
 \end{minipage}
 
 \subsubsection*{Aritmetizzazione di un programma RAM}
@@ -611,8 +605,17 @@ l'istruzione:
         \end{itemize}
 \end{itemize}
 
+\subsubsection*{Potenza computazionale del sistema RAM}
+$$ \begin{aligned}
+        F(\RAM) &= \{f\in\N_\perp^\N:\exists P \in \PROG: \semanticaRAM_P=f\}\\
+                &= \{\semanticaRAM_P:P\in\PROG\} \subset \N_\perp^\N \\
+                \multispan2{Vista la possibilità di rappresentare un programma
+                 con un numero si ha:\hfill}\notag\\
+                 &= \{\semanticaRAM_i:i\in\N\}
+\end{aligned} $$
+Dove $\semanticaRAM_i$ è la semantica del programma la cui codifica è $i$.
 \subsubsection*{Conclusioni}
-Nelle ultime due sezioni si è mostrata una biezione tra programmi RAM (PROG) e numeri
+Nelle ultime sezioni si è mostrata una biezione tra programmi RAM (PROG) e numeri
 ($\N$):
     \begin{itemize}
         \item Da programmi a numeri:
@@ -621,6 +624,207 @@ Nelle ultime due sezioni si è mostrata una biezione tra programmi RAM (PROG) e 
             ogni numero $Ar^{-1}$
     \end{itemize}
 Per quanto riguarda i programmi RAM, \textbf{si può quindi affermare che}:
-$$ \text{PROG} \sim \N $$
-
+$$ F(\RAM) \sim \N \nsim \N^\N_\perp $$
+e quindi esistono problemi non risolubili automaticamente da una macchina RAM.
 \subsubsection{Sistema di calcolo WHILE}
+Per mostrare se il concetto di calcolabilità è legato al sistema o no si vedrà ora un
+sistema di calcolo più sofisticato: quello WHILE.
+\subsubsection*{Macchina WHILE}
+La macchina WHILE è più semplice di quella RAM; è formata infatti da un'unica memoria
+con un numero finito di registri:
+$$\text{Memoria: } x_0,x_1,x_2,\dots,x_{20}$$
+\begin{itemize}
+    \item $x_i$ è un generico registro di memoria detto variabile:
+        \begin{itemize}
+            \item $x_0$ è la variabile specifica dove verrà deposto l'output del programma
+            \item $x_1$ è la variabile specifica dove verrà letto l'input del programma
+            \item Ci sono 21 variabili
+        \end{itemize}
+    \item Non c'è un Program Counter
+\end{itemize}
+
+\subsubsection*{Linguaggio WHILE}
+La sintassi del linguaggio WHILE è induttiva; le istruzioni, detti comandi, sono:
+\begin{itemize}
+    \item Comando di assegnamento:
+        \begin{enumerate}
+            \item $x_k := 0$
+            \item $x_k := x_j+1$
+            \item $x_k := x_j\dotminus 1$
+        \end{enumerate}
+    \item Comando WHILE:
+        \begin{enumerate}
+            \item $\while{x_k} C$
+        \end{enumerate}
+    \item Comando composto:
+        \begin{enumerate}
+            \item $\textbegin C_1\ ; \ C_2 \ ; \ \dots \ ; \ C_m; \textend$
+        \end{enumerate}
+    \end{itemize}
+dove $C$ è un comando WHILE.
+
+Un programma WHILE è un comando composto.
+
+\subsubsection*{Semantica programma WHILE}
+La semantica di un programma $W$ è la funzione
+    $$\semanticaWHILE_W:\N\to\N_\perp$$
+\subsubsection*{Esempio di programma}
+\vspace{-1em}
+\begin{minipage}{.34\textwidth}
+    \begin{align}
+        W \equiv\ & \textbegin                      \notag\\[-.3em]
+        & \qquad x_2 := x_1+1;                      \notag\\[-.3em]
+        & \qquad x_2 := x_2\dotminus 1;             \notag\\[-.3em]
+        & \qquad \while{x_1}                        \notag\\[-.3em]
+        & \qquad\qquad \textbegin                   \notag\\[-.3em]
+        & \qquad\qquad\qquad x_0 := x_0+1;          \notag\\[-.3em]
+        & \qquad\qquad\qquad x_1 := x_1\dotminus 1; \notag\\[-.3em]
+        & \qquad\ \ \ \ \ \textend                  \notag\\[-.3em]
+        & \qquad \while{x_2}                        \notag\\[-.3em]
+        & \qquad\qquad \textbegin                   \notag\\[-.3em]
+        & \qquad\qquad\qquad x_0 := x_0+1;          \notag\\[-.3em]
+        & \qquad\qquad\qquad x_2 := x_2\dotminus 1; \notag\\[-.3em]
+        & \qquad\ \ \ \ \ \textend                  \notag\\[-.3em]
+        & \hspace{-.5em}\textend                            \notag
+    \end{align}
+\end{minipage} \hspace{1em}
+\begin{minipage}{.6\textwidth}
+    $\qquad\qquad\ \ \ \semanticaWHILE_W(n) = 2n $
+\end{minipage}
+
+\subsubsection*{W-PROG e induzione}
+Sia W-PROG l'insieme dei programmi WHILE. La sua definizione è induttiva; per dimostrare
+una proprietà $P$ su W-PROG sarà quindi naturale farlo tramite induzione.
+
+\subsubsection*{Stato}
+Siccome la macchina WHILE è composta solo da 21 variabili, uno stato della macchina è
+una lista di 21 numeri:
+$$ \text{STATO} = (c_0,c_1,\dots,c_{20}) $$
+$$ c_i = \text{contenuto di $x_i$} $$
+$$ \text{W-STATI} = \N^{21} $$
+$$ \underbar{$x$}\in\N^{21} $$
+
+La funzione $W$-in$:\N\to\N^{21}$ restituisce lo stato iniziale del programma $W$:
+$$ W\text{-in}(n) = (0,n,0,\dots,0) $$
+
+\subsubsection*{Funzione stato prossimo}
+Si definisca la funzione stato prossimo e quindi la semantica operazionale:
+$$\opsemWHILE{\ }{\ }: \text{W-COM}\times\text{W-STATI}\to\text{W-STATI}_\perp$$
+Dato un comando $C$ e uno stato $\underbar{x}$:
+$$ \opsemWHILE{C}{\sottolinea{x}} = \sottolinea{y} $$
+dove $\sottolinea{y}$ è lo stato prossimo di $\sottolinea{x}$ a seguito dell'esecuzione del
+comando $C$.
+
+Si veda ora la definizione induttiva della semantica operazionale:
+\begin{itemize}
+    \item BASE: Assegnamenti
+        \begin{itemize}
+            \item $\opsemWHILE{x_k:=0}{\sottolinea{x}} = \sottolinea{y}$ con
+                $y_i = \begin{cases}
+                    x_i & i\neq k\\
+                    0 & i= k\\
+                \end{cases}$
+            \item $\opsemWHILE{x_k:=x_j \pm 1}{\sottolinea{x}} = \sottolinea{y}$ con
+                $y_i = \begin{cases}
+                    x_i & i\neq k\\
+                    x_j\pm 1 & i= k\\
+                \end{cases} \hfill \text{(con $\pm$ si intende $+$ o $\dotminus$)}$
+        \end{itemize}
+    \item PASSO: Comando composto
+        \begin{itemize}
+            \item $
+                \opsemWHILE{\textbegin C_1 \ ; \ \dots \ ; \ C_m\textend}{\sottolinea{x}}
+                = \opsemWHILE{C_m}{
+                    \dots(
+                        \opsemWHILE{C_2}{
+                            \opsemWHILE{C_1}{\sottolinea{x}}
+                        }
+                    )\dots
+                }$
+            \item[]\hspace{14.1em}$=\opsemWHILEnoP{C_m}\circ\hdots\circ\opsemWHILEnoP{C_1}(\sottolinea{x})$
+            \item[]\hspace{14.1em}$=\sottolinea{y}$
+        \end{itemize}
+    \item PASSO: Comando WHILE
+        \begin{itemize}
+            \item $
+            \opsemWHILE{\while{x_n} C}{\sottolinea{x}} =
+            \opsemWHILE{C}{
+                \dots(
+                \opsemWHILE{C}{
+                    \opsemWHILE{C}{\sottolinea{x}}
+                })
+                \dots
+            }=\sottolinea{y}
+            $
+            \item[]\hspace{11.7em}$=
+                \begin{cases}
+                    \opsemWHILEnoP{C}^\ell(\sottolinea{x}) & \ell=
+                    \mu t(\text{componente $k$ di $\opsemWHILEnoP{C}^t(\sottolinea{x})=0$})\\
+                    \perp & \text{altrimenti (se non esiste $\ell)$}
+                \end{cases}
+            $
+            \\[.6em]dove $\mu t (\text{condizione}) = \underset{t}{\min}\{\text{condizione vera\}}$
+        \end{itemize}
+\end{itemize}
+Si può quindi definire la semantica di un programma $W$:
+$$\semanticaWHILE_W(n) = \text{Pro}(0,\opsemWHILE{W}{\text{$W$-in}(n)})$$
+dove Pro è la funzione proiezione:
+$$ \text{Pro}(i,(x_0,x_1,\dots,x_m)) = x_i $$
+
+\subsubsection*{Potenza computazionale del sistema WHILE}
+$$ \begin{aligned}
+    F(\text{WHILE}) &= \{ f\in\N^\N_\perp : \exists W\in \text{W-PROG}:f=\semanticaWHILE_W \}\\
+    &= \{ \semanticaWHILE_W : W \in \text{W-PROG} \} 
+    \end{aligned}
+$$
+
+\subsubsection{Traduzione}
+Dati i sistemi di calcolo $\C_1$ e $\C_2$, una traduzione da $\C_1$ a $\C_2$ è una funzione
+$$ T:\C_1\text{-PROG}\to\C_2\text{-PROG} $$
+tale che $T$ sia:
+\begin{enumerate}
+    \item Programmabile: è programmabile effettivamente
+    \item Completa: traduce ogni programma
+    \item Corretta: mantiene la semantica:
+        $$\forall P\in\C_1\text{-PROG} \quad \semanticaRAM_{T(P)}=\semanticaWHILE_{P}$$
+\end{enumerate}
+\subsubsection{Confronto tra F(RAM) e F(WHILE)}
+Si prendano due sistemi di calcolo $\C_1$ e $\C_2$ con le rispettive potenze computazionali:
+$$ F(\C_1) = \{\semanticaRAM_{P_1}:P_1\in\C_1\text{-PROG}\} $$
+$$ F(\C_2) = \{\semanticaWHILE_{P_2}:P_2\in\C_2\text{-PROG}\} $$
+
+Si vuole mostrare che $F(\C_1)\subseteq F(\C_2)$, ovvero che $\C_1$ non è più potente di $\C_2$;
+per farlo bisogna dimostrare che:
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c}
+        $\forall f \in F(\C_1) \quad f\in F(\C_2)$\\[1em]
+        \rotatebox[origin=c]{90}{$\equiv$}\\[1em]
+        $\exists P_1\in\C_1\text{-PROG}:f=\semanticaRAM_{P_1}
+    \ \Rightarrow \ \exists P_2\in\C_2\text{-PROG}:f=\semanticaWHILE_{P_2}$
+    \end{tabular}
+\end{table}
+In altre parole, per ogni programma di $\C_1$ ne esiste uno equivalente in $\C_2$.
+\\
+\begin{theorem}
+    Se esiste una traduzione $T$ da $\C_1$ a $\C_2$, allora $F(\C_1)\subseteq F(\C_2)$.
+\end{theorem}
+\begin{proof}
+    Si prenda una funzione $f$ tale che:
+    $$ f\in F(\C_1) $$
+    Si ha quindi che esiste un programma in $\C_1\text{-PROG}$ che può calcolare $f$:
+    \begin{equation} \label{eq:traduzione_proof1}
+        \exists P\in\C_1\text{-PROG}:f=\semanticaWHILE_P
+    \end{equation}
+    Si prenda la traduzione $T$ da $\C_1$ a $\C_2$; vista la completezza di $T$ si ha che:
+    \begin{equation} \label{eq:traduzione_proof2}
+        T(P)\in\C_2\text{-PROG}
+    \end{equation}
+    e vista la correttezza si ha che:
+    \begin{equation} \label{eq:traduzione_proof3}
+        \semanticaRAM_{T(P)}=\semanticaWHILE_P\underset{(\ref{eq:traduzione_proof1})}{=}f
+    \end{equation}
+    Si ha quindi che esiste un programma $T(P)$ in $\C_2$-PROG (\ref{eq:traduzione_proof2})
+    la cui semantica è $f$ (\ref{eq:traduzione_proof3}). Si può concludere che:
+    $$ f\in F(\C_2) $$ 
+\end{proof}

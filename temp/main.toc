@@ -17,3 +17,5 @@
 \contentsline {subsection}{\numberline {2.6}PROG$\bm {\sim \ensuremath {\mathbb {N}}}$}{11}{subsection.2.6}%
 \contentsline {subsubsection}{\numberline {2.6.1}Sistema di calcolo RAM}{12}{subsubsection.2.6.1}%
 \contentsline {subsubsection}{\numberline {2.6.2}Sistema di calcolo WHILE}{15}{subsubsection.2.6.2}%
+\contentsline {subsubsection}{\numberline {2.6.3}Traduzione}{18}{subsubsection.2.6.3}%
+\contentsline {subsubsection}{\numberline {2.6.4}Confronto tra F(RAM) e F(WHILE)}{18}{subsubsection.2.6.4}%
