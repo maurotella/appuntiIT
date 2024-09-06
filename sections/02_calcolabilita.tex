@@ -717,7 +717,7 @@ comando $C$.
 
 Si veda ora la definizione induttiva della semantica operazionale:
 \begin{itemize}
-    \item BASE: Assegnamenti
+    \item (BASE) Assegnamenti
         \begin{itemize}
             \item $\opsemWHILE{x_k:=0}{\sottolinea{x}} = \sottolinea{y}$ con
                 $y_i = \begin{cases}
@@ -730,7 +730,7 @@ Si veda ora la definizione induttiva della semantica operazionale:
                     x_j\pm 1 & i= k\\
                 \end{cases} \hfill \text{(con $\pm$ si intende $+$ o $\dotminus$)}$
         \end{itemize}
-    \item PASSO: Comando composto
+    \item (PASSO) Comando composto
         \begin{itemize}
             \item $
                 \opsemWHILE{\textbegin C_1 \ ; \ \dots \ ; \ C_m\textend}{\sottolinea{x}}
@@ -744,7 +744,7 @@ Si veda ora la definizione induttiva della semantica operazionale:
             \item[]\hspace{14.1em}$=\opsemWHILEnoP{C_m}\circ\hdots\circ\opsemWHILEnoP{C_1}(\sottolinea{x})$
             \item[]\hspace{14.1em}$=\sottolinea{y}$
         \end{itemize}
-    \item PASSO: Comando WHILE
+    \item (PASSO) Comando WHILE
         \begin{itemize}
             \item $
             \opsemWHILE{\while{x_n} C}{\sottolinea{x}} =
@@ -788,7 +788,7 @@ tale che $T$ sia:
     \item Corretta: mantiene la semantica:
         $\forall P\in\SC_1\text{-PROG} \quad \semanticaRAM_{T(P)}=\semanticaWHILE_{P}$
 \end{enumerate}
-\subsubsection{Confronto tra F(RAM) e F(WHILE)}
+\subsubsection{Confronto tra sistemi di calcolo}
 Si prendano due sistemi di calcolo $\SC_1$ e $\SC_2$ con le rispettive potenze computazionali:
 $$ F(\SC_1) = \{\semanticaRAM_{P_1}:P_1\in\SC_1\text{-PROG}\} $$
 $$ F(\SC_2) = \{\semanticaWHILE_{P_2}:P_2\in\SC_2\text{-PROG}\} $$
@@ -806,7 +806,7 @@ per farlo bisogna dimostrare che:
 \end{table}
 In altre parole, per ogni programma di $\SC_1$ ne esiste uno equivalente in $\SC_2$.
 \\
-\begin{theorem}
+\begin{theorem}\label{theo:traduttore}
     Se esiste una traduzione $T$ da $\SC_1$ a $\SC_2$, allora $F(\SC_1)\subseteq F(\SC_2)$.
 \end{theorem}
 \begin{proof}
@@ -828,3 +828,128 @@ In altre parole, per ogni programma di $\SC_1$ ne esiste uno equivalente in $\SC
     la cui semantica è $f$ (\ref{eq:traduzione_proof3}). Si può concludere che:
     $$ f\in F(\SC_2) $$ 
 \end{proof}
+
+\textbf{Quindi, per mostrare che un sistema di calcolo $\SC_1$ non è più potente di un 
+altro sistema $\SC_2$, basterà trovare una traduzione da $\SC_1$ a $\SC_2$}. 
+
+\subsubsection{\texorpdfstring{$\bm{F(\text{WHILE})\subseteq F(\text{RAM})}$}
+{F(WHILE) sottoinsieme F(RAM)}}
+In questa sezione si mostrerà che il una macchina WHILE \textbf{non} è più potente di
+una macchina RAM. Per farlo, come suggerisce il teorema \ref{theo:traduttore}, verrà
+mostrata una traduzione da W-PROG a PROG; la funzione di traduzione viene detta
+compilatore:
+$$ Comp:\text{W-PROG}\to\text{PROG} $$
+Per comodità si userà un linguaggio RAM etichettato, dove nell'istruzione di \texttt{GOTO}
+si useranno delle etichette e non il numero dell'istruzione. Questo non influenzerà
+in alcun modo la potenza del linguaggio.
+
+\subsubsection*{Compilatore}
+Vista la natura induttiva di W-PROG, anche $Comp$ verrà definita induttivamente:
+\begin{enumerate}
+    \item (BASE) Compilazione degli assegnamenti:
+        \begin{itemize}
+            \renewcommand{\labelitemi}{\raisebox{5.8\height}{\textbullet}}
+            \item
+                \renewcommand{\arraystretch}{1.25}
+                \begin{tabular}{l|r l|}\cline{2-3}
+                $Comp(x_k:=0)=$ & \texttt{LP}:&$\goto{R_k}{\texttt{EX}}$\\
+                && $R_k\leftarrow R_k\dotminus 1$ \\
+                && $\goto{R_{21}}{\texttt{LP}}$ \\
+                &\texttt{EX}:& $R_k \leftarrow R_k\dotminus 1$ \\\cline{2-3}
+                \end{tabular}\vspace{.15cm}
+            \renewcommand{\labelitemi}{\textbullet}
+            \item $\ \ Comp(x_k:=x_j+/\dotminus 1) \ $=
+                \begin{itemize}
+                    \renewcommand{\labelitemii}{\raisebox{.1\height}{$-$}}
+                    \item \renewcommand{\arraystretch}{1.25}
+                        \begin{tabular}{r|l|} \cline{2-2}
+                         Se $k=j$: &$R_k \leftarrow +/\dotminus 1$\\ \cline{2-2}
+                        \end{tabular}
+                    \renewcommand{\labelitemii}{\raisebox{15.5\height}{$-$}}
+                    \item
+                        \renewcommand{\arraystretch}{1.25}
+                        \begin{tabular}{l|r l|l}\cline{2-3}
+                         Se $k\neq j$: & \texttt{LP}:&$\goto{R_j}{\texttt{E1}}$
+                                &\multirow{4}{*}{\hspace{-.2cm}
+                                    $\begin{rcases}
+                                    \phantom{}\\
+                                    \phantom{}\\
+                                    \phantom{}\\
+                                    \phantom{}\\
+                                    \end{rcases}$ Salva $R_j$ in $R_{22}$
+                                }\\
+                        && $R_{22}\leftarrow R_{22}+1$ \\
+                        && $R_{j}\leftarrow R_{j}\dotminus 1$ \\
+                        && $\goto{R_{21}}{\texttt{LP}}$ \\
+                        &\texttt{E1}:& $\goto{R_k}{\texttt{E2}}$
+                                &\multirow{3}{*}{\hspace{-.2cm}
+                                    $\begin{rcases}
+                                    \phantom{}\\
+                                    \phantom{}\\
+                                    \phantom{}\\
+                                    \end{rcases}$ Azzera $R_k$
+                                }\\
+                        && $R_{k}\leftarrow R_{k}\dotminus 1$ \\
+                        && $\goto{R_{21}}{\texttt{E1}}$ \\
+                        &\texttt{E2}:& $\goto{R_{22}}{\texttt{E3}}$
+                                &\multirow{5}{*}{\hspace{-.2cm}
+                                    $\begin{rcases}
+                                    \phantom{}\\
+                                    \phantom{}\\
+                                    \phantom{}\\
+                                    \phantom{}\\
+                                    \phantom{}\\
+                                    \end{rcases}$  Rigenera $R_j$ e $R_k$ da $R_{22}$ 
+                                }\\
+                        && $R_{k}\leftarrow R_{k}+1$ \\
+                        && $R_{j}\leftarrow R_{j}+1$ \\
+                        && $R_{22}\leftarrow R_{22}\dotminus 1$ \\
+                        && $\goto{R_{21}}{\texttt{E2}}$ \\
+                        &\texttt{E3}:& $R_k\leftarrow R_k+/\dotminus 1$ \\ \cline{2-3}
+                        \end{tabular}\vspace{.5cm}
+                \end{itemize}
+        \end{itemize}
+    \item (PASSO) Per ipotesi induttiva si assumi data la compilazione di un comando
+        $C$:
+        \begin{enumerate}
+            \item Compilazione di comando composto:
+                \begin{itemize}
+                    \renewcommand{\labelitemi}{\raisebox{6.6\height}{\textbullet}}
+                    \item \renewcommand{\arraystretch}{1.25} 
+                        \begin{tabular}{l| l|}\cline{2-2}
+                        $Comp(\textbegin C_ 1; \ C_2; \ \dots; \ C_m; \textend)=$&
+                            $Comp(C_1)$\\
+                            & $Comp(C_2)$\\
+                            & $\vdots$\\
+                            & $Comp(C_m)$\\ \cline{2-2}
+                    \end{tabular}
+                \end{itemize}
+            \item Compilazione di comando WHILE:
+                \begin{itemize}
+                    \renewcommand{\labelitemi}{\raisebox{6\height}{\textbullet}}
+                    \item \renewcommand{\arraystretch}{1.25} 
+                        \begin{tabular}{l|r l|}\cline{2-3}
+                        $Comp(\while{x_k}C)$ =& \texttt{LP}:&
+                            $\goto{R_k}{\texttt{EX}}$\\
+                            && $Comp(C)$\\
+                            && $\goto{R_{21}}{\texttt{LP}}$\\
+                            &\texttt{EX}:& $R_k\leftarrow R_k\dotminus 1$\\ \cline{2-3}
+                    \end{tabular}
+                \end{itemize}
+        \end{enumerate}
+\end{enumerate}
+
+\subsubsection*{Conclusioni}
+La funzione $Comp:\text{W-PROG}\to\text{PROG}$ precedentemente definita soddisfa le tre
+condizioni di una traduzione:
+\begin{enumerate}
+    \item È programmabile
+    \item Compila sempre
+    \item Mantiene la semantica
+\end{enumerate}
+
+Si ha quindi che:
+$$ F(\text{WHILE})\subseteq F(\text{RAM}) $$
+
+\subsubsection{\texorpdfstring{$\bm{F(\text{RAM})\subseteq F(\text{WHILE})}$}
+{F(RAM) sottoinsieme F(WHILE)}}

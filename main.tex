@@ -11,9 +11,12 @@
 \usepackage{amsthm}
 \usepackage{amssymb}
 \usepackage{cancel}
+\usepackage{multirow}
 \usepackage{float}
 \usepackage[normalem]{ulem}
 \usepackage{mathtools}
+%\usepackage{mathabx}
+\usepackage{tcolorbox}
 \usepackage{textcomp}
 \usepackage{relsize}
 \usepackage{pgfmath}
@@ -39,9 +42,7 @@
 \newcommand{\RAM}{\ensuremath{\text{RAM}}}
 \newcommand{\PROG}{\ensuremath{\text{PROG}}}
 \newcommand{\WHILE}{\ensuremath{\text{WHILE}}}
-\newcommand{\dotminus}{\ensuremath{
-    \text{\(\begin{array}{@{\hspace{.2em}}c@{\hspace{-.05em}}}\cdot\\[-10pt]-\end{array}\)
-}}}
+\newcommand{\dotminus}{\mathbin{\ooalign{\hss\raise1ex\hbox{.}\hss\cr\mathsurround=0pt$-$}}}
 \newcommand{\goto}[2]{
     \ensuremath{\texttt{IF}\text{ $#1=0$ }\texttt{THEN GOTO }\text{$#2$}}
 }
