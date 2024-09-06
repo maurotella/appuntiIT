@@ -332,7 +332,7 @@ numero. Per farlo si userà il seguente teorema.
           &= n-\cantor{\gamma,0} \\
     \end{aligned} $$
     Il valore di $\gamma$ è il più grande valore che, messo sulla prima colonna
-    ($\cantor{\gamma,0}$) non supera $n$:
+    ($\cantor{\gamma,0}$), non supera $n$:
     $$ \gamma = \max\{z\in\N:\cantor{z,0}\leq n\} $$
     $$ \cantor{z,0}\leq n $$
     $$ \frac{z(z+1)}{2}+1 \leq n $$
@@ -346,7 +346,7 @@ numero. Per farlo si userà il seguente teorema.
     \begin{equation} \sx(x) = \gamma-des(x) \tag{non è il seno} \end{equation}
 
     La funzione coppia di Cantor $\cantor{\ ,\ }$ si è quindi mostrata
-    essere una biezione tra $\N^+$ e $\N^2$ mostrando che i due insiemi
+    essere una biezione tra $\N^+$ e $\N^2$, mostrando che i due insiemi
     hanno la stessa cardinalità.
 \end{proof}
 
@@ -401,7 +401,7 @@ ne segue che $F(\RAM)$, ovvero la potenza computazionale di un sistema RAM, perm
 di capire cosa i sistemi di calcolo sono in grado di calcolare.
 
 Può però sorgere spontaneo un dubbio: il sistema RAM non è troppo semplice per rappresentare
-tutti i sistemi di calcolo? Se un sistema RAM non fosse in grado di risolvere
+tutti i sistemi di calcolo? Se il sistema RAM non fosse in grado di risolvere
 certi problemi, magari altri sistemi più complessi lo sarebbero.
 
 Per verificare questo caso si vedrà successivamente un altro sistema di calcolo più
@@ -444,7 +444,7 @@ La sintassi del linguaggio RAM è molto intuitiva; ci sono tre tipi di istruzion
 \end{minipage}
 
 Si noti che il numero di istruzione $m$ usato nel terzo comando deve essere compreso tra
-1 e $|P|$.
+1 e $|P|$ inclusi.
 
 \subsubsection*{Esecuzione}
 Per eseguire un programma $P$ su input $\color{red}n$ la macchina verrà inizializzata come segue:
@@ -627,8 +627,8 @@ Per quanto riguarda i programmi RAM, \textbf{si può quindi affermare che}:
 $$ F(\RAM) \sim \N \nsim \N^\N_\perp $$
 e quindi esistono problemi non risolubili automaticamente da una macchina RAM.
 \subsubsection{Sistema di calcolo WHILE}
-Per mostrare se il concetto di calcolabilità è legato al sistema o no si vedrà ora un
-sistema di calcolo più sofisticato: quello WHILE.
+Per mostrare se il concetto di calcolabilità è legato al sistema di calcolo o meno,
+se ne vedrà uno più sofisticato: quello WHILE.
 \subsubsection*{Macchina WHILE}
 La macchina WHILE è più semplice di quella RAM; è formata infatti da un'unica memoria
 con un numero finito di registri:
@@ -644,7 +644,7 @@ $$\text{Memoria: } x_0,x_1,x_2,\dots,x_{20}$$
 \end{itemize}
 
 \subsubsection*{Linguaggio WHILE}
-La sintassi del linguaggio WHILE è induttiva; le istruzioni, detti comandi, sono:
+La sintassi del linguaggio WHILE è induttiva; le istruzioni, dette comandi, sono:
 \begin{itemize}
     \item Comando di assegnamento:
         \begin{enumerate}
@@ -658,10 +658,10 @@ La sintassi del linguaggio WHILE è induttiva; le istruzioni, detti comandi, son
         \end{enumerate}
     \item Comando composto:
         \begin{enumerate}
-            \item $\textbegin C_1\ ; \ C_2 \ ; \ \dots \ ; \ C_m; \textend$
+            \item $\textbegin C_ 1; \ C_2; \ \dots; \ C_m; \textend$
         \end{enumerate}
     \end{itemize}
-dove $C$ è un comando WHILE.
+dove $C_i$ è un comando WHILE.
 
 Un programma WHILE è un comando composto.
 
@@ -704,13 +704,13 @@ $$ c_i = \text{contenuto di $x_i$} $$
 $$ \text{W-STATI} = \N^{21} $$
 $$ \underbar{$x$}\in\N^{21} $$
 
-La funzione $W$-in$:\N\to\N^{21}$ restituisce lo stato iniziale del programma $W$:
-$$ W\text{-in}(n) = (0,n,0,\dots,0) $$
+La funzione $W$-$in:\N\to\N^{21}$ restituisce lo stato iniziale del programma $W$:
+$$ W\text{-}in(n) = (0,n,0,\dots,0) $$
 
 \subsubsection*{Funzione stato prossimo}
 Si definisca la funzione stato prossimo e quindi la semantica operazionale:
 $$\opsemWHILE{\ }{\ }: \text{W-COM}\times\text{W-STATI}\to\text{W-STATI}_\perp$$
-Dato un comando $C$ e uno stato $\underbar{x}$:
+dato un comando $C$ e uno stato $\underbar{x}$:
 $$ \opsemWHILE{C}{\sottolinea{x}} = \sottolinea{y} $$
 dove $\sottolinea{y}$ è lo stato prossimo di $\sottolinea{x}$ a seguito dell'esecuzione del
 comando $C$.
@@ -758,16 +758,16 @@ Si veda ora la definizione induttiva della semantica operazionale:
             $
             \item[]\hspace{11.7em}$=
                 \begin{cases}
-                    \opsemWHILEnoP{C}^\ell(\sottolinea{x}) & \ell=
+                    \opsemWHILEnoP{C}^e(\sottolinea{x}) & e=
                     \mu t(\text{componente $k$ di $\opsemWHILEnoP{C}^t(\sottolinea{x})=0$})\\
-                    \perp & \text{altrimenti (se non esiste $\ell)$}
+                    \perp & \text{altrimenti (se non esiste $e)$}
                 \end{cases}
             $
             \\[.6em]dove $\mu t (\text{condizione}) = \underset{t}{\min}\{\text{condizione vera\}}$
         \end{itemize}
 \end{itemize}
 Si può quindi definire la semantica di un programma $W$:
-$$\semanticaWHILE_W(n) = \text{Pro}(0,\opsemWHILE{W}{\text{$W$-in}(n)})$$
+$$\semanticaWHILE_W(n) = \text{Pro}(0,\opsemWHILE{W}{\text{$W$-$in$}(n)})$$
 dove Pro è la funzione proiezione:
 $$ \text{Pro}(i,(x_0,x_1,\dots,x_m)) = x_i $$
 
@@ -786,7 +786,7 @@ tale che $T$ sia:
     \item Programmabile: è programmabile effettivamente
     \item Completa: traduce ogni programma
     \item Corretta: mantiene la semantica:
-        $$\forall P\in\SC_1\text{-PROG} \quad \semanticaRAM_{T(P)}=\semanticaWHILE_{P}$$
+        $\forall P\in\SC_1\text{-PROG} \quad \semanticaRAM_{T(P)}=\semanticaWHILE_{P}$
 \end{enumerate}
 \subsubsection{Confronto tra F(RAM) e F(WHILE)}
 Si prendano due sistemi di calcolo $\SC_1$ e $\SC_2$ con le rispettive potenze computazionali:
