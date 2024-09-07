@@ -21,3 +21,4 @@
 \contentsline {subsubsection}{\numberline {2.6.4}Confronto tra sistemi di calcolo}{18}{subsubsection.2.6.4}%
 \contentsline {subsubsection}{\numberline {2.6.5}$\bm {F(\text {WHILE})\subseteq F(\text {RAM})}$}{19}{subsubsection.2.6.5}%
 \contentsline {subsubsection}{\numberline {2.6.6}$\bm {F(\text {RAM})\subseteq F(\text {WHILE})}$}{20}{subsubsection.2.6.6}%
+\contentsline {subsubsection}{\numberline {2.6.7}Teorema di Böhm-Jacopini}{23}{subsubsection.2.6.7}%

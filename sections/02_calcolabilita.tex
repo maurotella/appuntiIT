@@ -833,7 +833,7 @@ In altre parole, per ogni programma di $\SC_1$ ne esiste uno equivalente in $\SC
 altro sistema $\SC_2$, basterà trovare una traduzione da $\SC_1$ a $\SC_2$}. 
 
 \subsubsection{\texorpdfstring{$\bm{F(\text{WHILE})\subseteq F(\text{RAM})}$}
-{F(WHILE) sottoinsieme F(RAM)}}
+{F(WHILE) sottoinsieme F(RAM)}}\label{sec:FwhileFram}
 In questa sezione si mostrerà che il una macchina WHILE \textbf{non} è più potente di
 una macchina RAM. Per farlo, come suggerisce il teorema \ref{theo:traduttore}, verrà
 mostrata una traduzione da W-PROG a PROG; la funzione di traduzione viene detta
@@ -948,8 +948,178 @@ condizioni di una traduzione:
     \item Mantiene la semantica
 \end{enumerate}
 
-Si ha quindi che:
+Si ha quindi che $Comp$ è una traduzione da W-PROG a PROG e che:
 $$ F(\text{WHILE})\subseteq F(\text{RAM}) $$
 
 \subsubsection{\texorpdfstring{$\bm{F(\text{RAM})\subseteq F(\text{WHILE})}$}
-{F(RAM) sottoinsieme F(WHILE)}}
+{F(RAM) sottoinsieme F(WHILE)}}\label{sec:FramFwhile}
+Ora che si è mostrato che una macchina WHILE non è più potente di una RAM, si mostrerà
+l'inverso.
+
+Per farlo si userà il concetto di interprete.
+\subsubsection*{Interprete}
+A differenza di un compilatore un interprete non produce nessun oggetto ma esegue
+direttamente tutte le istruzioni del programma. In altre parole, un interprete è
+un programma che prende in ingresso un altro programma $P$ e un dato $x$ e restituisce
+il risultato della semantica di $P$ su $x$ ovvero $\semanticaRAM_P(x)$.
+
+\subsubsection*{Interprete WHILE di programmi RAM}
+Si definirà ora un interprete $I_W$ scritto in WHILE di programmi RAM.
+\begin{figure}[h]
+    \centering
+    \input{figures/interprete1.tex}
+\end{figure}
+
+\begin{tabular}{l p{.83\textwidth}}
+    Problema:& un programma WHILE prende in input solo numeri; non è in grado di leggere 
+    un programma RAM \quotes{puro}. $P$\\[1.6em]
+    Soluzione:& codifico $P$ in un numero $n$.
+\end{tabular}
+\begin{figure}[h]
+    \centering
+    \input{figures/interprete2.tex}
+\end{figure}
+
+\begin{tabular}{l p{.83\textwidth}}
+    Problema:& un programma WHILE prende in input solo un numero.\\[.5em]
+    Soluzione:& aggrego $n$ e $x$ tramite la funzione coppia di Cantor.
+\end{tabular}
+\begin{figure}[h]
+    \centering
+    \input{figures/interprete3.tex}
+\end{figure}
+
+La semantica dell'interprete $I_W$ è:
+$$\forall x,n\in\N: \semanticaWHILE_{I_W}(\cantor{x,n})
+=\semanticaRAM_n(x)=\semanticaWHILE_P(x)$$
+
+Per questioni di comodità si usera una variante di WHILE in cui si potranno definire
+delle macro, ovvero delle chiamate a funzioni comunque definibili in WHILE puro; alcuni
+esempi di macro sono:
+\begin{itemize}
+    \item $x_k:=x_j+x_s$
+    \item $x_k:=\cantor{x_j,x_s}$\hfill coppia di Cantor
+    \item $x_k:=\cantor{a_1,a_2,\dots,a_N}$\hfill \quotes{lista di Cantor}
+    \item $x_k:=\text{Pro}(x_j,x_s)$ \hfill estrae dalla lista codificata $x_s$ il
+        $x_j$-esimo elemento
+    \item $x_k:=\text{incr}(x_j,x_s)$\hfill codifica la lista $x_s$ in cui il $x_j$-esimo elemento
+        viene incrementato di 1
+    \item $x_k:=\text{decr}(x_j,x_s)$\hfill codifica la lista $x_s$ in cui il $x_j$-esimo elemento
+    viene decrementato di 1
+    \item $x_k:=\sx(x_j)$\hfill estrae l'elemento sinistro dalla codifica di Cantor $x_j$
+    \item $x_k:=\dx(x_j)$\hfill estrae l'elemento destro dalla codifica di Cantor $x_j$
+    \item \texttt{if}$\dots$\texttt{then}$\dots$\texttt{else}
+\end{itemize}
+
+\subsubsection*{Stato della macchina RAM nell'interprete}
+L'interprete $I_W$ per eseguire il programma $P$ ricrea nelle sue variabili lo stato
+della macchina RAM in cui verrebbe eseguito $P$.
+
+\begin{tabular}{l p{.83\textwidth}}
+    Problema:& la macchina RAM ha infiniti registri mentra quella WHILE ne ha ventuno.
+        \\[.5em]
+    Soluzione:& un programma $P$ userà sempre un numero finito di registri il cui contenuto
+        può essere racchiuso in una lista di valori $a_0,a_1,\dots,a_n$; la soluzione
+        consiste nel raggruppare tutti i valori dei registri tramite Cantor:
+        $$ \cantor{a_1,a_2,\dots,a_n} $$ e salvarne la codifica in un unica variabile.
+\end{tabular}
+
+$I_W$ salva lo stato della macchina RAM nel seguente modo:
+\begin{itemize}
+    \item $x_0 \leftarrow \cantor{R_0,\dots,R_{n}}$\hfill
+        stato della memoria RAM del programma P con $cod(P)=n$
+    \item $x_1 \leftarrow L$ \hfill program counter
+    \item $x_2 \leftarrow x$ \hfill dato di input del programma $P$
+    \item $x_3 \leftarrow n$ \hfill lista di istruzioni che formano $P$
+    \item $x_4 \leftarrow \text{codice dell'istruzione da eseguire}$
+\end{itemize}
+
+Si noti come il valore di $n$ (primo punto), ovvero dell'indice del registro più alto 
+presente nel programma $P$, sia direttamente il valore della codifica di $P$. Questo
+perchè $n$ vuole essere un limite superiore dell'indice più alto presente in $P$ e non
+un valore esatto.
+
+\subsubsection*{Implementazione}
+Verrà mostrata ora l'implementazione dell'interprete $I_W$ scritto in (macro-)WHILE di un
+programma RAM $P$:
+$$ \semanticaWHILE_{I_W}(\cantor{x,n})=\semanticaRAM_n(x) $$
+\begin{tcolorbox}[colback=white,sharp corners,boxrule=.3mm]
+\begin{algorithm}[H]
+    \setstretch{1.2}
+    \SetArgSty{relax}
+    \tcp{Inizialmente l'input si trova in $x_1$}
+    $x_2 := \sx(x_1)$\;
+    $x_3 := \dx(x_1)$\;
+    $x_0 := \cantor{0,x_2,\dots,0}$\;
+    $x_1 := 1$\;
+    \While(\hfill\texttt{// se $x_1=0$ allora STOP}){($x_1\neq 0$)}{
+        \eIf(\hfill\texttt{// supero l'ultima istruzione}){($x_1>\text{length($x_3$))}$}{
+            $x_1:=0$\tcp*{STOP}
+        }{
+            $x_4 := \text{Pro}(x_1,x_3)$\tcp*{estraggo istruzione corrente}
+            \If(\hfill\texttt{// }$R_k\leftarrow R_k+1$){($x_4\bmod{3}=0$)}{
+                $x_5 := x_4 / 3$\tcp*{$k$}
+                $x_0 := \text{incr}(x_5,x_0)$\;
+                $x_1 := x_1+1$\;
+            }
+            \If(\hfill\texttt{// }$R_k\leftarrow R_k\dotminus1$){($x_4\bmod{3}=1$)}{
+                $x_5 := (x_4-1) / 3$\tcp*{$k$}
+                $x_0 := \text{decr}(x_5,x_0)$\;
+                $x_1 := x_1+1$\;
+            }
+            \If(\hfill\texttt{// }$\goto{R_k}{m}$){($x_4\bmod{3}=2$)}{
+                $x_5 := \sx((x_4+1)/3)$\tcp*{$k$}
+                $x_6 := \dx((x_4+1)/3)$\tcp*{$m$}
+                \eIf(\hfill\texttt{// verifico }$R_k=0$){(Pro$(x_5,x_0)=0$)}{
+                    $x_1:=x_6$\;
+                }{
+                    $x_1:=x_1+1$\;
+                }
+            }
+        }
+    }
+    $x_0 = \sx(x_0)$\tcp*{metto in $x_0$ il risultato $\semanticaRAM_n(x)$}
+\end{algorithm}
+\end{tcolorbox}
+
+\subsubsection*{Conclusioni}
+L'esistenza di $I_W$ permette la costruzione immediata di un compilatore:
+$$ Comp:\text{PROG\ $\to$ W-PROG} $$
+
+\renewcommand{\arraystretch}{1.25}
+\begin{center}
+\begin{tabular}{r|l|} \cline{2-2}
+ $Comp(P)=$ & $n\leftarrow cod(P);$\\
+            & $x_1 := \cantor{x_1,n};$\\
+            & $I_W;$ \\ \cline{2-2}
+\end{tabular}
+\end{center}\vspace{.5cm}
+
+$Comp$ non fa altro che mettere in $x_1$ il dato $x$ (già presente nella variabile $x_1$) e 
+il programma codificato in $n$ aggregati tramite $\cantor{x,n}$ e far partire l'interprete 
+$I_W$ che restituirà in $x_0$ il risultato della computazione.
+
+Si è quindi appena dimostrata l'esistenza di una traduzione da RAM a WHILE che implica che:
+$$ \text{$F$(RAM) $\subseteq$ $F$(WHILE)} $$
+
+\subsubsection{Teorema di Böhm-Jacopini}
+I risultati delle sezioni \ref{sec:FwhileFram} e \ref{sec:FramFwhile} permettono di dire
+che:
+$$ \begin{matrix}
+    F(\text{RAM})\subseteq F(\text{WHILE}) \\
+    F(\text{RAM})\supseteq F(\text{WHILE}) \\
+\end{matrix} \quad \Rightarrow \quad
+ F(\text{RAM})=F(\text{WHILE}) $$
+
+\begin{theorem}[Teorema di Böhm-Jacopini]
+    Per ogni programma con il comando \texttt{GOTO} (RAM) ne esiste uno equivalente in
+    linguaggio strutturato (WHILE)
+\end{theorem}
+
+Questo teorema, enunciato nel 1966 da due informatici italiani, rappresenta un risultato
+cruciale dell'informatica: mostra infatti che:
+\begin{enumerate}
+    \item Il comando di \texttt{GOTO} ha solo nati negativi e non è necessario;
+    \item La programmazione a basso livello può essere sostituita da quella ad alto
+        livello.
+\end{enumerate}
