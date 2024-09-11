@@ -375,6 +375,11 @@ La decodifica invece avverrà nel seguente modo:
     \input{figures/cantor_list_dec.tex}
 \end{figure}
 
+Se si conosce il numero di elementi della sequenza di numeri, non si usa una lista ma un
+\textbf{array}:
+$$ [x_1,\dots,x_n] = [x_1,[x_2,[\dots,[x_{n-1},x_n]]\dots]] $$
+Conoscendo già la lunghezza non c'è bisogno dello 0 di fine lista.
+
 Qualsiasi tipo di dato può essere convertito a una lista di numeri:
 \begin{itemize}
     \item Testi: non sono altro che liste di caratteri i quali possono essere convertiti
@@ -767,9 +772,9 @@ Si veda ora la definizione induttiva della semantica operazionale:
         \end{itemize}
 \end{itemize}
 Si può quindi definire la semantica di un programma $W$:
-$$\semanticaWHILE_W(n) = \text{Pro}(0,\opsemWHILE{W}{\text{$W$-$in$}(n)})$$
+$$\semanticaWHILE_W(n) = \Pro(0,\opsemWHILE{W}{\text{$W$-$in$}(n)})$$
 dove Pro è la funzione proiezione:
-$$ \text{Pro}(i,(x_0,x_1,\dots,x_m)) = x_i $$
+$$ \Pro(i,(x_0,x_1,\dots,x_m)) = x_i $$
 
 \subsubsection*{Potenza computazionale del sistema WHILE}
 $$ \begin{aligned}
@@ -1000,7 +1005,7 @@ esempi di macro sono:
     \item $x_k:=x_j+x_s$
     \item $x_k:=\cantor{x_j,x_s}$\hfill coppia di Cantor
     \item $x_k:=\cantor{a_1,a_2,\dots,a_N}$\hfill \quotes{lista di Cantor}
-    \item $x_k:=\text{Pro}(x_j,x_s)$ \hfill estrae dalla lista codificata $x_s$ il
+    \item $x_k:=\Pro(x_j,x_s)$ \hfill estrae dalla lista codificata $x_s$ il
         $x_j$-esimo elemento
     \item $x_k:=\text{incr}(x_j,x_s)$\hfill codifica la lista $x_s$ in cui il $x_j$-esimo elemento
         viene incrementato di 1
@@ -1047,30 +1052,32 @@ $$ \semanticaWHILE_{I_W}(\cantor{x,n})=\semanticaRAM_n(x) $$
 \begin{algorithm}[H]
     \setstretch{1.2}
     \SetArgSty{relax}
+    \SetAlgoNoEnd
+    \SetKwSty{texttt}
     \tcp{Inizialmente l'input si trova in $x_1$}
     $x_2 := \sx(x_1)$\;
     $x_3 := \dx(x_1)$\;
     $x_0 := \cantor{0,x_2,\dots,0}$\;
     $x_1 := 1$\;
-    \While(\hfill\texttt{// se $x_1=0$ allora STOP}){($x_1\neq 0$)}{
+    \While(\hfill\texttt{// se $x_1=0$ allora STOP}){$x_1\neq 0$}{
         \eIf(\hfill\texttt{// supero l'ultima istruzione}){($x_1>\text{length($x_3$))}$}{
             $x_1:=0$\tcp*{STOP}
         }{
-            $x_4 := \text{Pro}(x_1,x_3)$\tcp*{estraggo istruzione corrente}
-            \If(\hfill\texttt{// }$R_k\leftarrow R_k+1$){($x_4\bmod{3}=0$)}{
+            $x_4 := \Pro(x_1,x_3)$\tcp*{estraggo istruzione corrente}
+            \If(\hfill\texttt{// }$R_k\leftarrow R_k+1$){$x_4\bmod{3}=0$}{
                 $x_5 := x_4 / 3$\tcp*{$k$}
                 $x_0 := \text{incr}(x_5,x_0)$\;
                 $x_1 := x_1+1$\;
             }
-            \If(\hfill\texttt{// }$R_k\leftarrow R_k\dotminus1$){($x_4\bmod{3}=1$)}{
+            \If(\hfill\texttt{// }$R_k\leftarrow R_k\dotminus1$){$x_4\bmod{3}=1$}{
                 $x_5 := (x_4-1) / 3$\tcp*{$k$}
                 $x_0 := \text{decr}(x_5,x_0)$\;
                 $x_1 := x_1+1$\;
             }
-            \If(\hfill\texttt{// }$\goto{R_k}{m}$){($x_4\bmod{3}=2$)}{
+            \If(\hfill\texttt{// }$\goto{R_k}{m}$){$x_4\bmod{3}=2$}{
                 $x_5 := \sx((x_4+1)/3)$\tcp*{$k$}
                 $x_6 := \dx((x_4+1)/3)$\tcp*{$m$}
-                \eIf(\hfill\texttt{// verifico }$R_k=0$){(Pro$(x_5,x_0)=0$)}{
+                \eIf(\hfill\texttt{// verifico }$R_k=0$){Pro$(x_5,x_0)=0$}{
                     $x_1:=x_6$\;
                 }{
                     $x_1:=x_1+1$\;
@@ -1123,3 +1130,700 @@ cruciale dell'informatica: mostra infatti che:
     \item La programmazione a basso livello può essere sostituita da quella ad alto
         livello.
 \end{enumerate}
+
+Concludendo, si è anche dimostrato che:
+$$ F(\text{RAM})=F(\text{WHILE}) \sim \N \nsim \N^\N_\perp $$
+\textbf{Esistono quindi funzioni non computabili da entrambi i sistemi}.
+
+\subsubsection{Interprete universale}
+Si prenda il compilatore $Comp:\text{W-PROG}\to\text{PROG}$ e lo si utilizzi con $I_W$:
+$$ \semanticaWHILE_{I_W}(\cantor{x,n})=\semanticaRAM_n(x) $$
+$$ U = Comp(I_W)\in\text{PROG} $$
+$U$ è detto interprete universale ed un programma RAM in grado di simulare qualsiasi
+altro programma RAM.
+La sua semantica è:
+$$ \semanticaRAM_U(\cantor{x,n})=\semanticaWHILE_{I_W}(\cantor{x,n})=\semanticaRAM_n(x) $$
+
+\subsection{Calcolabilità}
+Nelle sezioni precedenti si è visto come due sistemi di calcolo molto diversi tra loro 
+abbiano la stessa potenza computazionale numerabile:
+$$ F(\text{RAM}) = F(\text{WHILE}) \sim \N \nsim \N^\N_\perp$$
+e che quindi esistono delle funzioni non calcolabili da questi sistemi. Torna però qui la
+questione: \quotes{E se esistesse un altro sistema di calcolo più potente?}
+
+Bisognerà affrontare il problema a prescindere dalla macchina usata, definendo la 
+calcolabilità in termini più matematici e \quotes{lontani} dall'informatica.
+
+\subsubsection{Una prima idea di calcolabilità}
+Per introdurre la definizione \quotes{teorica} di calcolabilità si introducano due insiemi:
+\begin{itemize}
+    \item $\elem$: insieme di tre funzioni molto semplici e banalmente implementabili;
+    \item $\Omega$: insieme di operazioni su funzioni banalmente implementabili;
+\end{itemize}
+
+L'idea è che applicando un operazione facilmente calcolabile di $\Omega$ ad una funzione
+facilmente calcolabile di $\elem$ ottengo un'altra funzione facilmente calcolabile:
+$$ \elem^\Omega = \ricPar $$
+$\ricPar$ è la classe delle funzioni ricorsive parziali e vuole essere una prima 
+idea di classe di funzioni calcolabili. \textbf{Bisognerà ora capire quali funzioni compongono 
+$\elem$ e quali operatori compongono $\Omega$}.
+
+$\elem$ è composto da tre funzioni:
+
+\begin{tabular}{l r l r l}
+    $\elem =$ & $\{ \ \text{successore:}$ & $s(x)=x+1\ ,$&$x\in\N$ &\\
+              & $\text{zero:}$ & $O^n(x_1,\dots,x_n)=0\ ,$&$x_i\in\N$ &\\
+              & $\text{proiettori:}$ & $\text{pro}^n_k(x_1,\dots,x_n)=x_k\ ,$&$x_i\in\N$&
+                \hspace{-.3cm}$\}$ \\
+\end{tabular}
+
+Le funzioni appena mostrare di $\elem$ devono essere incluse in un'idea di calcolabile:
+sono proprio banali e semplici. Tuttavia ci saranno anche altre funzioni sicuramente calcolabili;
+basti pensare che $f(x)=x+2$ non è presente in $\elem$ ma è certamente calcolabile.
+
+Si deve quindi ampliare $\elem$ mantenendo sempre un'idea intuitiva di calcolabile: si
+introdurrano gli operatori di composizione di funzioni e di ricorsione primitiva.
+
+\subsubsection*{Operatore di composizione di funzioni}
+Siano:
+$$\begin{aligned}
+    h:&\ \N^k\to\N \\
+    g_1,\dots,g_k:&\ \N^n\to\N \\
+    \sottolinea{x}\in&\ \N^n
+\end{aligned}$$
+Si definisce la composizione di funzioni come:
+$$\comp(h,g_1,\dots,g_k):\ \N^n\to\N$$
+$$\comp(h,g_1,\dots,g_k)(\sottolinea{x}) = h(g_1(\sottolinea{x}),\dots,g_k(\sottolinea{x}))$$
+
+\begin{center}
+    \input{figures/comp_function.tex}
+\end{center}
+
+Si ampli $\elem$ chiudendolo rispetto a $\comp$:
+$$ \elem^\comp $$
+$\elem$ viene ampliato; si può notare infatti che:
+\begin{itemize}
+    \item $f(x)=x+2 \notin \elem$
+    \item $f(x)=x+2 \in \elem^\comp$ infatti $f(x)=\comp(s,s)(x)=s(s(x))=s(x+1)=x+2$
+\end{itemize}
+Tuttavia questo ampliamento non basta: $\elem^\comp$ infatti non contiene funzioni banali come
+$\text{somma}(x,y)=x+y\notin\elem^\comp$.
+
+\subsubsection*{Operatore di ricorsione primitiva}
+Quest'operatore permette di definire funzioni ricorsive come:
+$$ fatt(n) = \begin{cases}
+    1 & n=0\\
+    n*fatt(n-1) & n>0
+\end{cases} $$
+
+Siano:
+\begin{center}
+    \begin{tabular}{c l}
+        $g:\ \N^n\to\N$ & funzione da applicare alla base ricorsiva\\
+        $h:\ \N^{n+2}\to\N$ & funzione da applicare nel passo ricorsivo\\
+        $g(\sottolinea{x})\ ,\ h(z,y,\sottolinea{x})$ con $\sottolinea{x}\in\N^n$\\
+    \end{tabular}
+\end{center}
+
+Si definisce l'operatore di ricorsione primitiva:
+$$ \RP(h,g) = f(\sottolinea{x},y) = \begin{cases}
+    g(\sottolinea{x}) & y=0\\
+    h(f(\sottolinea{x},y-1),y-1,\sottolinea{x}) & y>0
+\end{cases}$$
+
+Si noti che nel passo ricorsivo $h(f(\sottolinea{x},y-1),y-1,\sottolinea{x})$ non è detto
+debbano essere gli ultimi due argomenti della funzione $h$.
+
+\subsubsection{Funzioni ricorsive primitive}
+Si ampli $\elem^\comp$ chiudendolo rispetto a $\RP$:
+$$ \elem^{\comp,\RP} = \ricPrim $$
+$\elem^{\comp,\RP}$ è formato dalle funzioni ricorsive primitive.
+
+Alcuni esempi di funzioni ricorsive primitive sono:
+$$\begin{aligned}
+    \text{somma}(x,y) &= \RP({\color{blue}s},\text{pro}^1_1)\\
+    &= \begin{cases}
+        \text{pro}_1^1(x) & y=0\\
+        {\color{blue}s}(\text{somma}(x,y-1),{\color{red}y-1},{\color{red}x}) & y>0
+    \end{cases}\\
+    &= \begin{cases}
+        x & y=0\\
+        {\color{blue}s}(\text{somma}(x,y-1)) & y>0
+    \end{cases}\\[1em]
+    \text{prodotto}(x,y) &= \RP({\color{blue}\text{somma}},O^1)\\
+    &= \begin{cases}
+        O^1(x) & y=0\\
+        {\color{blue}\text{somma}}(\text{prodotto}(x,y-1),{\color{red}y-1},x) & y>0
+    \end{cases}\\
+    &= \begin{cases}
+        0 & y=0\\
+        {\color{blue}\text{somma}}(\text{prodotto}(x,y-1),x) & y>0
+    \end{cases}\\[1em]
+    \text{predecessore}(x) &= P(x) = \begin{cases}
+        0 & x=0 \\ x-1 & x>0
+    \end{cases}\\
+    \dotminus(x,y)=x\dotminus y &= \RP({\color{blue}P},\text{pro}_1^1)\\
+    &= \begin{cases}
+        \text{pro}^1_1(x) & y=0\\
+        {\color{blue}P}(\dotminus(x,y-1),{\color{red}y-1},{\color{red}x}) & y>0
+    \end{cases}\\
+    &= \begin{cases}
+        x & y=0\\
+        {\color{blue}P}(\dotminus(x,y-1)) & y>0
+    \end{cases}
+\end{aligned}$$
+
+Si noti, come anticipato, che alcuni argomenti del passo ricorsivo {\color{red} possono non
+essere usati} dalla funzione {\color{blue}$h$}
+
+\subsubsection*{RICPRIM vs F(WHILE)}
+
+RICPRIM contiene molte funzioni; si mostrerà ora che tutte le funzioni ricorsive primitive
+possono essere calcolate da una macchina WHILE, ovvero:
+$$ \ricPrim \subseteq F(\text{WHILE}) $$
+
+La dimostrazione è fatta tramite induzione strutturale a partire dalla definizione di
+$\ricPrim=\elem^{\comp,\RP}$:
+\begin{enumerate}
+    \item (BASE) Le funzioni in $\elem$ sono in $\ricPrim$
+    \item (PASSO) $h,g_1,\dots,g_k\in\ricPrim \ \Rightarrow \ \comp(h,g_1,\dots,g_k)\in\ricPrim$
+    \item (PASSO) $g,h\in\ricPrim \ \Rightarrow \ \RP(h,g)\in\ricPrim$
+    \item Nient'altro è in $\ricPrim$
+\end{enumerate}\label{sec:ricprim_while}
+\vspace{1em}
+
+Per dimostrare che $\ricPrim \subseteq F(\text{WHILE})$:
+\begin{enumerate}
+    \item Dimostro che $\elem\subseteq F(\text{WHILE})$, ovvero mostro per ogni funzione 
+    $f\in\elem$ un programma $W\in W\text{-PROG}$ tale che $\semanticaWHILE_W=f$:
+    \begin{itemize}
+        \item $s(x)=x+1$:
+        \begin{minipage}{.27\textwidth}
+            \begin{tcolorbox}[colback=white,sharp corners,boxrule=.2mm]
+                \begin{algorithm}[H]
+                    \SetKwSty{texttt}
+                    \SetKwProg{begin}{begin}{}{end}
+                    \begin{}{$x_0 := x_1+1$\;}
+                \end{algorithm}
+            \end{tcolorbox}
+        \end{minipage}
+        \item $O^n(x_1,\dots,x_n)=0$:
+        \begin{minipage}{.23\textwidth}
+            \begin{tcolorbox}[colback=white,sharp corners,boxrule=.2mm]
+                \begin{algorithm}[H]
+                    \SetKwSty{texttt}
+                    \SetKwProg{begin}{begin}{}{end}
+                    \begin{}{$x_0 := 0$\;}
+                \end{algorithm}
+            \end{tcolorbox}
+        \end{minipage}
+        \item $\text{pro}^n_k(x_1,\dots,x_n)=x_k$:
+        \begin{minipage}{.32\textwidth}
+            \begin{tcolorbox}[colback=white,sharp corners,boxrule=.2mm]
+                \begin{algorithm}[H]
+                    \SetKwSty{texttt}
+                    \SetKwProg{begin}{begin}{}{end}
+                    \begin{}{$x_0 := \Pro(k,x_1)$\;}
+                \end{algorithm}
+            \end{tcolorbox}
+        \end{minipage}
+    \end{itemize}
+    \item Assumo che $h,g_1,\dots,g_k\in F(\text{WHILE})$ ovvero che esistono dei programmi
+        $H,G_1,\dots,G_k\in W\text{-PROG}$ tali che:
+        $$ \semanticaWHILE_H=h \ ,\ \semanticaWHILE_{G_1}=g_1\ ,\ \dots \ ,\
+        \semanticaWHILE_{G_k}=g_k $$
+        e dimostro che $\comp(h,g_1,\dots,g_k)\in F(\text{WHILE})$ ovvero mostro un programma
+        WHILE che calcola:
+        $$\comp(h,g_1,\dots,g_k)=h(g_1(\sottolinea{x}),\dots,g_k(\sottolinea{x}))$$
+        \begin{center}
+        \begin{minipage}{.85\textwidth}
+        \begin{tcolorbox}[colback=white,sharp corners,boxrule=.2mm]
+        \begin{algorithm}[H]
+            \setstretch{1.2}
+            \SetKwSty{texttt}
+            \SetKwProg{begin}{begin}{}{end}
+            \begin{\hfill{\texttt{// }$x_1\leftarrow\sottolinea{x}=\cantor{a_1,\dots,a_n}$}}{
+                $x_0 := G_1(x_1)$\;
+                $x_0 := [x_0,G_2(x_1)]$\tcp*{Accoda $G_2(\sottolinea{x})$ all'array $x_0$}
+                $\ \vdots$\\
+                $x_0 := [x_0,G_k(x_1)]$\tcp*{$x_0:=[G_1(\sottolinea{x}),\dots,G_k(\sottolinea{x})]$}
+                $x_0 := H(x_0)$\tcp*{$x_0:=H(G_1(\sottolinea{x}),\dots,G_k(\sottolinea{x}))$}
+            }
+        \end{algorithm}
+        \end{tcolorbox}
+        \end{minipage}
+        \end{center}
+    \begin{minipage}{.9\textwidth}
+        \begin{algorithm}[H]
+            \SetKwProg{begin}{begin}{}{end}
+
+        \end{algorithm}
+    \end{minipage}
+    \item Assumo che $g,h\in F(\text{WHILE})$ ovvero che esistono dei programmi
+    $H,G\in W\text{-PROG}$ tali che:
+    $$ \semanticaWHILE_H=h \ ,\ \semanticaWHILE_{G}=g $$ 
+    e dimostro che 
+    $\RP(h,g)\in F(\text{WHILE})$ ovvero mostro un programma WHILE che calcola:
+    $$ \RP(h,g) = f(\sottolinea{x},y) = \begin{cases}
+    g(\sottolinea{x}) & y=0\\
+    h(f(\sottolinea{x},y-1),y-1,\sottolinea{x}) & y>0
+    \end{cases}$$
+    \begin{center}
+    \begin{minipage}{.85\textwidth}
+    \begin{tcolorbox}[colback=white,sharp corners,boxrule=.2mm]
+    \begin{algorithm}[H]
+        \setstretch{1.2}
+        \SetKwSty{texttt}
+        \SetKwProg{begin}{\texttt{begin}}{}{\texttt{end}}
+        \tcp{Parto dalla base e salgo}
+        \tcp{$x_1\leftarrow\cantor{\sottolinea{x},y}$}
+        \begin{}{
+            $t := G(\sottolinea{x})$\;
+            $k := 1$\tcp*{$k$ mi dice a che punto sono}
+            {\SetAlgoNoEnd
+            \While(\hfill\texttt{// finchè $k$ non raggiunge $y$}){$k\leq y$}{
+                \begin{}{
+                    $t := H(t,k-1,\sottolinea{x})$\;
+                    $k:=k+1$\;
+                }
+                \texttt{end}\;
+            }}
+        }
+    \end{algorithm}
+    \end{tcolorbox}
+    \end{minipage}
+    \end{center}\vspace{1em}
+\end{enumerate}
+
+Dunque per induzione strutturale si è dimostrato che:
+$$ \ricPrim \subseteq F(\text{WHILE}) $$
+
+Tuttavia resta la domanda sull'inclusione appena dimostrata: è propria?
+
+Per rispondere basta notare che \textbf{$\ricPrim$ contiene solo funzioni totali}. La 
+dimostrazione è semplice e si basa sulla definizione induttiva di $\ricPrim$:
+\begin{itemize}
+    \item (BASE) Le funzioni di $\elem$ sono totali;
+    \item (PASSO) La composizione di funzioni totali è una funzione totale;
+    \item (PASSO) La ricorsione primitiva di funzioni totali è una funzione totale: si ha sempre
+        un caso base e per definzione si parte da $y$ e si decrementa di 1 fino ad arrivare a 0.
+\end{itemize}
+
+\textbf{$F(\text{WHILE})$ invece contiene anche funzioni parziali grazie ai suoi loop che possono
+non terminare.}
+
+Si ha quindi che:
+$$ \bm{\ricPrim \subset F(\text{WHILE})} $$
+
+\textbf{$\ricPrim$ quindi non basta a rappresentare il concetto di calcolabilità: bisogna 
+ampliarlo introducendo una nuova operazione.}
+
+\subsubsection*{Sistema di calcolo FOR}
+Partendo dal linguaggio WHILE Si può introdurre un nuovo linguaggio, identico a quello WHILE,
+ma che cambia l'istruzione di ciclo: viene usata l'istruzione, ben conosciuta, di
+ciclo \texttt{for}:
+
+\begin{center}
+\begin{minipage}{.43\textwidth}
+\begin{tcolorbox}[colback=white,sharp corners,boxrule=.2mm]
+\begin{algorithm}[H]
+    \setstretch{1.2}
+    \SetKwSty{texttt}
+    \SetKwProg{begin}{\texttt{begin}}{}{\texttt{end}}
+    \begin{}{
+        $t := G(\sottolinea{x})$\;
+        $k := 1$\;
+        {\SetAlgoNoEnd
+        \While{$k\leq y$}{
+            \begin{}{
+                $t := H(t,k-1,\sottolinea{x})$\;
+                $k:=k+1$\;
+            }
+            \texttt{end}\;
+        }}
+    }
+\end{algorithm}
+\end{tcolorbox}
+\end{minipage}
+\begin{minipage}{.1\textwidth}
+    \hspace{1.5em}$\to$
+\end{minipage}
+\begin{minipage}{.43\textwidth}
+\begin{tcolorbox}[colback=white,sharp corners,boxrule=.2mm]
+\begin{algorithm}[H]
+    \setstretch{1.2}
+    \SetArgSty{relax}
+    \SetKwSty{texttt}
+    \SetKwProg{begin}{\texttt{begin}}{}{\texttt{end}}
+    \begin{}{
+        $t := G(\sottolinea{x})$\;
+        {\SetAlgoNoEnd
+        \For{$k:=1$\texttt{ to }$y$}{
+            $t := H(t,k-1,\sottolinea{x})$\;
+        }}
+    }
+\end{algorithm}
+\end{tcolorbox}
+\end{minipage}
+\end{center}
+
+dove la variabile usata dal \texttt{for} non può essere toccata. Il linguaggio che ne deriva
+viene chiamato linguaggio FOR e si può dire che:
+$$ \ricPrim = F(\text{FOR}) \subset F(\text{WHILE}) $$
+
+\subsubsection{Funzione di Ackermann}
+Come già visto, $F(\text{WHILE})$ contiene delle funzioni parziali che $\ricPrim$ non ha.
+Queste funzioni parziali derivano dalla possibiliità del linguaggio WHILE di ottenere dei
+loop che non terminano. Sembra quindi che se si togliesse la possibilità di eseguire un loop
+infinito dal linguaggio WHILE otterremmo $\ricPrim$.
+
+Si prenda il linguaggio WHILE privato della possibilità di eseguire loop infiniti:
+$$ \widetilde{F}(\text{WHILE}) = 
+    \{\semanticaWHILE_W:W\in W\text{-PROG}\ \wedge\ \semanticaWHILE_W\text{ è totale}\} $$
+Si ha che:
+$$ \ricPrim\subseteq\widetilde{F}(\text{WHILE}) $$
+
+È un'inclusione propria? \textbf{La risposta è sì.}
+
+Per dimostrarlo si deve mostrare una funzione calcolabile in WHILE che non è ricorsiva primitiva.
+Questa funzione è la funzione di Ackermann (1928):
+$$ \mathscr{A}(m,n) = \begin{cases}
+    n+1 & m=0\\
+    \mathscr{A}(m-1,1) & m>0,n=0\\
+    \mathscr{A}(m-1,\mathscr{A}(m,n-1)) & m,n>0
+\end{cases} $$
+Non si entrerà nel dettaglio ma basti sapere che $\mathscr{A}$ cresce troppo in fretta per poter
+essere ricorsiva primitiva.
+
+\textbf{Questo mostra che il sistema WHILE è più potente delle funzioni in $\ricPrim$ anche
+escludendo gli \quotes{inutili} cicli infiniti}.
+
+\subsubsection{RICPRIM non basta}
+La ricerca delle funzioni calcolabili ha portato fin'ora all'insieme delle funzioni ricorsive
+primitive $\ricPrim$ che, però, non si è dimostrato all'altezza mostrando \quotes{alcune lacune}
+(Ackermann). Si dovrà quindi, ancora una volta, procedere con un ampliamento di $\ricPrim$.
+
+\begin{center}
+    \input{figures/calcolabilita1.tex}
+\end{center}
+\vspace{1em}
+
+\subsubsection*{Operatore di minimalizzazione di funzioni}
+Sia:
+$$ f:\N^{n+1}\to\N $$
+$$ f(\sottolinea{x},y)\text{ con }\sottolinea{x}\in\N^n $$
+si definisce operatore di minimalizzazione di una funzione:
+$$ \begin{aligned}
+    \MIN(f)(\sottolinea{x}) = g(\sottolinea{x}) &=
+    \begin{cases}
+    y & f(\sottolinea{x},y)=0\ \wedge \ (\forall y'<y:f(\sottolinea{x},y')\text{\textdownarrow}\ 
+    \wedge \ f(\sottolinea{x},y')\neq0)\\
+    \perp & \text{altrimenti}
+    \end{cases}\\
+    &= \mu y(f(\sottolinea{x},y)=0)
+\end{aligned}$$
+
+A parole, $\MIN$ restituisce una funzione $g$ la quale restituisce il valore di $y$ più piccolo
+che, fissata $\sottolinea{x}$, azzera $f(\sottolinea{x},y)$ o $\perp$ se non esiste un valore
+che azzera $f(\sottolinea{x},y)$.
+
+Alcuni esempi dell'applicazione di $\MIN$ sono:
+\begin{center}
+    \begin{tabular}{c|c}
+        $\bm{f(x,y)}$ & $\bm{\textbf{\MIN}(f)(x)=g(x)}$\\ \hline
+        $x+y+1$ & $\perp$\\
+        $x\dotminus y$ & $x$\\
+        $y\dotminus x$ & $0$\\
+        $x\dotminus y^2$ & $\left\lceil\sqrt{x}\right\rceil$\\
+        $\left\lfloor\frac{x}{y}\right\rfloor$ & $\perp$\\
+    \end{tabular}
+\end{center}
+
+\subsubsection{Funzioni ricorsive parziali}
+Come già fatto precedentemente si ampli $\ricPrim$ chiudendo $\ricPrim=\elem^{\comp,\RP}$
+rispetto alla nuovo operazione introdotta $\MIN$:
+$$ \elem^{\comp,\RP,\MIN} = \ricPar $$
+Le funzioni di $\ricPar$ sono dette funzioni ricorsive parziali.
+
+Sicuramente $\ricPar$ è più grande di $\ricPrim$ vista la presenza di funzioni parziali. Ma che
+rapporto ha $\ricPar$ con $F(\text{WHILE})$?
+
+\begin{theorem}\label{th:ricParWhile}
+    $\ricPar \subseteq F(\text{WHILE})$
+\end{theorem}
+\begin{proof}
+    Si usi l'induzione strutturale su $\ricPar=\elem^{\comp,\RP,\MIN}$, che può essere definito
+    induttivamente:
+    \begin{enumerate}
+        \item Le funzioni di $\elem$ sono in $\ricPar$
+        \item $h,g_1,\dots,g_k\in\ricPar\ \Rightarrow\ \comp(h,g_1,\dots,g_k)\in\ricPar$
+        \item $h,g\in\ricPar\ \Rightarrow\ \RP(h,g)\in\ricPar$
+        \item $f\in\ricPar\ \Rightarrow\ \MIN(f)\in\ricPar$
+        \item Null'altro è in $\ricPar$
+    \end{enumerate}
+    Per dimostrare che $\ricPar \subseteq F(\text{WHILE})$:
+    \begin{enumerate}
+    \item Dimostro che $\elem\subseteq F(\text{WHILE})$, ovvero mostro per ogni funzione 
+    $f\in\elem$ un programma $W\in W\text{-PROG}$ tale che $\semanticaWHILE_W=f$: già visto
+    nella sezione \ref{sec:ricprim_while}
+    \item Assumo che $h,g_1,\dots,g_k\in F(\text{WHILE})$ ovvero che esistono dei programmi
+        $H,G_1,\dots,G_k\in W\text{-PROG}$ tali che:
+        $$ \semanticaWHILE_H=h \ ,\ \semanticaWHILE_{G_1}=g_1\ ,\ \dots \ ,\
+        \semanticaWHILE_{G_k}=g_k $$
+        e dimostro che $\comp(h,g_1,\dots,g_k)\in F(\text{WHILE})$: già visto nella sezione
+        \ref{sec:ricprim_while}.
+    \begin{minipage}{.9\textwidth}
+        \begin{algorithm}[H]
+            \SetKwProg{begin}{begin}{}{end}
+
+        \end{algorithm}
+    \end{minipage}
+    \item Assumo che $g,h\in F(\text{WHILE})$ ovvero che esistono dei programmi
+        $H,G\in W\text{-PROG}$ tali che:
+        $$ \semanticaWHILE_H=h \ ,\ \semanticaWHILE_{G}=g $$ 
+        e dimostro che 
+        $\RP(h,g)\in F(\text{WHILE})$: già visto nella sezione \ref{sec:ricprim_while}.
+    \item Assumo che $f\in F(\text{WHILE})$ ovvero che esiste un programma $\mathcal{F}\in
+        F(\text{WHILE})$ tale che $\semanticaWHILE_\mathcal{F}=f$
+        e dimostro che $\MIN(f)\in F(\text{WHILE})$ ovvero mostro un programma WHILE
+        che calcola:
+        $$ \begin{aligned}
+            \MIN(f)(\sottolinea{x}) = g(\sottolinea{x}) &=
+            \begin{cases}
+                \mu y(f(\sottolinea{x},y)=0)\\
+                \perp & \text{se non esiste tale $y$}
+            \end{cases}
+        \end{aligned}$$
+        \vspace{.7em}
+
+        \begin{minipage}{.52\textwidth}
+        \begin{tcolorbox}[colback=white,sharp corners,boxrule=.2mm]
+        \begin{algorithm}[H]
+            \setstretch{1.2}
+            \SetKwSty{texttt}
+            \SetKwProg{begin}{\texttt{begin}}{}{\texttt{end}}
+            \tcp{$x_1\leftarrow\sottolinea{x}$}
+            \begin{}{
+                $y:=0$\tcp*{parto da 0}
+                {\SetAlgoNoEnd
+                \While{$F(\sottolinea{x},y)\neq 0$}{
+                    $y:=y+1$\tcp*{salgo di 1}
+                }}
+            }
+        \end{algorithm}
+        \end{tcolorbox}
+        \end{minipage}\hfill
+        \begin{minipage}{.37\textwidth}
+            L'idea del programma è partire dal valore più basso che $y$ può assumere
+            in $\N$, ovvero 0, per poi salire di un'unita fino a trovare il primo valore 
+            che azzera $f(\sottolinea{x},y)$; se il valore non esiste o $F(\sottolinea{x},y)$
+            va in loop prima di trovarlo si avrà un loop che produce $\perp$ in output.
+        \end{minipage}
+    \end{enumerate} 
+\end{proof}
+Il precedente teorema permette di dire che qualsiasi funzione ricorsiva parziale può essere
+calcolata da un programma WHILE. Si vedrà ora che per qualsiasi programma WHILE esiste una
+funzione ricorsiva parziale che è uguale alla semantica del programma 
+($F(\text{WHILE}) \subseteq \ricPar$).
+
+\begin{theorem}
+    $F(\text{WHILE}) \subseteq \ricPar$
+\end{theorem}
+\begin{proof}
+    Se $F(\text{WHILE}) \subseteq \ricPar$ allora:
+    $$ \semanticaWHILE_W\in F(\text{WHILE})\ \Rightarrow\ \semanticaWHILE_W
+    \in\ricPar = \elem^{\comp,\RP,\MIN}$$
+    Si dovrà quindi dimostrare che per un qualsiasi programma $W$, la sua semantica
+    $\semanticaWHILE_W$ apparterrà a $\ricPar$ e potrà essere espressa come
+    composizione, ricorsione primitiva e minimalizzazione a partire da funzioni di
+    $\elem$.
+
+    $$ \semanticaWHILE_W(x) = \Pro_0^{21}(\opsemWHILE{W}{W\text{-in}(x)}) $$
+    \begin{itemize}
+        \item La funzione \opsemWHILE{C}{\sottolinea{x}} restituisce un array di 21
+            elementi che rappresenta lo stato prossimo della macchina WHILE applicando
+            il comando $C$ allo stato attuale $\sottolinea{x}$;
+        \item La funzione $W\text{-in}(n)$ restituisce lo stato iniziale della
+            macchina WHILE su input $n$;
+        \item $\Pro_0^{21}$ preleva l'output dal registro $x_0$.
+    \end{itemize}
+    $\semanticaWHILE_W$ è la composizione di $\Pro_0^{21}\in\elem$ con la funzione
+    stato prossimo $\opsemWHILE{W}{W\text{-in}(x)}$. Si ha quindi che:
+
+    \begin{minipage}{.5\textwidth}
+    \begin{enumerate}
+        \item $\Pro_0^{21}\in\elem \ \Rightarrow \ \Pro_0^{21}\in\ricPar$
+        \item $\ricPar$ è chiuso rispetto alla composizione
+    \end{enumerate}
+    \end{minipage}
+    \begin{minipage}{.4\textwidth}
+        $\Rightarrow \quad \opsemWHILE{C}{\sottolinea{x}}\in\ricPar \ \Rightarrow \ 
+        \semanticaWHILE_W\in\ricPar$
+    \end{minipage}
+
+    Se quindi si dimostra che $\opsemWHILE{C}{\sottolinea{x}}\in\ricPar$ allora anche
+    la sua semantica $\semanticaWHILE_W$ sarà una funzione ricorsiva parziale.
+
+    La funzione $\opsemWHILE{}{}:\N^{21}\to\N^{21}$ ha come codominio $\N^{21}$ mentre
+    $\ricPar$ contiene funzioni che lavorano in $\N$: per risolvere questo problema
+    si definisca una nuova funzione $f_C$ in cui viene applicato Cantor sull'array 
+    degli stati:
+    $$ \opsemWHILE{C}{\sottolinea{x}} = \sottolinea{y} \quad \text{con }
+     \ \ \sottolinea{x},\sottolinea{y}\in\N^{21}$$
+    $$ f_C(x)=y \quad \text{con }
+     \ \ x=[\sottolinea{x}]\ ,\ y=[\sottolinea{y}]$$
+    
+    Si noti che per passare da $\opsemWHILE{C}{\sottolinea{x}}$ a $f_C(x)$ 
+    si usano operazioni ricorsive parziali:
+    $$\begin{aligned}
+        f_C(x)&=y\\
+        {\color{red}\Pro\in\ricPar}\quad &
+        \mathlarger{{\color{red}\downarrow}{\color{blue}\uparrow}}
+        \quad\color{blue}[\ ]\in\ricPar\\
+        \opsemWHILE{C}{\Pro(0,x),\dots,\Pro(20,x)}&=(\Pro(0,y),\dots,\Pro(20,y))
+    \end{aligned}$$
+    Quindi si ha che $f_C$ si comporta come $\opsemWHILE{C}{\sottolinea{x}}$ sullo 
+    stato prossimo. Basterà ora dimostrare che $f_C$ effettivamente è una funzione
+    ricorsiva parziale:
+    $$ f_C\in\ricPar \ \ \Leftrightarrow \ \ \opsemWHILE{C}{\sottolinea{x}}\in\ricPar$$
+
+    Vista la definizione induttiva di $\opsemWHILE{}{}$ si usi l'induzione
+    strutturale:
+    \begin{itemize}
+        \item BASE:
+            \begin{itemize}
+                \renewcommand{\labelitemii}{\raisebox{5.2\height}{$-$}}
+                \item $\begin{aligned}
+                    &C\equiv \boxed{x_k:=0} \\[.6em]
+                    &\hspace{2em}f_C(x) = {\color{red}[}
+                    {\color{red}\Pro}(0,x),\dots,{\color{red}0},\dots,{\color{red}\Pro}
+                    (20,x){\color{red}]}\\
+                    &\hspace{10.05em}\overset{\uparrow}{\text{posizione $k$}}\\
+                    & \text{Viene usata una composizione di {\color{red}funzioni 
+                        $\in\ricPar$}}
+                        \ \Rightarrow \ f_{x_k:=0}\in\ricPar
+                \end{aligned}$
+                \renewcommand{\labelitemii}{\raisebox{5.2\height}{$-$}}
+                \item $\begin{aligned}
+                    &C\equiv \boxed{x_k:=x_j+/\dotminus 1}\\[.6em]
+                    &\hspace{2em}f_C(x) = {\color{red}[}
+                    {\color{red}\Pro}(0,x),\dots,
+                    {\color{red}\Pro}(j,x){\color{red}+/\dotminus 1}
+                    ,\dots,{\color{red}\Pro}
+                    (20,x){\color{red}]}\\
+                    &\hspace{10.05em}\overset{\uparrow}{\text{posizione $k$}}\\
+                    & \text{Viene usata una composizione di {\color{red}funzioni 
+                        $\in\ricPar$}}
+                        \ \Rightarrow \ f_{x_k:=x_j\pm1}\in\ricPar
+                \end{aligned}$
+            \end{itemize}
+        \item PASSO:
+            \begin{itemize}
+                \renewcommand{\labelitemii}{\raisebox{2.1\height}{$-$}}
+                \item $\begin{aligned}
+                    &C\equiv \boxed{
+                        \textbegin C_ 1; \ C_2; \ \dots; \ C_m; \textend
+                    }\\[.6em]
+                    &\hspace{2em}f_C(x) = f_{C_m}(\dots f_{C_1}(x)\dots)\\
+                \end{aligned}$
+                \vspace{.7em}
+
+                Viene usata una composizione di $f_{C_i}\in\ricPar$
+                per ipotesi induttiva $\ \Rightarrow \ f_{C}\in\ricPar $
+
+                \renewcommand{\labelitemii}{\raisebox{2.1\height}{$-$}}
+                \item $\begin{aligned}
+                    &C'\equiv \boxed{\while{x_k}{C}}\\[.6em]
+                    &\hspace{2em}f_{C'}(x) = f_C^{e(x)}(x)
+                    \ \ \text{ con } \ e(x)=\mu y(\Pro(k,f_c^y(x))=0)\\
+                \end{aligned}$
+
+                Sorge qui un problema: $e(x)$ non è costante; non basta quindi 
+                la composizione in quanto può essere applicata solo su un numero 
+                costante di funzioni.
+
+                Si dovrà allora definire una funzione $T\in\ricPar$:
+                $$T(x,y)=f_C^y(x)$$
+                È facile farlo usando l'operatore di ricorsione primitiva $\RP$:
+                $$ T(x,y) = \begin{cases}
+                    x&y=0\\
+                    f_C(T(x,y-1))&y>0
+                \end{cases} $$
+                Siccome:
+
+                \begin{minipage}{.38\textwidth}
+                \begin{enumerate}
+                    \item $f_C\in\ricPar$ per ipotesi induttiva
+                    \item $\RP\in\ricPar$
+                \end{enumerate}
+                \end{minipage}
+                \begin{minipage}{.4\textwidth}
+                    $\Rightarrow \ T(x,y)\in\ricPar$
+                \end{minipage}
+                
+                $$ \begin{aligned}
+                    e(x)&=\mu y(\Pro(k,f_c^y(x))=0)\\
+                    &=\mu y(\Pro(k,T(x,y))=0)
+                \end{aligned} $$
+                $e(x)$ è una minimalizzazione di $T(x,y)\in\ricPar$, quindi 
+                $e(x)\in\ricPar$
+
+                Infine:
+                $$ f_{C'}(x) = f_C^{e(x)}(x) = {\color{red}T}(x,{\color{red}e}(x)) $$
+                $f_{C'}$ è formato da una composizione di funzioni $\in\ricPar$
+                $\ \Rightarrow \ f_{C'}\in\ricPar$.
+            \end{itemize}
+    \end{itemize}
+    Per induzione strutturale si conclude che $F(\text{WHILE}) \subseteq \ricPar$.
+\end{proof}
+
+Il precedente teorema unito al teorema \ref{th:ricParWhile} permettono di affermare che:
+$$ F(\text{WHILE}) = \ricPar $$
+
+\subsubsection{Funzioni ricorsive totali}
+Il seguente schema mostra il quadro generale dell'idea intuitiva di calcolabilità:
+\vspace{1em}
+\begin{center}
+    \input{figures/calcolabilita2.tex}
+\end{center}
+
+L'insieme $\ricPar$ delle funzioni ricorsive parziali contiene tutte le funzioni
+calcolabili, incluse quelle parziali. Questo vuol dire che in $\ricPar$ ci sono anche
+programmi che non garantiscono una risposta in quanto potrebbero andare il loop.
+
+Per delinare tutte le funzioni totali calcolabili, ovvero che possono essere calcolate
+da programmi che garantiscono una risposta, viene usato l'insieme delle funzioni
+ricorsive totali $\ricTot$:
+$$\ricTot = \{\text{funzioni ricorsive totali}\} $$
+\vspace{.1em}
+\begin{center}
+    \input{figures/calcolabilita3.tex}
+\end{center}
+\vspace{.5em}
+
+\subsubsection{Tesi di Church-Turing}
+Numerosi studiosi, a partire dagli anni 30, hanno provato a formalizzare il concetto di
+calcolabilità cercando quindi di definire quali siano le funzioni che possono essere
+calcolate da un qualsiasi programma in un qualsiasi sistema di calcolo.
+
+Per farlo, sono stati introdotti innumerovoli e variegati sistemi di calcolo e, per
+ognuno di questi, è stato studiato che tipo di funzioni sono in grado di calcolare:
+\textbf{in tutti i casi si è arrivati alla stessa conclusione, ovvero che i sistemi
+di calcolo visti sono in gado di calcolare funzioni ricorsive primite.}
+
+Da qui deriva la tesi di Church-Turing:
+\begin{center}
+    \begin{minipage}{.9\textwidth}
+        \begin{tcolorbox}[colback=white,sharp corners,boxrule=.2mm]
+            Le classi delle funzioni intuitivamente calcolabili coincide con la classe 
+            $\ricPar$ delle funzioni ricorsive parziali;
+        \end{tcolorbox}
+    \end{minipage}
+\end{center}
+Per intuitivamente calcolabile si intende calcolabile da un modello di calcolo
+\quotes{ragionevole} come quelli mostrati nel corso degli ultimi cent'anni.
+
+\textbf{È importante sottolineare che la tesi di Church-Turing è una congettura, 
+un'opinione. Non c'è infatti nessuna evidenza che non possa esistere un sistema di 
+calcolo in grado di calcolare funzioni $f\notin\ricPar$.}
+

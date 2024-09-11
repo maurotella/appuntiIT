@@ -63,3 +63,67 @@ $$ w(f,a) = f(a) $$
     \item Fissando $a$ provo tutte le funzioni su $a$;
     \item Fissando $f$ ottengo il suo grafico.
 \end{itemize}
+
+\subsection*{Chiusura di insiemi rispetto ad operazioni}
+Dato un insieme $U$, si definisce operazione su $U$ una qualunque funzione
+$$ op: \underbrace{U\times\dots\times U}_{\displaystyle k=\text{arietà}}\to U $$
+
+L'insieme $A\subseteq U$ è chiuso rispetto all'operazione $op:U^k\to U$ se:
+$$ \forall a_1,\dots,a_k \in A : op(a_1,\dots,a_k)\in A $$
+
+Sia $\Omega=\{op_1,\dots,op_t\}$ un insieme di operazioni su $U$, allora $A\subseteq U$
+è chiuso rispetto a $\Omega$ se $A$ è chiuso per ogni $op\in\Omega$.
+
+\subsubsection*{Esempi}
+Sia $\Omega=\{+,*\}$:
+\begin{itemize}
+    \item PARI $\subseteq\N$ è chiuso per $\Omega$? Sì, la somma o la moltiplicazione di
+        numeri parì è un numero pari.
+    \item DISPARI $\subseteq\N$ è chiuso per $\Omega$? No, un controesempio è 
+        $3+7=10\notin\text{DISPARI}$.
+\end{itemize}
+
+\subsection*{Chiusura di un insieme}
+
+\begin{minipage}{.4\textwidth}
+    Sia $A\subseteq U$ e $op:U^k\to U$. Si vuole trovare {\color{red}il più piccolo}
+    sottoinsieme di $U$ che: \vspace{.2cm}
+    \begin{enumerate}
+        \setlength\itemsep{.5em}
+        \item {\color{blue}Contiene $A$}
+        \item {\color{blue}È chiuso per $op$}
+    \end{enumerate}
+\end{minipage}
+\begin{minipage}{.55\textwidth}
+    \begin{center}
+        \input{figures/chiusura_insieme.tex}
+    \end{center}
+\end{minipage}
+\vspace{.3cm}
+
+\begin{itemize}
+    \item Sicuramente $U$ soddisfa le due condizioni ma {\color{red}si sta cercando
+        l'insieme più piccolo};
+    \item Se $A$ è chiuso per $op$ allora l'insieme cercato sarebbe $A$ stesso;
+    \item Se $A$ non è chiuso per $op$ allora devo {\color{blue} allargare la ricerca ad 
+        un insieme più grande}.
+\end{itemize}
+\vspace{.5em}
+\begin{theorem}[Chiusura di un insieme]
+    Sia $A\subseteq U$ e $op:U^k\to U$. Il più piccolo sottoinsieme di $U$ contenente $A$
+    e chiuso rispetto a $op$ si ottiene calcolando la chiusura di $A$ rispetto a $op$, ovvero
+    l'insieme $A^{op}$ definito induttivamente come:
+    \begin{enumerate}
+        \item $\forall a\in A \ \Rightarrow \ a\in A^{op}$
+        \item $\forall a_1,\dots,a_k\in A^{op} \ \Rightarrow \ op(a_1,\dots,a_k)\in A^{op}$
+        \item Nient'altro sta in $A^{op}$
+    \end{enumerate}
+\end{theorem}
+
+Una versione \quotes{più operativa} per trovare $A^{op}$ è:
+\begin{enumerate}
+    \item $A^{op} = A$
+    \item Calcola $op(a_1,\dots,a_k)=r$ su una $k$-tupla di $A$
+    \item Se $r\notin A$ allora $A^{op} = A^{op}\cup\{r\}$
+    \item Ripeti il punto 2 con un'altra $k$-tupla fino ad averle provate tutte
+\end{enumerate}

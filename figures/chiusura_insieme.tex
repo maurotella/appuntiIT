@@ -1,0 +1,9 @@
+\begin{tikzpicture}
+    \node[scale=1.4] at(2.45,1.45) {$U$};
+    \draw[thick] (0,0) ellipse (3 and 1.7);
+    \draw[dashed] (0,0) ellipse (1.6 and 1);
+    \def\x{1.6}
+    \draw[->,thick,blue] (.8,0) -- (\x-.1,0);
+    \draw[->,thick,red] (3,0) -- (\x+.1,0);
+    \draw[thick] (0,0) ellipse (.8 and .4) node {$A$};
+\end{tikzpicture}
