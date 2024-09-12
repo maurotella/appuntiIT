@@ -526,6 +526,9 @@ INPUT figures/calcolabilita2.tex
 INPUT ./figures/calcolabilita3.tex
 INPUT ./figures/calcolabilita3.tex
 INPUT figures/calcolabilita3.tex
+INPUT ./figures/S11.tex
+INPUT ./figures/S11.tex
+INPUT figures/S11.tex
 INPUT temp/main.aux
 INPUT temp/main.out
 INPUT temp/main.out

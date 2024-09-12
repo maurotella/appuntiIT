@@ -463,7 +463,7 @@ incrementare di uno il program counter ($L\leftarrow L+1$) dopo l'esecuzione di 
 Se l'istruzione è un'istruzione di salto ($\goto{R_k}{m}$) e la sua condizione $R_k=0$
 è verificata, il program counter verrà cambiato in $L\leftarrow m$.
 
-Per convenzione $L=0 \Rightarrow \text{ Fine del programma}$ (con possibiliità di loop infinito).
+Per convenzione $L=0 \Rightarrow \text{ Fine del programma}$ (con possibilità di loop infinito).
 
 L'output del programma sarà il contenuto di $R_0$ o $\perp$ in presenza di loop.
 
@@ -1118,7 +1118,7 @@ $$ \begin{matrix}
 \end{matrix} \quad \Rightarrow \quad
  F(\text{RAM})=F(\text{WHILE}) $$
 
-\begin{theorem}[Teorema di Böhm-Jacopini]
+\begin{theorem}[Böhm-Jacopini]
     Per ogni programma con il comando \texttt{GOTO} (RAM) ne esiste uno equivalente in
     linguaggio strutturato (WHILE)
 \end{theorem}
@@ -1135,11 +1135,11 @@ Concludendo, si è anche dimostrato che:
 $$ F(\text{RAM})=F(\text{WHILE}) \sim \N \nsim \N^\N_\perp $$
 \textbf{Esistono quindi funzioni non computabili da entrambi i sistemi}.
 
-\subsubsection{Interprete universale}
+\subsubsection{Interprete universale}\label{sec:interpreteU}
 Si prenda il compilatore $Comp:\text{W-PROG}\to\text{PROG}$ e lo si utilizzi con $I_W$:
 $$ \semanticaWHILE_{I_W}(\cantor{x,n})=\semanticaRAM_n(x) $$
 $$ U = Comp(I_W)\in\text{PROG} $$
-$U$ è detto interprete universale ed un programma RAM in grado di simulare qualsiasi
+$U$ è detto interprete universale ed è un programma RAM in grado di simulare qualsiasi
 altro programma RAM.
 La sua semantica è:
 $$ \semanticaRAM_U(\cantor{x,n})=\semanticaWHILE_{I_W}(\cantor{x,n})=\semanticaRAM_n(x) $$
@@ -1827,3 +1827,326 @@ Per intuitivamente calcolabile si intende calcolabile da un modello di calcolo
 un'opinione. Non c'è infatti nessuna evidenza che non possa esistere un sistema di 
 calcolo in grado di calcolare funzioni $f\notin\ricPar$.}
 
+\subsection{Assiomatizzazione dei sistemi di calcolo}
+Si vuole ora cercare di individuare alcune proprietà \quotes{buone}, auspicabili da 
+un sistema di calcolo, dette assiomi. Tutti i sistemi di programmazione che rispettano
+questi assiomi si diranno sistemi di programmazione accettabili.
+
+In questo moda si potranno dimostrare determinate proprietà non sul singolo sistema
+ma su tutti i sistemi accettabili.
+
+Per indicare un sistema di programmazione si userà la seguente notazione:
+$$ \sistProg_{i\in\N} $$
+dove $\semanticaRAM_i$ è la funzione calcolata dal programma la cui codifica è 
+$i\in\N$.
+
+\subsubsection{Assiomi di Rogers}
+Gli assiomi di Rogers vogliono essere quelle \quotes{buone} proprietà ricercate in
+un sistema di programmazione; in particolare si afferma che: un sistema di
+programmazione $\sistProg$ si dice \textbf{accettabile (o spa)} se: 
+\begin{enumerate}
+    \item Aderisce alla tesi di Church-Turing;
+    \item Esiste un interprete universale;
+    \item Rispetta il teorema $S_n^m$.
+\end{enumerate}
+
+Si vedranno ora nello specifico gli assiomi e si vedrà anche che il sistema RAM
+li rispetta.
+
+\subsubsection*{Primo assioma}
+$\sistProg$ rispetta il primo assioma se rispetta la tesi di Church-Turing
+ovvero:
+$$ \sistProg =\ricPar $$
+
+Il sistema RAM, come ampiamente dimostrato nelle sezioni precedenti, rispetta
+il primo assioma:
+$$ F(\RAM)=\ricPar $$
+
+Si vogliono considerare i sistemi di calcolo ne troppo poco potenti (sotto $\ricPar$),
+ne troppo potenti (oltre $\ricPar$).
+
+\subsubsection*{Secondo assioma}
+$\sistProg$ rispetta il secondo assioma se esiste un interpete universale ovvero:
+$$ \exists\mu\in\N : \forall x,n\in\N: \semanticaRAM_\mu(\cantor{x,n})=
+\semanticaRAM_n(x) $$
+
+Vedi sezione \ref{sec:interpreteU} per il sistema RAM.
+
+La presenza di un interprete universale permette di avere \quotes{un'algebra sui
+programmi}.
+
+\subsubsection*{Terzo assioma}
+$\sistProg$ rispetta il terzo assioma se rispetta il teorema $S_n^m$.
+
+Prima di mostrare il teorema $S_n^m$ si vedrà un teorema più specifico, quello
+$S_1^1$.
+\begin{theorem}[$S_1^1$]
+    Dato $\sistProg$ $\RAM$, esiste una funzione $S_1^1\in\ricTot$ tale che:
+    $$ \forall n,x,y\in\N \quad \semanticaRAM_n(\cantor{x,y})
+    = \semanticaRAM_{S_1^1(n,y)}(x) $$
+\end{theorem}
+In altre parole è possibile costruire automaticamente programmi più specifici
+da programmi più generali, ottenuti prefissando alcuni input.
+\begin{proof}
+In generale il programma $S_1^1$ implementa la funzione:
+$$ S_1^1(n,y) = \bar{n} \ \text{ tale che } \ \semanticaRAM_{\bar{n}}(x)
+=\semanticaRAM_n (x,y)$$
+dove:
+\begin{itemize}
+    \item $n$ è la codifica del programma $P$ a due variabili di input $x,y$
+    \item $\bar{n}$ è la codifica del programma $\bar{P}$ ad una variabile
+        la cui semantica è identica a quella di $P$ a cui fisso a $y$ il
+        secondo input
+\end{itemize}
+
+Analizzando il sistema RAM si prenda un programma $P$ a due variabili:
+
+\vspace{-1em}
+\begin{minipage}{.4\textwidth}
+    \begin{align}
+        P \equiv\ & \texttt{// input $\cantor{x,y}$ in $R_1$}   \notag\\
+        & R_2 \leftarrow \sin(R_1)                     \notag\\
+        & R_3 \leftarrow \dx(R_1)                      \notag\\
+        & R_0 \leftarrow R_2+R_3                       \notag
+    \end{align}
+\end{minipage}
+\begin{minipage}{.4\textwidth}
+    $$ \semanticaRAM_P(\cantor{x,y})=x+y $$
+\end{minipage}
+
+Si vuole produrre un programma $\bar{P}$ con un solo input $x$ che restituisca
+$x+3$; tutto questo partendo dal programma $P$. Si fissa quindi la seconda variabile
+di $P$ a 3. La funzione $S_1^1$ dovrà restituire $\bar{P}$:
+
+\begin{minipage}{.46\textwidth}
+    \begin{center}
+        \input{figures/S11.tex}
+    \end{center}
+\end{minipage}
+\begin{minipage}{.46\textwidth}
+    \begin{tabular}{r l l}
+        $\bar{P}\equiv$ & $\texttt{// input $x$ in $R_1$}$   &       \\
+        & $R_0 \leftarrow R_0+1$ & 
+            \multirow{3}{*}{\hspace{-2em}
+                $\begin{rcases}
+                    \phantom{}\\
+                    \phantom{}\\
+                    \phantom{}\\
+                \end{rcases}$ fissa $y$ a 3
+            }\\
+        & $R_0 \leftarrow R_0+1$                               \\
+        & $R_0 \leftarrow R_0+1$                               \\
+        & $R_1 \leftarrow \cantor{R_1,R_0}$ & 
+        \hspace{-2em}
+            $\begin{rcases}
+                \phantom{}
+            \end{rcases}$ input di $P$\\
+        & $R_0 \leftarrow 0$  & 
+        \hspace{-2em}
+            $\begin{rcases}
+                \phantom{}
+            \end{rcases}$ pulisci $R_0$\\
+        & $R_0 \leftarrow R_2+R_3$ & 
+        \hspace{-2em}
+            $\begin{rcases}
+                \phantom{}
+            \end{rcases}$ richiama $P$                         
+    \end{tabular}
+\end{minipage}
+
+Si consideri il programma $\bar{P}$ nel caso generale, fissando la seconda variabile
+a un valore $y$:
+
+\begin{center}
+    \begin{tabular}{r l l c c}
+        $\bar{P}\equiv$ & $\texttt{// input $x$ in $R_1$}$
+            &&codifica  \\
+        & $R_0 \leftarrow R_0+1$ &
+            \multirow{3}{*}{\hspace{-2em}
+                $\begin{rcases}
+                    \phantom{}\\
+                    \phantom{}\\
+                    \phantom{}\\
+                \end{rcases} y$ volte
+            } & $\longmapsto$ & 0 \\
+        & $\hspace{2.6em}\vdots$ & & $\vdots$   \\
+        & $R_0 \leftarrow R_0+1$ & & $\longmapsto$ & 0  \\
+        & $R_1 \leftarrow \cantor{R_1,R_0}$ & 
+        \hspace{-2em}
+            $\begin{rcases}
+                \phantom{}
+            \end{rcases}$ input di $P$ & $\longmapsto$ & s\\
+        & $R_0 \leftarrow 0$  & 
+        \hspace{-2em}
+            $\begin{rcases}
+                \phantom{}
+            \end{rcases}$ pulisci $R_0$ & $\longmapsto$ & t\\
+        & $R_0 \leftarrow R_2+R_3$ & 
+        \hspace{-2em}
+            $\begin{rcases}
+                \phantom{}
+            \end{rcases}$ richiama $P$ & $\longmapsto$ & n                
+    \end{tabular}
+\end{center}
+La codifica del programma $\bar{P}$ è:
+$$ cod(\bar{P}) = \bar{n} = \cantor{\underbrace{0,\dots,0}_{y\text{ volte}},s,t,n} $$
+Si può quindi notare che $S_1^1$ è:
+
+\begin{minipage}{.3\textwidth}
+    \begin{enumerate}
+        \item Una funzione totale;
+        \item Programmabile.
+    \end{enumerate}
+\end{minipage}
+\begin{minipage}{.25\textwidth}
+    $$ \Rightarrow \quad S_1^1 \in \ricTot $$
+\end{minipage}
+\end{proof}
+\vspace{1em}
+
+\begin{theorem}[$S_n^m$]
+    Dato $\sistProg$ $\RAM$, esiste una funzione $S_n^m\in\ricTot$ tale che:
+    $$ \forall k\in\N,\sottolinea{x}\in\N^m,\sottolinea{y}\in\N^n 
+    \quad \semanticaRAM_k(\cantor{\sottolinea{x},\sottolinea{y}})
+    = \semanticaRAM_{S_n^m(k,\sottolinea{y})}(\cantor{\sottolinea{x}}) $$
+\end{theorem}
+Il teorema è una generalizzazione di $S_1^1$; $S_n^m$ tratta programmi a $m+n$
+input in cui si prefissano $n$ input e se ne lasciano liberi $m$. Anche la
+dimostrazione è una semplice generalizzazione di quella di $S_1^1$.
+
+\subsubsection{Compilatori tra spa}
+Dati due sistemi di programmazione accettabili (spa) $\sistProg$ e $\sistProgW$, un
+compilatore dal primo al secondo spa è una funzione $t:\N\to\N$ che possiede le
+seguenti proprietà:
+
+\begin{minipage}{.66\textwidth}
+\begin{enumerate}
+    \setlength\itemsep{.4em}
+    \item Correttezza: $\forall i\in\N \quad \semanticaRAM_i=\semanticaWHILE_{t(i)}$;
+    \item Completezza: compila ogni programma $i\in\N$;
+    \item Programmabilità: esiste un programma che implementa $t$.
+\end{enumerate}    
+\end{minipage}
+\begin{minipage}{.25\textwidth}
+    \vspace{1.1em}
+    $\begin{rcases}
+        \phantom{}\\\phantom{}\\
+    \end{rcases} t\in\ricTot$
+\end{minipage}\vspace{1em}
+
+\begin{theorem}\label{theo:spa_comp}
+    Dati due spa, esiste un compilatore tra essi.
+\end{theorem}
+\begin{proof}
+    Si considerino due spa $\sistProg$ e $\sistProgW$. Essendo spa rispettano gli
+    assiomi:
+    \begin{enumerate}
+        \item $\sistProg=\ricPar$
+        \item $\exists u: \semanticaRAM_u(\cantor{x,n})=
+            \semanticaRAM_n(x)$
+        \item $\exists S_1^1\in\ricTot:\semanticaRAM_n(\cantor{x,y})=
+            \semanticaRAM_{S_1^1(n,y)}(x)$
+    \end{enumerate}
+
+    \begin{equation}\label{eq:spa_comp}
+        \semanticaRAM_i(x)\overset{(2)}{=} 
+        \semanticaRAM_u(\cantor{x,i})\overset{(1)}{=}
+        \semanticaWHILE_e(\cantor{x,i})\overset{(3)}{=}
+        \semanticaWHILE_{S_1^1(e,i)}(x)
+    \end{equation}
+    \vspace{-.5em}
+
+    \begin{enumerate}
+        \item[(2)] Applicazione diretta dell'assioma 2;
+        \item[(1)] Entrambi gli spa possono calcolare le funzioni in $\ricPar$
+            (assioma 1): esiste in $\sistProgW$ un programma $e$ con la stessa semantica
+            del programma $u$;
+        \item[(3)] Tramite la funzione $S_1^1$ (assioma 3) ottengo il programma che fissa
+            la seconda variabile del programma $e$ ad $i$.
+    \end{enumerate}
+
+    Si è quindi trovata la funzione $t(i)=S_1^1(e,i)$ valida per ogni $i\in\N$.
+    $t$ è un compilatore poichè:
+    \begin{enumerate}
+        \item $t\in\ricTot$ in quanto $S_1^1\in\ricTot$(assioma 3);
+        \item $T$ è corretto in quanto $\semanticaRAM_i=\semanticaWHILE_{t(i)}$
+         (\ref{eq:spa_comp}).
+    \end{enumerate}
+\end{proof}
+\begin{corollario}
+    Dati gli spa $A,B,C$ esiste sempre un compilatore da $A$ a $B$ scritto
+    in $C$. 
+\end{corollario}
+\begin{proof}\phantom{x}
+    \begin{itemize}
+        \item Per il teorema \ref{theo:spa_comp} esiste un compilatore $t\in\ricTot$
+            tra $A$ e $B$;
+        \item Per il primo assioma $C$ contiene tutte le funzioni ricorsive parziali
+            tra cui è presente anche $t$ (in quanto $t\in\ricTot\subset\ricPar=C$)
+    \end{itemize}
+\end{proof}
+
+\begin{theorem}[Isomorfismo tra spa (Rogers)]
+    Dati due spa $\sistProg$ e $\sistProgW$, esiste un compilatore $t:\N\to\N$ tra
+    i due sistemi tale che $t$ è invertibile ($t^{-1}$ è un decompilatore).
+\end{theorem}
+
+Si noti che la decompilazione di un programma non restituisce semplicemente un
+programma con la stessa semantica, ma restituisce esattamente lo stesso programma
+che è stato originariamente compilato.
+
+\subsubsection{Teorema di ricorsione}
+\begin{theorem}[Teorema di Ricorsione]\label{theo:ric}
+    Dato un spa \sistProg, per ogni $t:\N\to\N$ ricorsiva totale vale:
+    $$ \exists n\in\N:\semanticaRAM_n=\semanticaRAM_{t(n)} $$
+\end{theorem}
+
+A parole, sia $t$ un programma che trasforma programmi con lo scopo di cambiare
+totalmente la semantica del programma (rompendolo su tutti gli input). Qualunque
+sia la manipolazione effettuata da $t$, esisterà sempre un programma che non 
+viene rotto dalla manipolazione di $t$.
+
+\subsubsection*{Quine}
+Dato un spa, esiste al suo interno un programma che restituisce se stesso (la
+sua codifica)?
+Formalmente:
+$$ \exists j\in\N: \forall x\in\N \quad \semanticaRAM_j(x)=j ?$$
+Questi programmi sono dette \textbf{quine}.
+
+Si prenda RAM e il seguente programma:
+
+\begin{center}
+    \begin{tabular}{r l l}
+        $P\equiv$ & $R_0 \leftarrow R_0+1$  & 
+        \multirow{4}{*}{\hspace{-1em}
+            $\begin{rcases}
+                \phantom{}\\
+                \phantom{}\\
+                \phantom{\vdots}\\
+                \phantom{}\\
+            \end{rcases}$ $j$ volte $\ \Rightarrow \ cod(P)=
+            \underbrace{\color{red}\cantor{0,0,\dots,0}}_{\text{$j$ volte}}
+            = Z(j)$
+        }\\
+        & $R_0 \leftarrow R_0+1$  \\ 
+        & \hspace{2em}$\vdots$    \\
+        & $R_0 \leftarrow R_0+1$  \\                     
+    \end{tabular}
+\end{center}
+
+Alla fine dell'esecuzione di $P$ si avrà $R_0=j$ a prescindere dall'input:
+\begin{equation}\label{eq:quine_1}
+    \forall x\in\N \quad \semanticaRAM_{Z(j)}(x) = j
+\end{equation}
+Si definisca la {\color{red}codifica del programma $P$} con $Z(j)$ che è uguale
+alla codifica di Cantor di una lista di $j$ zeri. È evidente che per qualsiasi
+valore $j$, la funzione $Z(j)$ esiste ed è quindi totale; inoltre è facilmente
+implementabile. Si può quindi dire che:
+$$Z(j)\in\ricTot$$
+
+Il teorema \ref{theo:ric} afferma che:
+\begin{equation}\label{eq:quine_2}
+    \exists j\in\N:\semanticaRAM_j(x) = \semanticaRAM_{Z(j)}(x)
+\end{equation} 
+Da (\ref{eq:quine_1}) e (\ref{eq:quine_2}) si ottiene che:
+$$ \exists j\in\N : \semanticaRAM_j(x)= j $$

@@ -31,3 +31,7 @@
 \contentsline {subsubsection}{\numberline {2.7.5}Funzioni ricorsive parziali}{30}{subsubsection.2.7.5}%
 \contentsline {subsubsection}{\numberline {2.7.6}Funzioni ricorsive totali}{33}{subsubsection.2.7.6}%
 \contentsline {subsubsection}{\numberline {2.7.7}Tesi di Church-Turing}{34}{subsubsection.2.7.7}%
+\contentsline {subsection}{\numberline {2.8}Assiomatizzazione dei sistemi di calcolo}{34}{subsection.2.8}%
+\contentsline {subsubsection}{\numberline {2.8.1}Assiomi di Rogers}{35}{subsubsection.2.8.1}%
+\contentsline {subsubsection}{\numberline {2.8.2}Compilatori tra spa}{37}{subsubsection.2.8.2}%
+\contentsline {subsubsection}{\numberline {2.8.3}Teorema di ricorsione}{38}{subsubsection.2.8.3}%
