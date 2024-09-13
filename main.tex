@@ -4,7 +4,7 @@
 \usepackage[italian]{babel}
 \usepackage{lmodern}
 \usepackage{parskip}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage{amsmath}
 \usepackage{tcolorbox}
 \usepackage{textcomp}
@@ -46,13 +46,13 @@
     \ensuremath{\texttt{IF}\text{ $#1=0$ }\texttt{THEN GOTO }\text{$#2$}}
 }
 \newcommand{\Stato}{\ensuremath{\mathscr{S}}}
-\newcommand{\semanticaRAM}{\ensuremath{{\mathlarger\varphi}}}
+\newcommand{\semRAM}{\ensuremath{{\mathlarger\varphi}}}
 \newcommand{\while}[1]{\ensuremath{
     \texttt{while } #1\neq0 \texttt{ do }
 }}
 \newcommand{\textbegin}{\ensuremath{\texttt{begin }}}
 \newcommand{\textend}{\ensuremath{\texttt{ end}}}
-\newcommand{\semanticaWHILE}{\ensuremath{{\mathlarger\psi}}}
+\newcommand{\semWHILE}{\ensuremath{{\mathlarger\psi}}}
 \newcommand{\opsemWHILE}[2]{\ensuremath{{
     \rotatebox[origin=c]{180}{\textrbrackdbl}\hspace{.1em}
     #1\hspace{.1em}\text{\textrbrackdbl}(#2)
@@ -70,8 +70,8 @@
 \newcommand{\MIN}{\ensuremath{\text{MIN}}}
 \newcommand{\Pro}{\ensuremath{\text{Pro}}}
 \newcommand{\ricTot}{\ensuremath{\mathcal{T}}}
-\newcommand{\sistProg}{\ensuremath{\{\semanticaRAM_i\}}}
-\newcommand{\sistProgW}{\ensuremath{\{\semanticaWHILE_i\}}}
+\newcommand{\sistProg}{\ensuremath{\{\semRAM_i\}}}
+\newcommand{\sistProgW}{\ensuremath{\{\semWHILE_j\}}}
 
 \newtheorem{theorem}{Teorema}
 \newtheorem{corollario}{Corollario}

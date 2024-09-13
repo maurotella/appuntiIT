@@ -485,8 +485,8 @@ quest'ultimo induce una sequenza di stati:
 \end{figure}
 
 La semantica di $P$ è:
-$$ \semanticaRAM_P:\N\to\N_\perp $$
-$$ \semanticaRAM_P(n) = \begin{cases}
+$$ \semRAM_P:\N\to\N_\perp $$
+$$ \semRAM_P(n) = \begin{cases}
 \perp & \text{se $P$ va in loop}\\
 y & \text{altrimenti}
 \end{cases} $$
@@ -550,7 +550,7 @@ $$ {\color{red}\text{Stato attuale}} \qquad {\color{blue}\text{Stato prossimo}} 
     \end{align}
 \end{minipage}
 \begin{minipage}{.48\textwidth}
-    $ \semanticaRAM_P(n) = 2n $
+    $ \semRAM_P(n) = 2n $
 \end{minipage}
 
 \subsubsection*{Aritmetizzazione di un programma RAM}
@@ -565,7 +565,7 @@ ottenenendo una lista di numeri che si può facilmente codificare con $\cantor{\
 L'associazione biunivoca di un numero ad una struttura si dice aritmetizzazione o
 Gödellizzazione.
 
-\subsubsection*{Aritmetizzazione delle istruzioni RAM}
+\subsubsection*{Aritmetizzazione delle istruzioni RAM}\label{sec:aritm_ram}
 Per poter aritmetizzare un'istruzione RAM c'è bisogno di una funzione che:
 $$ Ar:\text{Istr}\to\N \quad , \quad Ar^{-1}:\N\to\text{Istr} $$
 Il linguaggio RAM è formato da tre tipi di istruzioni; si può quindi ottenere la
@@ -612,13 +612,13 @@ l'istruzione:
 
 \subsubsection*{Potenza computazionale del sistema RAM}
 $$ \begin{aligned}
-        F(\RAM) &= \{f\in\N_\perp^\N:\exists P \in \PROG: \semanticaRAM_P=f\}\\
-                &= \{\semanticaRAM_P:P\in\PROG\} \subset \N_\perp^\N \\
+        F(\RAM) &= \{f\in\N_\perp^\N:\exists P \in \PROG: \semRAM_P=f\}\\
+                &= \{\semRAM_P:P\in\PROG\} \subset \N_\perp^\N \\
                 \multispan2{Vista la possibilità di rappresentare un programma
                  con un numero si ha:\hfill}\notag\\
-                 &= \{\semanticaRAM_i:i\in\N\}
+                 &= \{\semRAM_i:i\in\N\}
 \end{aligned} $$
-Dove $\semanticaRAM_i$ è la semantica del programma la cui codifica è $i$.
+Dove $\semRAM_i$ è la semantica del programma la cui codifica è $i$.
 \subsubsection*{Conclusioni}
 Nelle ultime sezioni si è mostrata una biezione tra programmi RAM (PROG) e numeri
 ($\N$):
@@ -672,7 +672,7 @@ Un programma WHILE è un comando composto.
 
 \subsubsection*{Semantica programma WHILE}
 La semantica di un programma $W$ è la funzione
-    $$\semanticaWHILE_W:\N\to\N_\perp$$
+    $$\semWHILE_W:\N\to\N_\perp$$
 \subsubsection*{Esempio di programma}
 \vspace{-1em}
 \begin{minipage}{.34\textwidth}
@@ -694,7 +694,7 @@ La semantica di un programma $W$ è la funzione
     \end{align}
 \end{minipage} \hspace{1em}
 \begin{minipage}{.6\textwidth}
-    $\qquad\qquad\ \ \ \semanticaWHILE_W(n) = 2n $
+    $\qquad\qquad\ \ \ \semWHILE_W(n) = 2n $
 \end{minipage}
 
 \subsubsection*{W-PROG e induzione}
@@ -772,14 +772,14 @@ Si veda ora la definizione induttiva della semantica operazionale:
         \end{itemize}
 \end{itemize}
 Si può quindi definire la semantica di un programma $W$:
-$$\semanticaWHILE_W(n) = \Pro(0,\opsemWHILE{W}{\text{$W$-$in$}(n)})$$
+$$\semWHILE_W(n) = \Pro(0,\opsemWHILE{W}{\text{$W$-$in$}(n)})$$
 dove Pro è la funzione proiezione:
 $$ \Pro(i,(x_0,x_1,\dots,x_m)) = x_i $$
 
 \subsubsection*{Potenza computazionale del sistema WHILE}
 $$ \begin{aligned}
-    F(\text{WHILE}) &= \{ f\in\N^\N_\perp : \exists W\in \text{W-PROG}:f=\semanticaWHILE_W \}\\
-    &= \{ \semanticaWHILE_W : W \in \text{W-PROG} \} 
+    F(\text{WHILE}) &= \{ f\in\N^\N_\perp : \exists W\in \text{W-PROG}:f=\semWHILE_W \}\\
+    &= \{ \semWHILE_W : W \in \text{W-PROG} \} 
     \end{aligned}
 $$
 
@@ -791,12 +791,12 @@ tale che $T$ sia:
     \item Programmabile: è programmabile effettivamente
     \item Completa: traduce ogni programma
     \item Corretta: mantiene la semantica:
-        $\forall P\in\SC_1\text{-PROG} \quad \semanticaRAM_{T(P)}=\semanticaWHILE_{P}$
+        $\forall P\in\SC_1\text{-PROG} \quad \semRAM_{T(P)}=\semWHILE_{P}$
 \end{enumerate}
 \subsubsection{Confronto tra sistemi di calcolo}
 Si prendano due sistemi di calcolo $\SC_1$ e $\SC_2$ con le rispettive potenze computazionali:
-$$ F(\SC_1) = \{\semanticaRAM_{P_1}:P_1\in\SC_1\text{-PROG}\} $$
-$$ F(\SC_2) = \{\semanticaWHILE_{P_2}:P_2\in\SC_2\text{-PROG}\} $$
+$$ F(\SC_1) = \{\semRAM_{P_1}:P_1\in\SC_1\text{-PROG}\} $$
+$$ F(\SC_2) = \{\semWHILE_{P_2}:P_2\in\SC_2\text{-PROG}\} $$
 
 Si vuole mostrare che $F(\SC_1)\subseteq F(\SC_2)$, ovvero che $\SC_1$ non è più potente di $\SC_2$;
 per farlo bisogna dimostrare che:
@@ -805,8 +805,8 @@ per farlo bisogna dimostrare che:
     \begin{tabular}{c}
         $\forall f \in F(\SC_1) \quad f\in F(\SC_2)$\\[1em]
         \rotatebox[origin=c]{90}{$\equiv$}\\[1em]
-        $\exists P_1\in\SC_1\text{-PROG}:f=\semanticaRAM_{P_1}
-    \ \Rightarrow \ \exists P_2\in\SC_2\text{-PROG}:f=\semanticaWHILE_{P_2}$
+        $\exists P_1\in\SC_1\text{-PROG}:f=\semRAM_{P_1}
+    \ \Rightarrow \ \exists P_2\in\SC_2\text{-PROG}:f=\semWHILE_{P_2}$
     \end{tabular}
 \end{table}
 In altre parole, per ogni programma di $\SC_1$ ne esiste uno equivalente in $\SC_2$.
@@ -819,7 +819,7 @@ In altre parole, per ogni programma di $\SC_1$ ne esiste uno equivalente in $\SC
     $$ f\in F(\SC_1) $$
     Si ha quindi che esiste un programma in $\SC_1\text{-PROG}$ che può calcolare $f$:
     \begin{equation} \label{eq:traduzione_proof1}
-        \exists P\in\SC_1\text{-PROG}:f=\semanticaWHILE_P
+        \exists P\in\SC_1\text{-PROG}:f=\semWHILE_P
     \end{equation}
     Si prenda la traduzione $T$ da $\SC_1$ a $\SC_2$; vista la completezza di $T$ si ha che:
     \begin{equation} \label{eq:traduzione_proof2}
@@ -827,7 +827,7 @@ In altre parole, per ogni programma di $\SC_1$ ne esiste uno equivalente in $\SC
     \end{equation}
     e vista la correttezza si ha che:
     \begin{equation} \label{eq:traduzione_proof3}
-        \semanticaRAM_{T(P)}=\semanticaWHILE_P\underset{(\ref{eq:traduzione_proof1})}{=}f
+        \semRAM_{T(P)}=\semWHILE_P\underset{(\ref{eq:traduzione_proof1})}{=}f
     \end{equation}
     Si ha quindi che esiste un programma $T(P)$ in $\SC_2$-PROG (\ref{eq:traduzione_proof2})
     la cui semantica è $f$ (\ref{eq:traduzione_proof3}). Si può concludere che:
@@ -966,7 +966,7 @@ Per farlo si userà il concetto di interprete.
 A differenza di un compilatore un interprete non produce nessun oggetto ma esegue
 direttamente tutte le istruzioni del programma. In altre parole, un interprete è
 un programma che prende in ingresso un altro programma $P$ e un dato $x$ e restituisce
-il risultato della semantica di $P$ su $x$ ovvero $\semanticaRAM_P(x)$.
+il risultato della semantica di $P$ su $x$ ovvero $\semRAM_P(x)$.
 
 \subsubsection*{Interprete WHILE di programmi RAM}
 Si definirà ora un interprete $I_W$ scritto in WHILE di programmi RAM.
@@ -995,8 +995,8 @@ Si definirà ora un interprete $I_W$ scritto in WHILE di programmi RAM.
 \end{figure}
 
 La semantica dell'interprete $I_W$ è:
-$$\forall x,n\in\N: \semanticaWHILE_{I_W}(\cantor{x,n})
-=\semanticaRAM_n(x)=\semanticaWHILE_P(x)$$
+$$\forall x,n\in\N: \semWHILE_{I_W}(\cantor{x,n})
+=\semRAM_n(x)=\semWHILE_P(x)$$
 
 Per questioni di comodità si usera una variante di WHILE in cui si potranno definire
 delle macro, ovvero delle chiamate a funzioni comunque definibili in WHILE puro; alcuni
@@ -1047,7 +1047,7 @@ un valore esatto.
 \subsubsection*{Implementazione}
 Verrà mostrata ora l'implementazione dell'interprete $I_W$ scritto in (macro-)WHILE di un
 programma RAM $P$:
-$$ \semanticaWHILE_{I_W}(\cantor{x,n})=\semanticaRAM_n(x) $$
+$$ \semWHILE_{I_W}(\cantor{x,n})=\semRAM_n(x) $$
 \begin{tcolorbox}[colback=white,sharp corners,boxrule=.3mm]
 \begin{algorithm}[H]
     \setstretch{1.2}
@@ -1085,7 +1085,7 @@ $$ \semanticaWHILE_{I_W}(\cantor{x,n})=\semanticaRAM_n(x) $$
             }
         }
     }
-    $x_0 = \sx(x_0)$\tcp*{metto in $x_0$ il risultato $\semanticaRAM_n(x)$}
+    $x_0 = \sx(x_0)$\tcp*{metto in $x_0$ il risultato $\semRAM_n(x)$}
 \end{algorithm}
 \end{tcolorbox}
 
@@ -1137,12 +1137,12 @@ $$ F(\text{RAM})=F(\text{WHILE}) \sim \N \nsim \N^\N_\perp $$
 
 \subsubsection{Interprete universale}\label{sec:interpreteU}
 Si prenda il compilatore $Comp:\text{W-PROG}\to\text{PROG}$ e lo si utilizzi con $I_W$:
-$$ \semanticaWHILE_{I_W}(\cantor{x,n})=\semanticaRAM_n(x) $$
+$$ \semWHILE_{I_W}(\cantor{x,n})=\semRAM_n(x) $$
 $$ U = Comp(I_W)\in\text{PROG} $$
 $U$ è detto interprete universale ed è un programma RAM in grado di simulare qualsiasi
 altro programma RAM.
 La sua semantica è:
-$$ \semanticaRAM_U(\cantor{x,n})=\semanticaWHILE_{I_W}(\cantor{x,n})=\semanticaRAM_n(x) $$
+$$ \semRAM_U(\cantor{x,n})=\semWHILE_{I_W}(\cantor{x,n})=\semRAM_n(x) $$
 
 \subsection{Calcolabilità}
 Nelle sezioni precedenti si è visto come due sistemi di calcolo molto diversi tra loro 
@@ -1295,7 +1295,7 @@ $\ricPrim=\elem^{\comp,\RP}$:
 Per dimostrare che $\ricPrim \subseteq F(\text{WHILE})$:
 \begin{enumerate}
     \item Dimostro che $\elem\subseteq F(\text{WHILE})$, ovvero mostro per ogni funzione 
-    $f\in\elem$ un programma $W\in W\text{-PROG}$ tale che $\semanticaWHILE_W=f$:
+    $f\in\elem$ un programma $W\in W\text{-PROG}$ tale che $\semWHILE_W=f$:
     \begin{itemize}
         \item $s(x)=x+1$:
         \begin{minipage}{.27\textwidth}
@@ -1330,8 +1330,8 @@ Per dimostrare che $\ricPrim \subseteq F(\text{WHILE})$:
     \end{itemize}
     \item Assumo che $h,g_1,\dots,g_k\in F(\text{WHILE})$ ovvero che esistono dei programmi
         $H,G_1,\dots,G_k\in W\text{-PROG}$ tali che:
-        $$ \semanticaWHILE_H=h \ ,\ \semanticaWHILE_{G_1}=g_1\ ,\ \dots \ ,\
-        \semanticaWHILE_{G_k}=g_k $$
+        $$ \semWHILE_H=h \ ,\ \semWHILE_{G_1}=g_1\ ,\ \dots \ ,\
+        \semWHILE_{G_k}=g_k $$
         e dimostro che $\comp(h,g_1,\dots,g_k)\in F(\text{WHILE})$ ovvero mostro un programma
         WHILE che calcola:
         $$\comp(h,g_1,\dots,g_k)=h(g_1(\sottolinea{x}),\dots,g_k(\sottolinea{x}))$$
@@ -1361,7 +1361,7 @@ Per dimostrare che $\ricPrim \subseteq F(\text{WHILE})$:
     \end{minipage}
     \item Assumo che $g,h\in F(\text{WHILE})$ ovvero che esistono dei programmi
     $H,G\in W\text{-PROG}$ tali che:
-    $$ \semanticaWHILE_H=h \ ,\ \semanticaWHILE_{G}=g $$ 
+    $$ \semWHILE_H=h \ ,\ \semWHILE_{G}=g $$ 
     e dimostro che 
     $\RP(h,g)\in F(\text{WHILE})$ ovvero mostro un programma WHILE che calcola:
     $$ \RP(h,g) = f(\sottolinea{x},y) = \begin{cases}
@@ -1479,7 +1479,7 @@ infinito dal linguaggio WHILE otterremmo $\ricPrim$.
 
 Si prenda il linguaggio WHILE privato della possibilità di eseguire loop infiniti:
 $$ \widetilde{F}(\text{WHILE}) = 
-    \{\semanticaWHILE_W:W\in W\text{-PROG}\ \wedge\ \semanticaWHILE_W\text{ è totale}\} $$
+    \{\semWHILE_W:W\in W\text{-PROG}\ \wedge\ \semWHILE_W\text{ è totale}\} $$
 Si ha che:
 $$ \ricPrim\subseteq\widetilde{F}(\text{WHILE}) $$
 
@@ -1564,12 +1564,12 @@ rapporto ha $\ricPar$ con $F(\text{WHILE})$?
     Per dimostrare che $\ricPar \subseteq F(\text{WHILE})$:
     \begin{enumerate}
     \item Dimostro che $\elem\subseteq F(\text{WHILE})$, ovvero mostro per ogni funzione 
-    $f\in\elem$ un programma $W\in W\text{-PROG}$ tale che $\semanticaWHILE_W=f$: già visto
+    $f\in\elem$ un programma $W\in W\text{-PROG}$ tale che $\semWHILE_W=f$: già visto
     nella sezione \ref{sec:ricprim_while}
     \item Assumo che $h,g_1,\dots,g_k\in F(\text{WHILE})$ ovvero che esistono dei programmi
         $H,G_1,\dots,G_k\in W\text{-PROG}$ tali che:
-        $$ \semanticaWHILE_H=h \ ,\ \semanticaWHILE_{G_1}=g_1\ ,\ \dots \ ,\
-        \semanticaWHILE_{G_k}=g_k $$
+        $$ \semWHILE_H=h \ ,\ \semWHILE_{G_1}=g_1\ ,\ \dots \ ,\
+        \semWHILE_{G_k}=g_k $$
         e dimostro che $\comp(h,g_1,\dots,g_k)\in F(\text{WHILE})$: già visto nella sezione
         \ref{sec:ricprim_while}.
     \begin{minipage}{.9\textwidth}
@@ -1580,11 +1580,11 @@ rapporto ha $\ricPar$ con $F(\text{WHILE})$?
     \end{minipage}
     \item Assumo che $g,h\in F(\text{WHILE})$ ovvero che esistono dei programmi
         $H,G\in W\text{-PROG}$ tali che:
-        $$ \semanticaWHILE_H=h \ ,\ \semanticaWHILE_{G}=g $$ 
+        $$ \semWHILE_H=h \ ,\ \semWHILE_{G}=g $$ 
         e dimostro che 
         $\RP(h,g)\in F(\text{WHILE})$: già visto nella sezione \ref{sec:ricprim_while}.
     \item Assumo che $f\in F(\text{WHILE})$ ovvero che esiste un programma $\mathcal{F}\in
-        F(\text{WHILE})$ tale che $\semanticaWHILE_\mathcal{F}=f$
+        F(\text{WHILE})$ tale che $\semWHILE_\mathcal{F}=f$
         e dimostro che $\MIN(f)\in F(\text{WHILE})$ ovvero mostro un programma WHILE
         che calcola:
         $$ \begin{aligned}
@@ -1631,14 +1631,14 @@ funzione ricorsiva parziale che è uguale alla semantica del programma
 \end{theorem}
 \begin{proof}
     Se $F(\text{WHILE}) \subseteq \ricPar$ allora:
-    $$ \semanticaWHILE_W\in F(\text{WHILE})\ \Rightarrow\ \semanticaWHILE_W
+    $$ \semWHILE_W\in F(\text{WHILE})\ \Rightarrow\ \semWHILE_W
     \in\ricPar = \elem^{\comp,\RP,\MIN}$$
     Si dovrà quindi dimostrare che per un qualsiasi programma $W$, la sua semantica
-    $\semanticaWHILE_W$ apparterrà a $\ricPar$ e potrà essere espressa come
+    $\semWHILE_W$ apparterrà a $\ricPar$ e potrà essere espressa come
     composizione, ricorsione primitiva e minimalizzazione a partire da funzioni di
     $\elem$.
 
-    $$ \semanticaWHILE_W(x) = \Pro_0^{21}(\opsemWHILE{W}{W\text{-in}(x)}) $$
+    $$ \semWHILE_W(x) = \Pro_0^{21}(\opsemWHILE{W}{W\text{-in}(x)}) $$
     \begin{itemize}
         \item La funzione \opsemWHILE{C}{\sottolinea{x}} restituisce un array di 21
             elementi che rappresenta lo stato prossimo della macchina WHILE applicando
@@ -1647,7 +1647,7 @@ funzione ricorsiva parziale che è uguale alla semantica del programma
             macchina WHILE su input $n$;
         \item $\Pro_0^{21}$ preleva l'output dal registro $x_0$.
     \end{itemize}
-    $\semanticaWHILE_W$ è la composizione di $\Pro_0^{21}\in\elem$ con la funzione
+    $\semWHILE_W$ è la composizione di $\Pro_0^{21}\in\elem$ con la funzione
     stato prossimo $\opsemWHILE{W}{W\text{-in}(x)}$. Si ha quindi che:
 
     \begin{minipage}{.5\textwidth}
@@ -1658,11 +1658,11 @@ funzione ricorsiva parziale che è uguale alla semantica del programma
     \end{minipage}
     \begin{minipage}{.4\textwidth}
         $\Rightarrow \quad \opsemWHILE{C}{\sottolinea{x}}\in\ricPar \ \Rightarrow \ 
-        \semanticaWHILE_W\in\ricPar$
+        \semWHILE_W\in\ricPar$
     \end{minipage}
 
     Se quindi si dimostra che $\opsemWHILE{C}{\sottolinea{x}}\in\ricPar$ allora anche
-    la sua semantica $\semanticaWHILE_W$ sarà una funzione ricorsiva parziale.
+    la sua semantica $\semWHILE_W$ sarà una funzione ricorsiva parziale.
 
     La funzione $\opsemWHILE{}{}:\N^{21}\to\N^{21}$ ha come codominio $\N^{21}$ mentre
     $\ricPar$ contiene funzioni che lavorano in $\N$: per risolvere questo problema
@@ -1837,7 +1837,7 @@ ma su tutti i sistemi accettabili.
 
 Per indicare un sistema di programmazione si userà la seguente notazione:
 $$ \sistProg_{i\in\N} $$
-dove $\semanticaRAM_i$ è la funzione calcolata dal programma la cui codifica è 
+dove $\semRAM_i$ è la funzione calcolata dal programma la cui codifica è 
 $i\in\N$.
 
 \subsubsection{Assiomi di Rogers}
@@ -1867,8 +1867,8 @@ ne troppo potenti (oltre $\ricPar$).
 
 \subsubsection*{Secondo assioma}
 $\sistProg$ rispetta il secondo assioma se esiste un interpete universale ovvero:
-$$ \exists\mu\in\N : \forall x,n\in\N: \semanticaRAM_\mu(\cantor{x,n})=
-\semanticaRAM_n(x) $$
+$$ \exists\mu\in\N : \forall x,n\in\N: \semRAM_\mu(\cantor{x,n})=
+\semRAM_n(x) $$
 
 Vedi sezione \ref{sec:interpreteU} per il sistema RAM.
 
@@ -1882,15 +1882,15 @@ Prima di mostrare il teorema $S_n^m$ si vedrà un teorema più specifico, quello
 $S_1^1$.
 \begin{theorem}[$S_1^1$]
     Dato $\sistProg$ $\RAM$, esiste una funzione $S_1^1\in\ricTot$ tale che:
-    $$ \forall n,x,y\in\N \quad \semanticaRAM_n(\cantor{x,y})
-    = \semanticaRAM_{S_1^1(n,y)}(x) $$
+    $$ \forall n,x,y\in\N \quad \semRAM_n(\cantor{x,y})
+    = \semRAM_{S_1^1(n,y)}(x) $$
 \end{theorem}
 In altre parole è possibile costruire automaticamente programmi più specifici
 da programmi più generali, ottenuti prefissando alcuni input.
 \begin{proof}
 In generale il programma $S_1^1$ implementa la funzione:
-$$ S_1^1(n,y) = \bar{n} \ \text{ tale che } \ \semanticaRAM_{\bar{n}}(x)
-=\semanticaRAM_n (x,y)$$
+$$ S_1^1(n,y) = \bar{n} \ \text{ tale che } \ \semRAM_{\bar{n}}(x)
+=\semRAM_n (x,y)$$
 dove:
 \begin{itemize}
     \item $n$ è la codifica del programma $P$ a due variabili di input $x,y$
@@ -1911,7 +1911,7 @@ Analizzando il sistema RAM si prenda un programma $P$ a due variabili:
     \end{align}
 \end{minipage}
 \begin{minipage}{.4\textwidth}
-    $$ \semanticaRAM_P(\cantor{x,y})=x+y $$
+    $$ \semRAM_P(\cantor{x,y})=x+y $$
 \end{minipage}
 
 Si vuole produrre un programma $\bar{P}$ con un solo input $x$ che restituisca
@@ -2007,8 +2007,8 @@ Si può quindi notare che $S_1^1$ è:
 \begin{theorem}[$S_n^m$]
     Dato $\sistProg$ $\RAM$, esiste una funzione $S_n^m\in\ricTot$ tale che:
     $$ \forall k\in\N,\sottolinea{x}\in\N^m,\sottolinea{y}\in\N^n 
-    \quad \semanticaRAM_k(\cantor{\sottolinea{x},\sottolinea{y}})
-    = \semanticaRAM_{S_n^m(k,\sottolinea{y})}(\cantor{\sottolinea{x}}) $$
+    \quad \semRAM_k(\cantor{\sottolinea{x},\sottolinea{y}})
+    = \semRAM_{S_n^m(k,\sottolinea{y})}(\cantor{\sottolinea{x}}) $$
 \end{theorem}
 Il teorema è una generalizzazione di $S_1^1$; $S_n^m$ tratta programmi a $m+n$
 input in cui si prefissano $n$ input e se ne lasciano liberi $m$. Anche la
@@ -2022,7 +2022,7 @@ seguenti proprietà:
 \begin{minipage}{.66\textwidth}
 \begin{enumerate}
     \setlength\itemsep{.4em}
-    \item Correttezza: $\forall i\in\N \quad \semanticaRAM_i=\semanticaWHILE_{t(i)}$;
+    \item Correttezza: $\forall i\in\N \quad \semRAM_i=\semWHILE_{t(i)}$;
     \item Completezza: compila ogni programma $i\in\N$;
     \item Programmabilità: esiste un programma che implementa $t$.
 \end{enumerate}    
@@ -2042,17 +2042,17 @@ seguenti proprietà:
     assiomi:
     \begin{enumerate}
         \item $\sistProg=\ricPar$
-        \item $\exists u: \semanticaRAM_u(\cantor{x,n})=
-            \semanticaRAM_n(x)$
-        \item $\exists S_1^1\in\ricTot:\semanticaRAM_n(\cantor{x,y})=
-            \semanticaRAM_{S_1^1(n,y)}(x)$
+        \item $\exists u: \semRAM_u(\cantor{x,n})=
+            \semRAM_n(x)$
+        \item $\exists S_1^1\in\ricTot:\semRAM_n(\cantor{x,y})=
+            \semRAM_{S_1^1(n,y)}(x)$
     \end{enumerate}
 
     \begin{equation}\label{eq:spa_comp}
-        \semanticaRAM_i(x)\overset{(2)}{=} 
-        \semanticaRAM_u(\cantor{x,i})\overset{(1)}{=}
-        \semanticaWHILE_e(\cantor{x,i})\overset{(3)}{=}
-        \semanticaWHILE_{S_1^1(e,i)}(x)
+        \semRAM_i(x)\overset{(2)}{=} 
+        \semRAM_u(\cantor{x,i})\overset{(1)}{=}
+        \semWHILE_e(\cantor{x,i})\overset{(3)}{=}
+        \semWHILE_{S_1^1(e,i)}(x)
     \end{equation}
     \vspace{-.5em}
 
@@ -2069,7 +2069,7 @@ seguenti proprietà:
     $t$ è un compilatore poichè:
     \begin{enumerate}
         \item $t\in\ricTot$ in quanto $S_1^1\in\ricTot$(assioma 3);
-        \item $T$ è corretto in quanto $\semanticaRAM_i=\semanticaWHILE_{t(i)}$
+        \item $T$ è corretto in quanto $\semRAM_i=\semWHILE_{t(i)}$
          (\ref{eq:spa_comp}).
     \end{enumerate}
 \end{proof}
@@ -2098,20 +2098,60 @@ che è stato originariamente compilato.
 \subsubsection{Teorema di ricorsione}
 \begin{theorem}[Teorema di Ricorsione]\label{theo:ric}
     Dato un spa \sistProg, per ogni $t:\N\to\N$ ricorsiva totale vale:
-    $$ \exists n\in\N:\semanticaRAM_n=\semanticaRAM_{t(n)} $$
+    $$ \exists n\in\N:\semRAM_n=\semRAM_{t(n)} $$
 \end{theorem}
 
 A parole, sia $t$ un programma che trasforma programmi con lo scopo di cambiare
 totalmente la semantica del programma (rompendolo su tutti gli input). Qualunque
-sia la manipolazione effettuata da $t$, esisterà sempre un programma che non 
+sia la manipolazione effettuata da $t$, esisterà sempre un programma $n$ che non 
 viene rotto dalla manipolazione di $t$.
+\begin{proof} \phantom{x}
+
+D'ora in avanti, per semplicità, si scriverà $\semRAM_i(x,y)$ al
+posto di $\semRAM_i(\cantor{x,y})$.
+
+Si applichino i (3) assiomi:
+\begin{equation}\label{eq:ric_tot1}
+\semRAM_{\semRAM_i(i)}(x) \overset{(2)}{=} 
+\semRAM_{\semRAM_u(i,i)}(x) \overset{(2)}{=} 
+\semRAM_{u}(x,\semRAM_u(i,i)) = f(x,i)
+\end{equation}
+$\semRAM_{u}(x,\semRAM_u(i,i))$ è la composizione di $\semRAM_u\in\ricPar$ con se
+stesso al variare delle variabili $x$ e $i$. $f(x,i)$ è quindi ricorsiva parziale:
+$$ f(x,i)\in\ricPar $$
+\begin{equation}\label{eq:ric_tot2} 
+f(x,i) \overset{(1)}{=}
+\semRAM_e(x,i) \overset{(3)}{=}
+\semRAM_{S_1^1(e,i)}(x)
+\end{equation}
+Si consideri una qualsiasi traduzione $t\in\ricTot$ e la si applichi a $S_1^1(e,i)$:
+$$ t(S_1^1(e,i)) $$
+$$ t\in\ricTot\ ,\ S_1^1\in\ricTot $$
+$t(S_1^1(e,i))$ è ricorsiva totale e grazie al primo assioma si può dire che esiste
+un programma $m$ che la calcola:
+\begin{equation}\label{eq:ric_tot3}
+    \exists m\in\N: \semRAM_m(i) = t(S_1^1(e,i))
+\end{equation}
+Sia:
+$$ n = S_1^1(e,m) $$
+\begin{equation}\label{eq:ric_tot4} 
+    (\ref{eq:ric_tot1}),(\ref{eq:ric_tot2})\ \Rightarrow\ 
+\semRAM_{\semRAM_i(i)}(x) = \semRAM_{S_1^1(e,i)}(x) \end{equation}
+\vspace{.6em}
+$$ \begin{aligned}
+    \semRAM_n(x) = \semRAM_{S_1^1(e,m)}(x) \overset{(\ref{eq:ric_tot4})}{=}
+    \semRAM_{\semRAM_m(m)}(x)\\
+    \semRAM_{t(n)}(x) = \semRAM_{t(S_1^1(e,m))}(x) \overset{(\ref{eq:ric_tot3})}{=}
+    \semRAM_{\semRAM_m(m)}(x)
+\end{aligned}\quad \Rightarrow \quad \semRAM_n = \semRAM_{t(n)} $$
+\end{proof}
 
 \subsubsection*{Quine}
 Dato un spa, esiste al suo interno un programma che restituisce se stesso (la
 sua codifica)?
 Formalmente:
-$$ \exists j\in\N: \forall x\in\N \quad \semanticaRAM_j(x)=j ?$$
-Questi programmi sono dette \textbf{quine}.
+$$ \exists j\in\N: \forall x\in\N \quad \semRAM_j(x)=j ?$$
+Questi programmi sono dette \textbf{Quine}.
 
 Si prenda RAM e il seguente programma:
 
@@ -2134,19 +2174,65 @@ Si prenda RAM e il seguente programma:
     \end{tabular}
 \end{center}
 
-Alla fine dell'esecuzione di $P$ si avrà $R_0=j$ a prescindere dall'input:
+Alla fine dell'esecuzione di $P$ si avrà $R_0=j$ a prescindere dall'input $x$:
 \begin{equation}\label{eq:quine_1}
-    \forall x\in\N \quad \semanticaRAM_{Z(j)}(x) = j
+    \forall x\in\N \quad \semRAM_{Z(j)}(x) = j
 \end{equation}
 Si definisca la {\color{red}codifica del programma $P$} con $Z(j)$ che è uguale
-alla codifica di Cantor di una lista di $j$ zeri. È evidente che per qualsiasi
-valore $j$, la funzione $Z(j)$ esiste ed è quindi totale; inoltre è facilmente
-implementabile. Si può quindi dire che:
+alla codifica di Cantor di una lista di $j$ zeri in quanto l'unica istruzione usata
+ha codifica 0 (vedi sezione \ref{sec:aritm_ram}). 
+È evidente che per qualsiasi valore $j$, la funzione $Z(j)$ esiste ed è quindi totale;
+inoltre è facilmente implementabile. Si può quindi dire che:
 $$Z(j)\in\ricTot$$
 
 Il teorema \ref{theo:ric} afferma che:
 \begin{equation}\label{eq:quine_2}
-    \exists j\in\N:\semanticaRAM_j(x) = \semanticaRAM_{Z(j)}(x)
+    \exists j\in\N:\semRAM_j = \semRAM_{Z(j)}
 \end{equation} 
-Da (\ref{eq:quine_1}) e (\ref{eq:quine_2}) si ottiene che:
-$$ \exists j\in\N : \semanticaRAM_j(x)= j $$
+Da (\ref{eq:quine_1}) e (\ref{eq:quine_2}) si ottiene che esiste un programma $j\in\N$
+tale che:
+$$ \semRAM_j(x) \overset{(\ref{eq:quine_2})}{=} \semRAM_{Z(j)}(x)
+\overset{(\ref{eq:quine_1})}{=} j $$
+$$\Downarrow$$
+$$ \semRAM_j(x) = j $$
+
+Quindi, sì,\textbf{ nel sistema RAM esiste una Quine. Questo vale anche in generale
+per tutti gli spa che ammettono una codifica di programma.}
+
+\subsubsection*{Compilatori completamente errati}
+Dati due spa $\sistProg$ e $\sistProgW$, esiste un compilatore dal primo al secondo
+completamente errato?
+
+Con compilatore completamente errato si intende una funzione $t:\N\to\N$ tale che:
+\begin{itemize}
+    \item $t\in\ricTot$
+    \item $\forall i\in\N \quad \semRAM_i\neq\semWHILE_{t(i)}$
+\end{itemize}
+ovvero un compilatore che sbaglia sempre.
+
+Si consideri una qualunque traduzione $t\in\ricTot$:
+\begin{center}
+    Con i (3) assiomi si può dire che:  
+\end{center}
+$$
+{\color{red}\semWHILE_{t(i)}(x)} \overset{(2)}{=}
+\semWHILE_u(x,t(i)) \overset{(1)}{=}
+\semRAM_e(x,t(i)) \overset{(3)}{=}
+\semRAM_{S_1^1(e,t(i))}(x) = {\color{blue}\semRAM_{g(i)}(x)} $$
+\begin{equation}\label{eq:comp_err1}
+    {\color{red}\semWHILE_{t(i)}(x)} = 
+    {\color{blue}\semRAM_{g(i)}(x)}
+\end{equation} \vspace{.6em}
+$$ g(i) = S_1^1(e,t(i))\qquad S_1^1,t\in\ricTot \ \Rightarrow \
+{\color{OliveGreen}g\in\ricTot} $$
+\begin{center}
+    Si applichi il teorema di ricorsione:  
+\end{center}
+\begin{equation}\label{eq:comp_err2}
+    {\color{OliveGreen}g\in\ricTot} \ \Rightarrow \ 
+    \exists i\in\N:\semRAM_i=\semRAM_{g(i)} \end{equation}
+%$$ (i) \text{ = viene usato l'assioma } i $$
+\vspace{.6em}
+$$ (\ref{eq:comp_err1}),(\ref{eq:comp_err2})\ \Rightarrow \ 
+\exists i\in\N : \semRAM_i = \semWHILE_{t(i)}(x) $$
+Quindi, no, \textbf{non può esistere un compilatore sempre errato}.
