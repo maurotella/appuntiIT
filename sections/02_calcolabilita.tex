@@ -1516,7 +1516,7 @@ si definisce operatore di minimalizzazione di una funzione:
 $$ \begin{aligned}
     \MIN(f)(\sottolinea{x}) = g(\sottolinea{x}) &=
     \begin{cases}
-    y & f(\sottolinea{x},y)=0\ \wedge \ (\forall y'<y:f(\sottolinea{x},y')\text{\textdownarrow}\ 
+    y & f(\sottolinea{x},y)=0\ \wedge \ (\forall y'<y:f(\sottolinea{x},y')\termina\ 
     \wedge \ f(\sottolinea{x},y')\neq0)\\
     \perp & \text{altrimenti}
     \end{cases}\\
@@ -2236,3 +2236,818 @@ $$ g(i) = S_1^1(e,t(i))\qquad S_1^1,t\in\ricTot \ \Rightarrow \
 $$ (\ref{eq:comp_err1}),(\ref{eq:comp_err2})\ \Rightarrow \ 
 \exists i\in\N : \semRAM_i = \semWHILE_{t(i)}(x) $$
 Quindi, no, \textbf{non può esistere un compilatore sempre errato}.
+
+\subsection{Problemi di decisione}
+Un problema di decisione è un problema che richiede una soluzione \quotes{booleana}:
+o sì o no.
+Formalmente, un problema si può definire come:
+
+\begin{tabular}{|r l|l}\cline{1-2}
+    \multicolumn{2}{|l|}{$\Pi$}&$\leftarrow$ nome del problema\\
+    Istanza:& $x\in D$&$\leftarrow $ input del problema\\
+    Domanda:& $p(x)?$&$\leftarrow \ p(x)$ è vera? \\ \cline{1-2}
+\end{tabular}
+
+\subsubsection{Decidibilità}
+\begin{minipage}{.33\textwidth}
+    \problema{$\Pi$}{$x\in D$}{$p(x)$}
+\end{minipage}
+\begin{minipage}{.65\textwidth}
+    $\Pi$ è decidibile sse esiste un programma $P_\Pi$ che restituisce 1 se
+    la proprietà $p$ è verificata su ogni input, o restituisce 0 se 
+    la proprietà $p$ non è verificata su ogni input.
+\end{minipage}
+\vspace{1em}
+
+Una formulazione più matematica del concetto di decidibilità parte dalla definizione
+della \textbf{funzione soluzione} $\Phi$ associata al problema  $\Pi$:
+$$ \fsol:D\to\{0,1\}\ \text{ tale che }\
+\fsol(x) = \begin{cases}
+    1 & p(x)\\
+    0 & \lnot p(x)
+\end{cases} $$
+
+\textbf{$\Pi$ è decidibile sse $\fsol\in\ricTot$}.
+
+Chiaramente, le due definizioni si equivalgono:
+\begin{itemize}
+    \item Il programma $P_\Pi$ calcola $\fsol$;
+    \item Se $\fsol\in\ricTot$ allora esiste un programma che la calcola con la
+        stessa semantica di $P_\Pi$.
+\end{itemize}
+\vspace{1em}
+
+Dato il problema di decisione $\Pi$, posso dimostrare la sua decidibilità in due modi:
+\begin{enumerate}
+    \item O esibendo un algoritmo di soluzione;
+    \item O mostrando che $\fsol$ è ricorsiva totale. 
+\end{enumerate}
+
+\subsubsection*{Esempi}
+
+\begin{minipage}{.55\textwidth}
+    \begin{flushright}
+        \problema{PARITÀ (PR)}{$n\in\N$}{$n$ è pari}
+    \end{flushright}
+\end{minipage}
+\begin{minipage}{.02\textwidth}\phantom{x}\end{minipage}
+\begin{minipage}{.41\textwidth}
+    \textbf{Funzione soluzione}\\[.5em]
+    $\fsol[\text{PR}](n) = 1\dotminus(n\bmod{2})$\\[.5em]
+    $ \fsol[\text{PR}]\in\ricTot\ \Rightarrow\ \text{PR decidibile} $
+\end{minipage}
+
+\begin{minipage}{.55\textwidth}
+    \begin{flushright}
+        \problema{EQ. DIOFANTEA (ED)}{$a,b,c\in\N^+$}{$\exists x,y\in\Z:ax+by=c$}
+    \end{flushright}
+\end{minipage}
+\begin{minipage}{.02\textwidth}\phantom{x}\end{minipage}
+\begin{minipage}{.41\textwidth}
+    \textbf{Funzione soluzione}\\[.5em]
+    $\fsol[\text{ED}](a,b,c) = 1\dotminus(c\bmod{mcd(a,b)})$\\[.5em]
+    $ \fsol[\text{ED}]\in\ricTot\ \Rightarrow\ \text{ED decidibile} $
+\end{minipage}
+
+\begin{minipage}{.55\textwidth}
+    \begin{flushright}
+        \problema{FERMAT (FR)}{$n\in\N^+$}{$\exists x,y,z\in\N^+:x^n+y^n=z^n$}
+    \end{flushright}
+\end{minipage}
+\begin{minipage}{.02\textwidth}\phantom{x}\end{minipage}
+\begin{minipage}{.41\textwidth}
+    \textbf{Funzione soluzione}\\[.5em]
+    $\fsol[\text{FR}](n) = 1\dotminus(n\dotminus 2)$\hspace{1em}[A.Wiles 1994]\\[.5em]
+    $ \fsol[\text{FR}]\in\ricTot\ \Rightarrow\ \text{FR decidibile} $
+\end{minipage}
+
+\begin{minipage}{.55\textwidth}
+    \begin{flushright}
+        \begin{tcolorbox}[
+            colback=white,
+            sharp corners,
+            boxrule=.3mm,
+            boxsep=0pt,
+            left=6pt,
+            hbox
+        ]
+            \begin{tabular}{r p{13em}}
+                \multicolumn{2}{l}{RAGGIUNGIBILITÀ (RG)}\\
+                Istanza:& Grafo $G=(\{1,\dots,n\},E)$\\
+                Domanda:& $\exists$ un cammino dal nodo 1 al nodo $n$ ?
+            \end{tabular}
+        \end{tcolorbox}
+    \end{flushright}
+\end{minipage}
+\begin{minipage}{.02\textwidth}\phantom{x}\end{minipage}
+\begin{minipage}{.41\textwidth}
+    \textbf{Algoritmi di decisione}\\[.5em]
+    Si effettua una visita in ampiezza o profondità,
+    si usano algoritmi per cammini minimi etc...
+\end{minipage}
+
+\subsubsection{Problema dell'arresto}
+\begin{center}
+    \problema
+        {ARRESTO SUL PROGRAMMA $P$ ($\text{AR}_P$)}
+        {$x\in\N$}
+        {$\semRAM_P(x)\termina$}
+\end{center}\vspace{1em}
+Si noti che $\text{AR}_P$ è una classe di problemi in cui viene fissato $P$ e si chiede
+se il programma $P$ termina oppure no.
+
+La decidibilità di $\text{AR}_P$ dipende dal programma $P$; per alcuni programmi
+si può trovare una risposta ed è quindi decidibile. Tuttavia esistono dei programmi
+dove $\text{AR}_P$ è indecidibile.\vspace{1em}
+
+\begin{minipage}{.48\textwidth}
+    Si prenda il seguente programma $\hat{P}$:
+    \centering
+    \begin{align}
+    \hat{P} \equiv\ & \text{input($x$)}       \notag\\
+    & Z := U(x,x)                             \notag\\
+    & \text{output($Z$)}                      \notag
+    \end{align}
+    Dove $U$ è l'interprete universale.
+\end{minipage}
+\begin{minipage}{.48\textwidth}\centering
+    E si definisca il problema $\text{AR}_{\hat{P}}$:
+    $${\color{red}\semRAM_{\hat{P}}(x)}=\semRAM_{U}(x,x)={\color{red}\semRAM_{x}(x)}$$
+    \problema{$\text{AR}_{\hat{P}}$}{$x\in\N$}
+    {{\color{red}$\semRAM_{\hat{P}}(x)=\semRAM_x(x)\termina$}}
+\end{minipage}\vspace{1em}
+
+\begin{theorem}[Indecibilità di $\text{AR}_{\hat{P}}$]\label{theo:arrestoP}
+    $\text{AR}_{\hat{P}}$ è indecidibile.
+\end{theorem}
+\begin{proof}
+    Si ipotizzi per assurdo che $\text{AR}_{\hat{P}}$ sia decidibile. Si avrebbe quindi
+    una funzione soluzione ricorsiva totale:
+    $$ \fsol[\text{AR}_{\hat{P}}](x) =
+    \begin{cases}
+        1 & {\color{red}\semRAM_{\hat{P}}(x)=\semRAM_x(x)}\termina\\
+        0 & {\color{red}\semRAM_{\hat{P}}(x)=\semRAM_x(x)}\text{\textuparrow}
+    \end{cases} $$
+    Partendo da $\fsol[\text{AR}_{\hat{P}}](x)\in\ricTot$ posso creare la seguente
+    funzione sempre ricorsiva totale:
+    $$ f(x) = \begin{cases}
+        0 & \fsol[\text{AR}_{\hat{P}}](x)=0\\
+        \semRAM_x(x)+1 & \fsol[\text{AR}_{\hat{P}}](x)=1
+    \end{cases} $$
+    Che è uguale a:
+    $$ f(x) = \begin{cases}
+        0 & \semRAM_x(x)\text{\textuparrow}\\
+        \semRAM_x(x)+1 & \semRAM_x(x)\termina
+    \end{cases} $$
+    Essendo $f\in\ricTot$ esiste un programma $\alpha$ che la calcola:
+    $$ f(x) = \semRAM_\alpha(x) $$
+    Si valuti $\semRAM_\alpha$ in $\alpha$:
+    \begin{equation} \semRAM_\alpha(\alpha) = \begin{cases}
+        0 & \semRAM_\alpha(\alpha)\text{\textuparrow}\\
+        \semRAM_\alpha(\alpha)+1 & \semRAM_\alpha(\alpha)\termina
+    \end{cases}\tag{{\color{blue}ASSURDO}}\end{equation}
+    $\semRAM_\alpha(\alpha)$ non può esistere in quanto:
+    \begin{enumerate}
+        \item Nel primo caso ($\semRAM_\alpha(\alpha)\text{\textuparrow}$) se 
+            {\color{blue} $\semRAM_\alpha(\alpha)$ non termina allora 
+            $\semRAM_\alpha(\alpha)=0$};
+        \item Nel secondo caso ($\semRAM_\alpha(\alpha)\termina$) se
+            $\semRAM_\alpha(\alpha)$ termina si ha che 
+            {\color{blue}$\semRAM_\alpha(\alpha)=\semRAM_\alpha(\alpha)+1$}.
+    \end{enumerate}
+\end{proof}
+\subsubsection*{Il problema generale dell'arresto}
+La versione più generale del problema dell'arresto è stato data da Turing nel 1936 ed è:
+\begin{center}
+    \problema
+    {ARRESTO (AR)}
+    {$x,y\in\N$}
+    {$\semRAM_y(x)\termina$}
+\end{center}
+dove $x$ è il dato e $y$ il programma.
+\begin{theorem}[Indecibilità di AR]
+    AR è indecidibile.
+\end{theorem}
+\begin{proof}
+    Si assuma, per assurdo, che AR sia decidibile; esiste quindi una funzione soluzione:
+    $$ \fsol[\text{AR}](x,y) = \begin{cases}
+        0 & \semRAM_y(x)\text{\textuparrow}\\
+        1 & \semRAM_y(x)\termina
+    \end{cases} $$
+
+    Si valuti il caso in cui $x=y$:
+    $$ \fsol[\text{AR}](x,x) = \begin{cases}
+        0 & \semRAM_x(x)\text{\textuparrow}\\
+        1 & \semRAM_x(x)\termina
+    \end{cases} $$
+
+    Si noti che $\fsol[\text{AR}](x,x)=\fsol[\text{AR}_{\hat{P}}](x,x)$; quindi nel caso
+    $x=y$ il problema AR diventa uguale al problema $\text{AR}_{\hat{P}}$. L'assunzione
+    iniziale della dimostrazione afferma che esiste un programma in grado di decidere
+    $\text{AR}_{\hat{P}}$, cosa che il teorema \ref{theo:arrestoP} dimostra non essere vera.
+    Si ha quindi l'assurdo.
+\end{proof}
+
+\subsection{Riconoscibilità automatica di insiemi}
+L'insieme $A\subseteq\N$ è riconoscibile automaticamente se esiste un programma $P_A$
+che classifica correttamente \textbf{ogni} elemento di $\N$ come appartenente o meno 
+ad $A$;
+
+$P_A(x)$ restituisce 1 se $x\in A$ mentre restituisce 0 se $x\notin A$. 
+
+$P_A(x)$ è corretto e termina su ogni input.
+
+\subsubsection*{Funzione caratteristica}
+Preso un insieme $A\subseteq\N$, la sua funzione caratteristica $\X$ è la funzione 
+$\X_A:\N\to\{0,1\}$ tale che;
+$$ \X_A(x)=\begin{cases}
+    1 & x\in A\\
+    0 & x\notin A
+\end{cases} $$
+
+\subsubsection{Insiemi ricorsivi}
+L'insieme $A\subseteq\N$ è un insieme ricorsivo sse esiste un programma $P_A$ che si
+arresta su ogni input classificando correttamente gli elementi di $\N$ in base alla
+loro appartenenza ad $A$.
+
+Equivalentemente, $A$ è ricorsivo sse $\X_A\in\ricTot$.
+
+Si dirà, con un abuso di notazione, che gli insiemi ricorsivi sono decidibili. Questo
+perchè ad ogni insieme $A\subseteq\N$ si può associare il corrispondente problema
+$\text{RIC}_A$ di riconoscimento, che punta a decidere se un elemento $x$ appartiene o
+meno ad $A$. Essendo $A$ ricorsivo si ha che la funzione soluzione $\fsol[\text{RIC}_A]$
+coincide con la funzione caratteristica $\X_A$ e quindi il problema $\text{RIC}_A$ è
+decidibile.
+
+Allo stesso modo, sempre con un abuso di notazione, si dice che un problema di decisione
+decidibile è ricorsivo. Questo perchè ad ogni problema di decisione posso associare
+l'insieme delle istanze a risposta positiva.
+
+\subsubsection{Insiemi non ricorsivi}
+Un esempio di insieme non ricorsivo è l'insieme $A$ delle variabili con le quali il 
+programma $\hat{P}$ termina.
+
+\begin{minipage}{.49\textwidth}
+    \problema{$\text{AR}_{\hat{P}}$}{$x\in\N$}
+    {$\semRAM_{\hat{P}}(x)=\semRAM_x(x)\termina$}
+\end{minipage}
+\begin{minipage}{.49\textwidth}
+    $A = \{x\in\N: \semRAM_x(x)\termina \}$
+\end{minipage}\vspace{.6em}
+
+Se $A$ fosse ricorsivo, vorrebbe dire che esisterebbe un programma $P_A$ in grado di dire
+se un elemento sta al suo interno o meno. $P_A$ però, renderebbe la risoluzione del 
+problema dell'arresto $\text{AR}_{\hat{P}}$ immediata, in quanto per decidere se, data
+una variabile $x$, il programma $\hat{P}$ termina, basterebbe verificare tramite $P_A$ che
+$x$ stia o meno in $A$. Tutto questo però è impossibile (teorema \ref{theo:arrestoP}).
+
+\subsubsection{Relazioni ricorsive}
+$R\subseteq\N\times\N$ è una relazione ricorsiva sse $R$ è ricorsivo ovvero
+$\X_R\in\ricTot$; equivalentemente $R$ è una relazione ricorsiva se esiste
+un programma $P_R$ che, presi due valori $x,y\in\N$, restituisce 1 se $x\ R\ y$, o
+0 se $x\ \cancel{R}\ y$.
+
+Un'importante relazione ricorsiva è:
+$$ R_P = \{(x,y)\in\N^2:\text{$P$ su input $x$ termina in $y$ passi}\} $$
+Si può facilmente costruire un programma che implementa $R_P$ aggiungendo una variabile
+che conta i passi e, nel momento in cui supera gli $y$ passi restituisce 0, altrimenti se
+termina prima restituisce 1.
+
+\subsubsection{Insiemi ricorsivamente numerabili}
+$A\subset\N$ è ricorsivamente numerabile se è automaticamente listabile, ovvero esiste
+una routine $F$ che su input $i\in\N$ restituisce l'$i$-esimo elemento di $A$.
+
+\vspace{1em}
+\hspace{2em}
+\begin{minipage}{.32\textwidth}
+    \begin{tcolorbox}[
+        colback=white,
+        sharp corners,
+        boxrule=.3mm,
+        left=20pt
+    ]
+    \begin{algorithm}[H]
+        \setstretch{1.2}
+        \SetArgSty{relax}
+        \SetAlgoNoEnd
+        \SetKwSty{texttt}
+        $i:=0$\;
+        \While{True}{
+            output($F(i)$)\;
+            $i:=i+1$\;
+        }
+    \end{algorithm}
+    \end{tcolorbox}
+\end{minipage}
+\hspace{2em}
+\begin{minipage}{.49\textwidth}
+    Per alcuni insiemi è il meglio che si può ottenere, non si riesce a riconoscere
+    esattamente l'insieme ma si riesce a listarlo fino a un certo punto.
+\end{minipage}\vspace{1em}
+
+A questo punto si può scrivere un algoritmo che \quotes{tenta} di riconoscere $A$:
+\vspace{1em}
+
+\hspace{2em}
+\begin{minipage}{.32\textwidth}
+    \begin{tcolorbox}[
+        colback=white,
+        sharp corners,
+        boxrule=.3mm,
+        boxsep=0pt,
+        left=20pt
+    ]
+    \begin{algorithm}[H]
+        \setstretch{1.2}
+        \SetArgSty{relax}
+        \SetAlgoNoEnd
+        \SetKwSty{texttt}
+        input($x$)\;
+        $i:=0$\;
+        \While{$F(i)\neq x$}{
+            $i:=i+1$\;
+        }
+        output(1)\;
+    \end{algorithm}
+    \end{tcolorbox}
+\end{minipage}
+\hspace{2em}
+\begin{minipage}{.49\textwidth}
+    Per alcuni insiemi è il meglio che si può ottenere, non si riesce a riconoscere
+    esattamente l'insieme ma si riesce a listarlo fino a un certo punto. Preso in
+    input $x$, il programma restituisce 1 se $x\in A$ o va in loop se $x\notin A$.
+\end{minipage}\vspace{1em}
+
+L'insieme $A\subset\N$ è ricorsivamente numerabile sse:
+\begin{itemize}
+    \item $A=\cancel{O}$
+    \item $A=\text{Im}_f$ con $f:\N\to\N\in\ricTot$ \hspace{6em} $(A=\{f(0),f(1),\dots\})$ 
+\end{itemize}\vspace{1em}
+
+\begin{theorem}
+    Le seguenti definizioni sono equivalenti:
+    \begin{enumerate}
+        \item $A$ è ricorsivamente numerabile ($A=\text{Im}_{f\in\ricTot}$)
+        \item $A=\text{Dom}_f$ con $f\in\ricPar$
+        \item Esiste una relazione $R\subseteq\N^2$ ricorsiva tale che:
+            $$ A=\{ x\in\N\ |\ \exists y\in\N : (x,y)\in R \} $$ 
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    Si dimostrerà che $(1)\Rightarrow(2)\Rightarrow(3)\Rightarrow(1)$.
+    \begin{itemize}
+        \item $(1)\Rightarrow(2)$
+        \begin{itemize}
+            \item[] Si consideri l'algoritmo di riconoscimento parziale di $A$:
+            
+            \begin{minipage}{.32\textwidth}
+                \begin{tcolorbox}[
+                    colback=white,
+                    sharp corners,
+                    boxrule=.3mm,
+                    left=20pt,
+                    top=0pt,
+                    bottom=0pt,
+                    title=$P$,
+                    colbacktitle=white,
+                    coltitle=black
+                ]
+                \begin{algorithm}[H]
+                    \setstretch{1.2}
+                    \SetArgSty{relax}
+                    \SetAlgoNoEnd
+                    \SetKwSty{texttt}
+                    input($x$)\;
+                    $i:=0$\;
+                    \While{$F(i)\neq x$}{
+                        $i:=i+1$\;
+                    }
+                    output(1)\;
+                \end{algorithm}
+                \end{tcolorbox}
+            \end{minipage}\hspace{1em}
+            \begin{minipage}{.50\textwidth}
+                $$ \semRAM_P(x) = \begin{cases}
+                    1 & x\in A\\
+                    \perp & x\notin A
+                \end{cases}\ \Rightarrow \ A=\text{Dom}_{\semRAM_P} $$
+                Siccome $\semRAM_P$ viene calcolato da $P$ è ricorsiva parziale.
+            \end{minipage}\vspace{1em}
+        \end{itemize}
+        \item $(2)\Rightarrow(3)$
+        \begin{itemize}
+            \item[] $A=\text{Dom}_{f\in\ricPar}\ \Rightarrow \ \exists R\subseteq\N^2
+            \text{ ricorsiva tale che: }A=\{ x\ |\ \exists y:(x,y)\in R\}$
+
+            Se $f\in\ricPar$ allora esiste un programma $P$ tale che $f=\semRAM_P$.
+            $$ R_P = \{(x,y)\in\N^2:\text{$P$ su input $x$ termina in $y$ passi}\} $$
+            Si definisca il seguente insieme:
+            $$ B=\{ x\ |\ \exists y:(x,y)\in R_p \} $$
+            \begin{itemize}
+                \item[\textminus] $A\subseteq B$:
+                    se $x\in A=\text{Dom}_{\semRAM_P}$ allora $P$ termina in $y$ passi,
+                    quindi $(x,y)\in R_P$ e quindi $x\in B$.
+                \item[\textminus] $B\subseteq A$: se $x\in B$ allora il programma $P$
+                    su input $x$ termina in un numero finito di passi e quindi
+                    $ x\in\text{Dom}_{\semRAM_P} \ \Rightarrow \ x\in A$
+            \end{itemize}
+            Quindi $A=B=\{ x\ |\ \exists y:(x,y)\in R_p \}$ con $R_P$ relazione ricorsiva.
+        \end{itemize}
+        \item $(3)\Rightarrow(1)$
+            \begin{itemize}
+                \item[] $A=\{ x\ |\ \exists y:(x,y)\in R\}\text{ con $r$ ricorsivo}
+                \ \Rightarrow \ A=\text{Im}_{f\in\ricTot}$
+
+                Sia $a\in A$ con $A\neq\cancel{O}$ e sia $t:\N\to\N$:
+                $$ t(n) = \begin{cases}
+                    \sx(n) & (\sx(n),\dx(n))\in R\\
+                    a & \text{altrimenti}
+                \end{cases} $$
+                Poichè $R$ ricorsiva esiste un programma $P_R$ che la implementa:
+
+                \begin{minipage}{.32\textwidth}
+                    \begin{tcolorbox}[
+                        colback=white,
+                        sharp corners,
+                        boxrule=.3mm,
+                        left=20pt,
+                        top=0pt,
+                        bottom=0pt
+                    ]
+                    \begin{algorithm}[H]
+                        \setstretch{1.2}
+                        \SetArgSty{relax}
+                        \SetAlgoNoEnd
+                        \SetKwProg{if}{if}{}{}
+                        \SetKwProg{els}{else}{}{}
+                        \SetKwSty{texttt}
+                        input($n$)\;
+                        $x:=\sx(n)$\;
+                        $y:=\dx(n)$\;
+                        \if{$P_R(x,y)=1$}{
+                            output(x)\;
+                        }
+                        \els{}{
+                            output($a$)\;
+                        }
+                    \end{algorithm}
+                    \end{tcolorbox}
+                \end{minipage}\hspace{1em}
+                \begin{minipage}{.50\textwidth}
+                    \begin{itemize}
+                        \setlength\itemsep{1em}
+                        \item[\textminus] $A\subseteq\text{Im}_t$: $x\in A \
+                        \Rightarrow \ (x,y)\in R\ \Rightarrow \ t(\cantor{x,y})=x\ 
+                        \Rightarrow \ x\in\text{Im}_t$
+                        \item[\textminus] $\text{Im}_t\subseteq A$:
+                        \begin{itemize}\setlength\itemsep{.4em}
+                            \item $x\in \text{Im}_t \ \Rightarrow \ x=a\in A$
+                            \item $x=\sx(n)\text{ con }n=\cantor{x,y}$\\
+                                $\text{ per qualche $y$ tale che }(x,y)\in R
+                                \ \Rightarrow\ x\in A$
+                        \end{itemize}
+                    \end{itemize}
+                \end{minipage}\vspace{1em}
+            \end{itemize}
+            Quindi $A=\text{Im}_t$ con $t\in\ricTot$.
+    \end{itemize}
+\end{proof}
+\subsubsection{Confronto tra insiemi}
+\begin{minipage}{.4\textwidth}
+    \problema{$\text{AR}_{\hat{P}}$}{$x\in\N$}
+    {$\semRAM_{\hat{P}}(x)=\semRAM_x(x)\termina$}
+\end{minipage}
+\begin{minipage}{.49\textwidth}
+    $\ \Rightarrow\ A = \{x: \semRAM_x(x)\termina \}$
+\end{minipage}\vspace{.6em}
+
+$A$ non è ricorsivo ma è ricorsivamente numerabile:
+
+\vspace{1em}\hspace{5em}
+\begin{minipage}{.24\textwidth}
+    \begin{tcolorbox}[
+        colback=white,
+        sharp corners,
+        boxrule=.3mm,
+        left=20pt,
+        top=0pt,
+        bottom=0pt,
+        title=$P$,
+        colbacktitle=white,
+        coltitle=black
+    ]
+    \begin{algorithm}[H]
+        \setstretch{1.2}
+        \SetArgSty{relax}
+        \SetAlgoNoEnd
+        \SetKwSty{texttt}
+        input($x$)\;
+        $U(x,x)$\;
+        output(1)\;
+    \end{algorithm}
+    \end{tcolorbox}
+\end{minipage}
+\begin{minipage}{.49\textwidth}
+    \hspace{3em}$\semRAM_P(x)=\begin{cases}
+        1 & \semRAM_x(x)\termina \hspace{23pt}  x\in A \\
+        0 & \text{altrimenti}  \quad x\notin A
+    \end{cases}$
+\end{minipage}\vspace{.6em}
+
+Infatti $A=\text{Dom}_{\semRAM_P}$ con $\semRAM_P\in\ricPar$.
+\vspace{1.5em}
+
+\begin{theorem}
+    $A\subseteq\N$ ricorsivo$\ \Rightarrow \ A$ ricorsivamente numerabile.
+\end{theorem}
+\begin{proof}
+    $A$ ricorsivo $\ \Rightarrow \ $ esiste un programma $P_A$ che classifica ogni elemento
+    di $A$.
+    \hspace{1em}
+
+    \begin{minipage}{.31\textwidth}
+        \begin{tcolorbox}[
+            colback=white,
+            sharp corners,
+            boxrule=.3mm,
+            left=20pt,
+            top=0pt,
+            bottom=0pt,
+            title=$P$,
+            colbacktitle=white,
+            coltitle=black
+        ]
+        \begin{algorithm}[H]
+            \setstretch{1.2}
+            \SetArgSty{relax}
+            \SetAlgoNoEnd
+            \SetKwProg{if}{if}{}{}
+            \SetKwProg{els}{else}{}{}
+            \SetKwSty{texttt}
+            input($x$)\;
+            \if{$P_A(x)=1$}{
+                output(1)\;
+            } \els{}{
+                \texttt{while}($1>0$)\;
+            }
+        \end{algorithm}
+        \end{tcolorbox}
+    \end{minipage}
+    \begin{minipage}{.49\textwidth}
+        \hspace{3em}$\semRAM_P(x)=\begin{cases}
+            1 & x\in A \\
+            \perp & x\notin A
+        \end{cases}\ \Rightarrow \ A=\text{Dom}_{\semRAM_P}$
+    \end{minipage}\vspace{.6em}
+\end{proof}
+
+\begin{theorem}[Chiusura degli insiemi ricorsivi]\label{theo:Arr_ric}
+    La classe degli insiemi ricorsivi è un'Algebra di Boole; è quindi chiusa per
+    complemento, intersezione e unione.
+\end{theorem}
+\begin{proof}
+    Siano $A,B$ ricorsivi; esistono quindi due programmi $P_A$ e $P_B$ che li riconoscono.
+    Si vedrà l'esistenza di programmi per riconoscere:
+    \begin{itemize}
+        \item $A^c$:  \hspace{1em}    
+            \begin{minipage}{.35\textwidth}
+            \begin{tcolorbox}[
+                colback=white,
+                sharp corners,
+                boxrule=.3mm,
+                left=20pt,
+                top=0pt,
+                bottom=0pt
+            ]
+            \begin{algorithm}[H]
+                \setstretch{1.2}
+                \SetKwSty{texttt}
+                input($x$)\;
+                output($1\dotminus P_A(x)$)\;
+            \end{algorithm}
+            \end{tcolorbox}
+            \end{minipage}
+        \item $A\cap B$:  \hspace{1em}    
+            \begin{minipage}{.435\textwidth}
+            \begin{tcolorbox}[
+                colback=white,
+                sharp corners,
+                boxrule=.3mm,
+                left=20pt,
+                top=0pt,
+                bottom=0pt
+            ]
+            \begin{algorithm}[H]
+                \setstretch{1.2}
+                \SetKwSty{texttt}
+                input($x$)\;
+                output($\min{\{P_A(x),P_B(x)\}}$)\;
+            \end{algorithm}
+            \end{tcolorbox}
+            \end{minipage}
+        \item $A\cup B$:  \hspace{1em}    
+            \begin{minipage}{.435\textwidth}
+            \begin{tcolorbox}[
+                colback=white,
+                sharp corners,
+                boxrule=.3mm,
+                left=20pt,
+                top=0pt,
+                bottom=0pt
+            ]
+            \begin{algorithm}[H]
+                \setstretch{1.2}
+                \SetKwSty{texttt}
+                input($x$)\;
+                output($\max{\{P_A(x),P_B(x)\}}$)\;
+            \end{algorithm}
+            \end{tcolorbox}
+            \end{minipage}
+    \end{itemize}
+\end{proof}
+
+\begin{theorem}
+    $A^c=\{x:\semRAM_x(x)\textup{\ntermina}\}$ non è ricorsivo.
+\end{theorem}
+\begin{proof}
+    Se $A^c$ fosse ricorsivo, per il teorema \ref{theo:Arr_ric} anche il suo complemento $A$ 
+    sarebbe ricorsivo, il che è assurdo.
+\end{proof}
+
+\begin{theorem}
+    $A$ ric. numerabile $\wedge\ A^c$ ric. numerabile $\ \Rightarrow\ A$ ricorsivo. 
+\end{theorem}
+\begin{proof}
+    Se sia $A$ che $A^c$ sono ric. numerabili vuol dire che entrambi hanno un programma che
+    è in grado di listarli. Si crei un programma che chiama, alternandoli, i due programmi,
+    listando un pò per volta sia $A$ che $A^c$. Sia se $x\in A$ che $x\notin A$ il programma
+    termina. 
+\end{proof}
+
+\begin{theorem}
+    La classe degli insiemi ricorsivamente numerabili è chiusa per unione e intersezione
+    ma non per il complemento.
+\end{theorem}
+\begin{proof}\phantom{x}
+    \begin{itemize}
+        \item Complemento: $A=\{x:\semRAM_x(x)\termina \}$ è ricorsivamente numerabile mentre
+            $A^c$ non lo è;
+        \item Intersezione: siano $F$ e $G$ le funzioni in grado di listare i due insiemi
+            ric. numer. $A$ e $B$:
+
+            \begin{minipage}{.29\textwidth}
+                \begin{tcolorbox}[
+                    colback=white,
+                    sharp corners,
+                    boxrule=.3mm,
+                    left=20pt,
+                    top=0pt,
+                    bottom=0pt,
+                    title=$P'$,
+                    colbacktitle=white,
+                    coltitle=black
+                ]
+                \begin{algorithm}[H]
+                    \setstretch{1.2}
+                    \SetKwSty{texttt}
+                    \SetKwProg{while}{while}{}{}
+                    input($x$)\;
+                    $i:=0$\;
+                    \while{$F(i)\neq x$}{$i:=i+1$\;}
+                    \while{$G(i)\neq x$}{$i:=i+1$\;}
+                    output(1)\;
+                \end{algorithm}
+                \end{tcolorbox}
+            \end{minipage}
+            \begin{minipage}{.4\textwidth}
+                $$ \semRAM_{P'}(x) = \begin{cases}
+                    1 & x\in A\cap B\\
+                    \perp & \text{altrimenti}
+                \end{cases} $$
+                $$\text{Dom}_{\semRAM_{P'}} = A\cap B $$
+                $$ \semRAM_{P'} \in \ricPar $$
+            \end{minipage}\vspace{.6em}
+        \item Unione: siano $F$ e $G$ le funzioni in grado di listare i due insiemi
+            ric. numer. $A$ e $B$:
+            
+            \vspace{.6em}
+            \begin{minipage}{.31\textwidth}
+                \begin{tcolorbox}[
+                    colback=white,
+                    sharp corners,
+                    boxrule=.3mm,
+                    left=20pt,
+                    top=0pt,
+                    bottom=0pt,
+                    title=$P''$,
+                    colbacktitle=white,
+                    coltitle=black
+                ]
+                \begin{algorithm}[H]
+                    \setstretch{1.2}
+                    \SetKwSty{texttt}
+                    \SetKwProg{if}{if}{}{}
+                    \SetKwProg{while}{while}{}{}
+                    input($x$)\;
+                    $i:=0$\;
+                    \while{True}{
+                        \if{$F(i)=x$}{output(1)\;}
+                        \if{$G(i)=x$}{output(1)\;}
+                        $i:=i+1$\;
+                    }
+                \end{algorithm}
+                \end{tcolorbox}
+            \end{minipage}
+            \begin{minipage}{.4\textwidth}
+                $$ \semRAM_{P''}(x) = \begin{cases}
+                    1 & x\in A\cup B\\
+                    \perp & \text{altrimenti}
+                \end{cases} $$
+                $$\text{Dom}_{\semRAM_{P''}} = A\cap B $$
+                $$ \semRAM_{P''} \in \ricPar $$
+            \end{minipage}
+    \end{itemize}
+\end{proof}
+
+\subsubsection*{Situazione insiemistica}
+\begin{minipage}{.6\textwidth}
+    \begin{center}
+        \input{figures/situazione_ins.tex}
+    \end{center}
+\end{minipage}
+\begin{minipage}{.35\textwidth}
+    \begin{itemize}
+        \setlength\itemsep{1.4em}
+        \item $A = \{x:\semRAM_x(x)\termina \}$
+        \item $A^c = \{x:\semRAM_x(x)\ntermina \}$
+    \end{itemize}
+\end{minipage}
+
+\subsubsection*{Teorema di Rice}
+
+L'insieme $I\subseteq\N$ rispetta le funzioni sse $(a\in I\ \wedge\ \semRAM_a=\semRAM_b)
+\ \Rightarrow \ b\in I$\vspace{1.5em}
+
+\begin{theorem}[Teorema di Rice]
+    Sia $I\subseteq\N$ un insieme che rispetta le funzioni. Allora $I$ è ricorsivo solo se
+    $I=\cancel{O}$ oppure $I=\N$.
+\end{theorem}
+\begin{proof}
+    Sia $I$ un insieme che rispetta le funzioni con $I\neq\cancel{O}$ e $I\neq\N$.
+    Per assurdo, si ipotizzi $I$ ricorsivo e che rispetta le funzioni. 
+
+    Si definisca la funzione $t:\N\to\N$ come:
+    $$ t(x) = \begin{cases}
+        \bar{a} & n\in I\\
+        a & n\notin I
+    \end{cases} \qquad\qquad t\in\ricTot $$
+    dove $a\in I$ e $\bar{a}\notin I$.
+
+    Essendo $t\in\ricTot$ il teorema di ricorsione (\ref{theo:ric}) garantisce per gli spa
+    l'esistenza di un valore $d\in\N$:
+    $$ \semRAM_d(x) = \semRAM_{t(d)} $$
+    Si prenda $d$:
+    \begin{itemize}
+        \item $d\in I$: poichè $I$ rispetta le funzioni e $\semRAM_d=\semRAM_{t(d)}$ allora
+            deve valere che $t(d)\in I$. Ma $t(d)=\bar{a}\notin I\ \Rightarrow \ $
+            contraddizione. 
+        \item $d\notin I$: $t(d)=a\in I$ e poichè $I$ rispetta le funzioni e 
+            $\semRAM_d=\semRAM_{t(d)}$ si ha $d=t(d)=a\in I\ \Rightarrow \ $
+            contraddizione. 
+    \end{itemize}
+\end{proof}
+
+Il teorema di Rice è uno strumento molto utile per mostrare che un insieme $a\in\N$ non
+è ricorsivo; per verificarlo si può infatti:
+
+\begin{minipage}{.45\textwidth}
+    \begin{enumerate}
+        \setlength\itemsep{.6em}
+        \item Mostrare che $A$ rispetta le funzioni;
+        \item Mostrare che $A\neq\cancel{O}$ e $A\neq\N$
+    \end{enumerate}
+\end{minipage}
+\begin{minipage}{.4\textwidth}
+    $ \overset{\text{Rice}}{\ \Longrightarrow} \ \text{$A$ non è ricorsivo} $
+\end{minipage}
+
+\subsubsection*{Verifica automatica de correttezza del software}
+\begin{description}[leftmargin=1.9cm]
+    \item[Problema:] si può scrivere un programma $V$ che testa automaticamente se un programma
+    sia corretto o meno?
+\end{description}
+
+Sia $PC$ l'insieme dei programmi corretti: $$ PC = \{P\in\N:\text{$P$ è corretto}\} $$
+$PC$ può essere riconosciuto da $V$? $PC$ è ricorsivo?
+
+\begin{itemize}
+    \item $PC$ \textbf{rispetta le funzioni} in quanto:
+    $$P\in PC \ \wedge\ \semRAM_P=\semRAM_{P'} \ \Rightarrow\ P'\in PC$$
+    Se il programma $P$ è corretto e la semantica del programma $P'$ è la stessa di $P$, 
+    allora anche $P'$ è corretto.
+    \item $PC\neq\cancel{O}\ \wedge\ PC\neq\N$: sarebbe insensato avere delle specifiche con le
+    quali nessun programma è corretto o delle specifiche dove tutti i programmi sono corretti.
+\end{itemize}
+
+Per il teorema di Rice si può affermare che $PC$ non è ricorsivo. Non esiste quindi un
+programma $V$ che lo identifica correttamente.

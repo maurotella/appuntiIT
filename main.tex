@@ -17,6 +17,7 @@
 \usepackage{float}
 \usepackage[normalem]{ulem}
 \usepackage{mathtools}
+\usepackage{enumitem}
 \usepackage{relsize}
 \usepackage{pgfmath}
 \usepackage{esint}
@@ -36,6 +37,8 @@
 \newcommand{\SC}{\ensuremath{\mathscr{C}}}
 \newcommand{\RN}{\ensuremath{\mathbb{R}}}
 \newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\X}{\ensuremath{\mathcal{X}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
 \newcommand{\dx}{\ensuremath{\text{des}}}
 \newcommand{\sx}{\ensuremath{\text{sin}}}
 \newcommand{\RAM}{\ensuremath{\text{RAM}}}
@@ -72,9 +75,30 @@
 \newcommand{\ricTot}{\ensuremath{\mathcal{T}}}
 \newcommand{\sistProg}{\ensuremath{\{\semRAM_i\}}}
 \newcommand{\sistProgW}{\ensuremath{\{\semWHILE_j\}}}
+\newcommand{\problema}[3]{
+    \begin{tcolorbox}[
+        colback=white,
+        sharp corners,
+        boxrule=.3mm,
+        boxsep=0pt,
+        left=6pt,
+        hbox
+    ]
+        \begin{tabular}{r l}
+            \multicolumn{2}{l}{#1}\\
+            Istanza:& #2\\
+            Domanda:& #3 ?
+        \end{tabular}
+    \end{tcolorbox}
+}
+\newcommand{\fsol}[1][\Pi]{\ensuremath{\Phi_{#1}}}
+\newcommand{\termina}{\ensuremath{\textup{\text{\textdownarrow}}}}
+\newcommand{\ntermina}{\ensuremath{\textup{\text{\textuparrow}}}}
 
 \newtheorem{theorem}{Teorema}
 \newtheorem{corollario}{Corollario}
+
+\setlist[description]{labelindent=0pt}
 
 \begin{document}
 

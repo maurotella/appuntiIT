@@ -1,37 +1,46 @@
 \babel@toc {italian}{}\relax 
 \babel@toc {italian}{}\relax 
-\contentsline {section}{\numberline {0}Introduzione}{2}{section.0}%
-\contentsline {section}{\numberline {1}Prerequisiti matematici}{3}{section.1}%
-\contentsline {section}{\numberline {2}Teoria della calcolabilità}{6}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Sistema di calcolo $\ensuremath {\mathscr {C}}$}{6}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Potenza computazionale di $\ensuremath {\mathscr {C}}$ }{6}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Cardinalità di insiemi infiniti}{6}{subsection.2.3}%
-\contentsline {subsubsection}{\numberline {2.3.1}Relazione binaria}{7}{subsubsection.2.3.1}%
-\contentsline {subsubsection}{\numberline {2.3.2}Relazione di equivalenza}{7}{subsubsection.2.3.2}%
-\contentsline {subsubsection}{\numberline {2.3.3}Classe di equivalenza}{7}{subsubsection.2.3.3}%
-\contentsline {subsubsection}{\numberline {2.3.4}Insiemi isomorfi}{7}{subsubsection.2.3.4}%
-\contentsline {subsubsection}{\numberline {2.3.5}Insiemi numerabili}{8}{subsubsection.2.3.5}%
-\contentsline {subsubsection}{\numberline {2.3.6}Insiemi non numerabili}{8}{subsubsection.2.3.6}%
-\contentsline {subsection}{\numberline {2.4}Esistono funzioni non calcolabili?}{9}{subsection.2.4}%
-\contentsline {subsection}{\numberline {2.5}DATI\ $\bm {\sim \ensuremath {\mathbb {N}}}$}{10}{subsection.2.5}%
-\contentsline {subsection}{\numberline {2.6}PROG\ $\bm {\sim \ensuremath {\mathbb {N}}}$}{12}{subsection.2.6}%
-\contentsline {subsubsection}{\numberline {2.6.1}Sistema di calcolo RAM}{13}{subsubsection.2.6.1}%
-\contentsline {subsubsection}{\numberline {2.6.2}Sistema di calcolo WHILE}{16}{subsubsection.2.6.2}%
-\contentsline {subsubsection}{\numberline {2.6.3}Traduzione}{19}{subsubsection.2.6.3}%
-\contentsline {subsubsection}{\numberline {2.6.4}Confronto tra sistemi di calcolo}{19}{subsubsection.2.6.4}%
-\contentsline {subsubsection}{\numberline {2.6.5}$\bm {F(\text {WHILE})\subseteq F(\text {RAM})}$}{20}{subsubsection.2.6.5}%
-\contentsline {subsubsection}{\numberline {2.6.6}$\bm {F(\text {RAM})\subseteq F(\text {WHILE})}$}{21}{subsubsection.2.6.6}%
-\contentsline {subsubsection}{\numberline {2.6.7}Teorema di Böhm-Jacopini}{24}{subsubsection.2.6.7}%
-\contentsline {subsubsection}{\numberline {2.6.8}Interprete universale}{24}{subsubsection.2.6.8}%
-\contentsline {subsection}{\numberline {2.7}Calcolabilità}{24}{subsection.2.7}%
-\contentsline {subsubsection}{\numberline {2.7.1}Una prima idea di calcolabilità}{24}{subsubsection.2.7.1}%
-\contentsline {subsubsection}{\numberline {2.7.2}Funzioni ricorsive primitive}{26}{subsubsection.2.7.2}%
-\contentsline {subsubsection}{\numberline {2.7.3}Funzione di Ackermann}{29}{subsubsection.2.7.3}%
-\contentsline {subsubsection}{\numberline {2.7.4}RICPRIM non basta}{29}{subsubsection.2.7.4}%
-\contentsline {subsubsection}{\numberline {2.7.5}Funzioni ricorsive parziali}{30}{subsubsection.2.7.5}%
-\contentsline {subsubsection}{\numberline {2.7.6}Funzioni ricorsive totali}{33}{subsubsection.2.7.6}%
-\contentsline {subsubsection}{\numberline {2.7.7}Tesi di Church-Turing}{34}{subsubsection.2.7.7}%
-\contentsline {subsection}{\numberline {2.8}Assiomatizzazione dei sistemi di calcolo}{34}{subsection.2.8}%
-\contentsline {subsubsection}{\numberline {2.8.1}Assiomi di Rogers}{35}{subsubsection.2.8.1}%
-\contentsline {subsubsection}{\numberline {2.8.2}Compilatori tra spa}{37}{subsubsection.2.8.2}%
-\contentsline {subsubsection}{\numberline {2.8.3}Teorema di ricorsione}{38}{subsubsection.2.8.3}%
+\contentsline {section}{\numberline {0}Introduzione}{3}{section.0}%
+\contentsline {section}{\numberline {1}Prerequisiti matematici}{4}{section.1}%
+\contentsline {section}{\numberline {2}Teoria della calcolabilità}{7}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Sistema di calcolo $\ensuremath {\mathscr {C}}$}{7}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Potenza computazionale di $\ensuremath {\mathscr {C}}$ }{7}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Cardinalità di insiemi infiniti}{7}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Relazione binaria}{8}{subsubsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2}Relazione di equivalenza}{8}{subsubsection.2.3.2}%
+\contentsline {subsubsection}{\numberline {2.3.3}Classe di equivalenza}{8}{subsubsection.2.3.3}%
+\contentsline {subsubsection}{\numberline {2.3.4}Insiemi isomorfi}{8}{subsubsection.2.3.4}%
+\contentsline {subsubsection}{\numberline {2.3.5}Insiemi numerabili}{9}{subsubsection.2.3.5}%
+\contentsline {subsubsection}{\numberline {2.3.6}Insiemi non numerabili}{9}{subsubsection.2.3.6}%
+\contentsline {subsection}{\numberline {2.4}Esistono funzioni non calcolabili?}{10}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}DATI\ $\bm {\sim \ensuremath {\mathbb {N}}}$}{11}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}PROG\ $\bm {\sim \ensuremath {\mathbb {N}}}$}{13}{subsection.2.6}%
+\contentsline {subsubsection}{\numberline {2.6.1}Sistema di calcolo RAM}{14}{subsubsection.2.6.1}%
+\contentsline {subsubsection}{\numberline {2.6.2}Sistema di calcolo WHILE}{17}{subsubsection.2.6.2}%
+\contentsline {subsubsection}{\numberline {2.6.3}Traduzione}{20}{subsubsection.2.6.3}%
+\contentsline {subsubsection}{\numberline {2.6.4}Confronto tra sistemi di calcolo}{20}{subsubsection.2.6.4}%
+\contentsline {subsubsection}{\numberline {2.6.5}$\bm {F(\text {WHILE})\subseteq F(\text {RAM})}$}{21}{subsubsection.2.6.5}%
+\contentsline {subsubsection}{\numberline {2.6.6}$\bm {F(\text {RAM})\subseteq F(\text {WHILE})}$}{22}{subsubsection.2.6.6}%
+\contentsline {subsubsection}{\numberline {2.6.7}Teorema di Böhm-Jacopini}{25}{subsubsection.2.6.7}%
+\contentsline {subsubsection}{\numberline {2.6.8}Interprete universale}{25}{subsubsection.2.6.8}%
+\contentsline {subsection}{\numberline {2.7}Calcolabilità}{25}{subsection.2.7}%
+\contentsline {subsubsection}{\numberline {2.7.1}Una prima idea di calcolabilità}{25}{subsubsection.2.7.1}%
+\contentsline {subsubsection}{\numberline {2.7.2}Funzioni ricorsive primitive}{27}{subsubsection.2.7.2}%
+\contentsline {subsubsection}{\numberline {2.7.3}Funzione di Ackermann}{30}{subsubsection.2.7.3}%
+\contentsline {subsubsection}{\numberline {2.7.4}RICPRIM non basta}{30}{subsubsection.2.7.4}%
+\contentsline {subsubsection}{\numberline {2.7.5}Funzioni ricorsive parziali}{31}{subsubsection.2.7.5}%
+\contentsline {subsubsection}{\numberline {2.7.6}Funzioni ricorsive totali}{34}{subsubsection.2.7.6}%
+\contentsline {subsubsection}{\numberline {2.7.7}Tesi di Church-Turing}{35}{subsubsection.2.7.7}%
+\contentsline {subsection}{\numberline {2.8}Assiomatizzazione dei sistemi di calcolo}{35}{subsection.2.8}%
+\contentsline {subsubsection}{\numberline {2.8.1}Assiomi di Rogers}{36}{subsubsection.2.8.1}%
+\contentsline {subsubsection}{\numberline {2.8.2}Compilatori tra spa}{38}{subsubsection.2.8.2}%
+\contentsline {subsubsection}{\numberline {2.8.3}Teorema di ricorsione}{39}{subsubsection.2.8.3}%
+\contentsline {subsection}{\numberline {2.9}Problemi di decisione}{40}{subsection.2.9}%
+\contentsline {subsubsection}{\numberline {2.9.1}Decidibilità}{41}{subsubsection.2.9.1}%
+\contentsline {subsubsection}{\numberline {2.9.2}Problema dell'arresto}{42}{subsubsection.2.9.2}%
+\contentsline {subsection}{\numberline {2.10}Riconoscibilità automatica di insiemi}{43}{subsection.2.10}%
+\contentsline {subsubsection}{\numberline {2.10.1}Insiemi ricorsivi}{43}{subsubsection.2.10.1}%
+\contentsline {subsubsection}{\numberline {2.10.2}Insiemi non ricorsivi}{44}{subsubsection.2.10.2}%
+\contentsline {subsubsection}{\numberline {2.10.3}Relazioni ricorsive}{44}{subsubsection.2.10.3}%
+\contentsline {subsubsection}{\numberline {2.10.4}Insiemi ricorsivamente numerabili}{44}{subsubsection.2.10.4}%
+\contentsline {subsubsection}{\numberline {2.10.5}Confronto tra insiemi}{46}{subsubsection.2.10.5}%

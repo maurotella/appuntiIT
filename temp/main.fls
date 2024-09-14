@@ -257,6 +257,8 @@ INPUT c:/texlive/2024/texmf-dist/tex/latex/tools/calc.sty
 INPUT c:/texlive/2024/texmf-dist/tex/latex/tools/calc.sty
 INPUT c:/texlive/2024/texmf-dist/tex/latex/mathtools/mhsetup.sty
 INPUT c:/texlive/2024/texmf-dist/tex/latex/mathtools/mhsetup.sty
+INPUT c:/texlive/2024/texmf-dist/tex/latex/enumitem/enumitem.sty
+INPUT c:/texlive/2024/texmf-dist/tex/latex/enumitem/enumitem.sty
 INPUT c:/texlive/2024/texmf-dist/tex/latex/esint/esint.sty
 INPUT c:/texlive/2024/texmf-dist/tex/latex/esint/esint.sty
 INPUT c:/texlive/2024/texmf-dist/tex/latex/xfrac/xfrac.sty
@@ -385,8 +387,8 @@ INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/lm/lmbsy5.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/boondox/BOONDOX-r-calo.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/boondox/BOONDOX-r-calo.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/boondox/BOONDOX-r-calo.tfm
-OUTPUT temp/main.toc
 OUTPUT temp/main.xdv
+OUTPUT temp/main.toc
 INPUT ./sections/00_intro.tex
 INPUT ./sections/00_intro.tex
 INPUT sections/00_intro.tex
@@ -529,6 +531,9 @@ INPUT figures/calcolabilita3.tex
 INPUT ./figures/S11.tex
 INPUT ./figures/S11.tex
 INPUT figures/S11.tex
+INPUT ./figures/situazione_ins.tex
+INPUT ./figures/situazione_ins.tex
+INPUT figures/situazione_ins.tex
 INPUT temp/main.aux
 INPUT temp/main.out
 INPUT temp/main.out
