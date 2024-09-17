@@ -64,6 +64,48 @@ $$ w(f,a) = f(a) $$
     \item Fissando $f$ ottengo il suo grafico.
 \end{itemize}
 
+\subsection*{Relazione binaria}
+Si definisce relazione binaria $R$ sull'insieme $A$, un elenco di coppie ordinate
+di elementi di $A$: $R\subseteq A^2$. Due elementi $a,b\in A$ sono in relazione 
+$R$ se $(a,b)\in R$. Si usa la notazione:
+\begin{itemize}
+    \item $a \ R \ b$: $a$ è in relazione $R$ con $b$;
+    \item $a\ \cancel{R} \ b$: $a$ non è in relazione $R$ con $b$;
+\end{itemize}
+
+\subsubsection*{Relazione di equivalenza}
+$R\subseteq A^2$ è una relazione di equivalenza se gode di:
+\begin{enumerate}
+    \item Riflessività: $\forall a \in A \quad a \ R \ a$
+    \item Simmetria: $\forall a,b \in A \quad a \ R \ b \ \Leftrightarrow \ b \ R \ a$
+    \item Transitività: $\forall a,b,c \in A \quad a \ R \ b
+    \ \wedge \ b \ R \ c \Rightarrow a \ R \ c $
+\end{enumerate}
+
+\subsubsection*{Classe di equivalenza}
+Si definisce classe di equivalenza $[a]_R$ l'insieme degli elementi in relazione $R$
+con $a$:
+$$ [a]_R =\{b\in A: a \ R \ b\} $$
+
+Tutte le classi di equivalenza di $R$ formano una partizione di $A$. L'insieme $A$
+partizionato attraverso le classi di equivalenza di $R$ è detto \textbf{quoziente}
+di $A$ rispetto a $R$ ed è denotato da $\sfrac{A}{R}$.
+
+\subsubsection*{Esempio}
+Si consideri la relazione $\equiv_4\subseteq\N^2$ di equivalenza modulo 4. Due numeri
+sono in relazione di equivalenza modulo 4 se il resto della divisione per 4 è uguale
+per entrambi.
+$$ 5\equiv_4 9\ , \ 10\equiv_4 2 \ , \ \dots $$
+
+Le classi di equivalenza sono:
+\begin{align}
+    [0]_4&=\{4k\}\tag{Multipli di 4}\\
+    [1]_4&=\{4k+1\}\tag{Resto 1}\\
+    [2]_4&=\{4k+2\}\tag{Resto 2}\\
+    [3]_4&=\{4k+3\}\tag{Resto 3}
+\end{align}
+L'insieme $\{[0]_4,[1]_4,[2]_4,[3]_4\}=\sfrac{\N}{\equiv_4}$ è una partizione di $\N$.
+
 \subsection*{Chiusura di insiemi rispetto ad operazioni}
 Dato un insieme $U$, si definisce operazione su $U$ una qualunque funzione
 $$ op: \underbrace{U\times\dots\times U}_{\displaystyle k=\text{arietà}}\to U $$

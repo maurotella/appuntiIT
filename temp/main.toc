@@ -1,17 +1,14 @@
 \babel@toc {italian}{}\relax 
 \babel@toc {italian}{}\relax 
-\contentsline {section}{\numberline {0}Introduzione}{3}{section.0}%
-\contentsline {section}{\numberline {1}Prerequisiti matematici}{4}{section.1}%
+\contentsline {section}{\numberline {0}Introduzione}{2}{section.0}%
+\contentsline {section}{\numberline {1}Prerequisiti matematici}{3}{section.1}%
 \contentsline {section}{\numberline {2}Teoria della calcolabilità}{7}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Sistema di calcolo $\ensuremath {\mathscr {C}}$}{7}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Potenza computazionale di $\ensuremath {\mathscr {C}}$ }{7}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}Cardinalità di insiemi infiniti}{7}{subsection.2.3}%
-\contentsline {subsubsection}{\numberline {2.3.1}Relazione binaria}{8}{subsubsection.2.3.1}%
-\contentsline {subsubsection}{\numberline {2.3.2}Relazione di equivalenza}{8}{subsubsection.2.3.2}%
-\contentsline {subsubsection}{\numberline {2.3.3}Classe di equivalenza}{8}{subsubsection.2.3.3}%
-\contentsline {subsubsection}{\numberline {2.3.4}Insiemi isomorfi}{8}{subsubsection.2.3.4}%
-\contentsline {subsubsection}{\numberline {2.3.5}Insiemi numerabili}{9}{subsubsection.2.3.5}%
-\contentsline {subsubsection}{\numberline {2.3.6}Insiemi non numerabili}{9}{subsubsection.2.3.6}%
+\contentsline {subsubsection}{\numberline {2.3.1}Insiemi isomorfi}{8}{subsubsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2}Insiemi numerabili}{8}{subsubsection.2.3.2}%
+\contentsline {subsubsection}{\numberline {2.3.3}Insiemi non numerabili}{9}{subsubsection.2.3.3}%
 \contentsline {subsection}{\numberline {2.4}Esistono funzioni non calcolabili?}{10}{subsection.2.4}%
 \contentsline {subsection}{\numberline {2.5}DATI\ $\bm {\sim \ensuremath {\mathbb {N}}}$}{11}{subsection.2.5}%
 \contentsline {subsection}{\numberline {2.6}PROG\ $\bm {\sim \ensuremath {\mathbb {N}}}$}{13}{subsection.2.6}%

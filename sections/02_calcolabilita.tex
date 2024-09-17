@@ -26,7 +26,7 @@ di output $y$; si può quindi dire che un programma non è altro che
 una funzione che agisce da DATI in DATI:
 $$ P:\text{DATI} \rightarrow \text{DATI}_\perp $$
 $$ \Downarrow $$
-\begin{equation}\label{eq:prog_dati} \text{PROG} =
+\begin{equation}\label{eq:prog_dati} P \in
 \text{DATI}^{\text{DATI}}_\perp \end{equation}
 
 La funzione associata al programma $P$ è detta \textbf{semantica di $P$}.
@@ -69,48 +69,6 @@ di insiemi infiniti le cose si complicano.
 Per esempio, si confrontino $\N$ e $\RN$: entrambi hanno cardinalità infinita
 ($|\N|=|\RN|=\infty$) eppure $\N\subset\RN$! Per comprendere quindi meglio
 la cardinalità di insiemi infiniti si dovrà andare più nel dettaglio.
-
-\subsubsection{Relazione binaria}
-Si definisce relazione binaria $R$ sull'insieme $A$, un elenco di coppie ordinate
-di elementi di $A$: $R\subseteq A^2$. Due elementi $a,b\in A$ sono in relazione 
-$R$ se $(a,b)\in R$. Si usa la notazione:
-\begin{itemize}
-    \item $a \ R \ b$: $a$ è in relazione $R$ con $b$;
-    \item $a\ \cancel{R} \ b$: $a$ non è in relazione $R$ con $b$;
-\end{itemize}
-
-\subsubsection{Relazione di equivalenza}
-$R\subseteq A^2$ è una relazione di equivalenza se gode di:
-\begin{enumerate}
-    \item Riflessività: $\forall a \in A \quad a \ R \ a$
-    \item Simmetria: $\forall a,b \in A \quad a \ R \ b \ \Leftrightarrow \ b \ R \ a$
-    \item Transitività: $\forall a,b,c \in A \quad a \ R \ b
-    \ \wedge \ b \ R \ c \Rightarrow a \ R \ c $
-\end{enumerate}
-
-\subsubsection{Classe di equivalenza}
-Si definisce classe di equivalenza $[a]_R$ l'insieme degli elementi in relazione $R$
-con $a$:
-$$ [a]_R =\{b\in A: a \ R \ b\} $$
-
-Tutte le classi di equivalenza di $R$ formano una partizione di $A$. L'insieme $A$
-partizionato attraverso le classi di equivalenza di $R$ è detto \textbf{quoziente}
-di $A$ rispetto a $R$ ed è denotato da $\sfrac{A}{R}$.
-
-\subsubsection*{Esempio}
-Si consideri la relazione $\equiv_4\subseteq\N^2$ di equivalenza modulo 4. Due numeri
-sono in relazione di equivalenza modulo 4 se il resto della divisione per 4 è uguale
-per entrambi.
-$$ 5\equiv_4 9\ , \ 10\equiv_4 2 \ , \ \dots $$
-
-Le classi di equivalenza sono:
-\begin{align}
-    [0]_4&=\{4k\}\tag{Multipli di 4}\\
-    [1]_4&=\{4k+1\}\tag{Resto 1}\\
-    [2]_4&=\{4k+2\}\tag{Resto 2}\\
-    [3]_4&=\{4k+3\}\tag{Resto 3}
-\end{align}
-L'insieme $\{[0]_4,[1]_4,[2]_4,[3]_4\}=\sfrac{\N}{\equiv_4}$ è una partizione di $\N$.
 
 \subsubsection{Insiemi isomorfi}
 Due insiemi $A$ e $B$ sono \textbf{isomorfi} (o equinumerosi) se esiste una funzione
@@ -179,9 +137,9 @@ $\N$ (sono \quotes{più fitti}). Il re di questi insiemi è $\RN$.
                 \input{figures/reali_zero_uno.tex}
             \end{figure}\vspace{-.6cm}
             (In realtà $\RN$ è isomorfo a un suo qualsiasi intervallo).
-        \item $\N \nsim (0,1)$: dimostrazione per assurdo: assumo che $\N \sim (0,1)$;
-            Questo vorrebbe dire che tutti i numeri compresi tra 0 e 1 sono numerabili.
-            Elenco tutti i numeri associandoli a un numero naturale:
+        \item $\N \nsim (0,1)$: dimostrazione per assurdo assumendo che $\N \sim (0,1)$;
+            questo vorrebbe dire che tutti i numeri compresi tra 0 e 1 sono numerabili.
+            Si elenchino tutti i numeri associandoli a un numero naturale:
 
             \begin{minipage}{.45\textwidth}
                 $$0\ \mapsto \ 0.{\color{red}a_{00}}\ a_{01}\ a_{02}\ a_{03}\ a_{04}\ \dots$$
@@ -189,7 +147,7 @@ $\N$ (sono \quotes{più fitti}). Il re di questi insiemi è $\RN$.
                 $$2\ \mapsto \ 0.a_{20}\ a_{21}\ {\color{red}a_{22}}\ a_{23}\ a_{24}\ \dots$$
                 $$3\ \mapsto \ 0.a_{30}\ a_{31}\ a_{32}\ {\color{red}a_{33}}\ a_{34}\ \dots$$
                 $$4\ \mapsto \ 0.a_{40}\ a_{41}\ a_{42}\ a_{43}\ {\color{red}a_{44}}\ \dots$$
-                $$\vdots\qquad\vdots\qquad\vdots\qquad\vdots\qquad\vdots\qquad\ddots$$
+                $$\vdots\qquad\vdots\qquad\vdots\qquad\vdots\qquad\vdots\qquad{\color{red}\ddots}$$
                 \vspace{.4cm}
             \end{minipage}
             \begin{minipage}{.48\textwidth}
@@ -216,18 +174,99 @@ $\N$ (sono \quotes{più fitti}). Il re di questi insiemi è $\RN$.
                 \item Differisce da qualunque numero nella lista sulla cifra 
                     {\color{red} diagonale}.
             \end{itemize}
-            Ho trovato l'assurdo quindi $\N \nsim (0,1)$ (dimostrazione per 
+            Si è trovato l'assurdo, quindi $\N \nsim (0,1)$ (dimostrazione per 
             diagonalizzazione).
     \end{enumerate}
-    Sfruttando la transitività di $\sim$ posso si può affermare quindi che:
+    Sfruttando la transitività di $\sim$ si può affermare quindi che:
     $$ \RN \underset{(1)}{\sim} (0,1) \underset{(2)}{\nsim} \N \quad \Rightarrow \quad \RN \nsim \N $$
 \end{proof}
 
 Tutti gli insiemi isomorfi a $\RN$ sono detti continui. Altri insiemi non numerabili sono:
 \begin{itemize}
-    \item $2^\N\nsim\N$: insieme delle parti di $\N$ ovvero $2^\N = \{\text{sottoinsiemi di } \N\}$
-    \item $\N^\N_\perp\nsim\N$: insieme delle funzioni da $\N$ a $\N$ ovvero
+    \item $2^\N\nsim\N$: insieme delle parti di $\N$ ovvero 
+        $2^\N = \{\text{sottoinsiemi di } \N\}$
+        \begin{itemize}
+            \item[]\begin{proof}
+                Si assuma, per assurdo, che $2^\N\sim\N$. Si descriva un elemento di $2^\N$ con
+                il suo vettore caratteristico:
+                \begin{center}
+                    \begin{tabular}{c|ccccccc}
+                        \N & 0 & 1 & 2 & 3 & 4 & 5 & $\dots$ \\ \hline
+                         A & 0 & 1 & 1 & 0 & 1 & 0 & $\dots$ 
+                    \end{tabular}
+                    $\ \ \ A=\{1,2,4,\dots\}$
+                \end{center}
+                Si elenchino tutti gli elementi di $2^\N$ tramite i loro vettori caratteristici:
+
+                \begin{minipage}{.40\textwidth}
+                    \begin{tabular}{ccccc}
+                    $0$ & $\mapsto \ \ {\color{red}b_{00}}$ & $b_{01}$ & $b_{02}$ & $\dots$ \\
+                    $1$ & $\mapsto \ \ b_{10}$ & ${\color{red}b_{11}}$ & $b_{12}$ & $\dots$ \\
+                    $2$ & $\mapsto \ \ b_{20}$ & $b_{21}$ & ${\color{red}b_{22}}$ & $\dots$ \\
+                    $\vdots$&$\ \ \ \ \vdots$ & $\vdots$ & $\vdots$ & ${\color{red}\ddots}$
+                    \end{tabular}
+                \end{minipage}
+                \begin{minipage}{.45\textwidth}
+                    Si costruisca il sottoinsieme $S\in2^\N$ definito dal seguente vettore 
+                    caratteristico:
+                    \begin{equation}
+                        S = \bar{b_{00}}\ \ \bar{b_{11}}\ \ \bar{b_{22}}\ \ \bar{b_{33}}\ \dots
+                    \tag{$\bar{b}=\lnot b$}\end{equation}
+                \end{minipage}
+
+                $S$ non appare nella lista:
+                \begin{itemize}
+                    \item[\textminus] Differisce dal primo sottoinsieme perchè 
+                        $\bar{b_{00}}\neq b_{00}$;
+                    \item[\textminus] Differisce dal primo sottoinsieme perchè 
+                        $\bar{b_{11}}\neq b_{11}$;
+                    \item[\textminus] $\dots$
+                    \item[\textminus] Differisce da qualunque elemento nella 
+                        {\color{red}diagonale}.
+                \end{itemize}
+                Si è quindi trovato l'assurdo; ne segue che $2^\N\nsim\N$.\vspace{.5em}
+            \end{proof}
+        \end{itemize}
+    \item $\N^\N_\perp\nsim\N$: insieme delle funzioni da $\N$ a $\N_\perp$ ovvero
         $\N^\N_\perp = \{f:\N\rightarrow\N_\perp\}$
+        \begin{itemize}
+            \item[]\begin{proof}
+                Si assuma, per assurdo, che $\N^\N_\perp\sim\N$: si possono quindi listare i suoi
+                elementi:
+                $$ \N^\N_\perp = \{f_0,f_1,f_2,\dots\} $$
+                Più nel dettaglio:
+
+                \begin{minipage}{.40\textwidth}
+                    %\centering
+                    \begin{tabular}{c|c c c c}
+                            &        0 &        1 &        2 & $\dots$  \\ \hline
+                      $f_{\color{blue}0}$ & {\color{red}$f_0(0)$} & $f_0(1)$ & $f_0(2)$ & $\dots$  \\
+                      $f_{\color{blue}1}$ & $f_1(0)$ & {\color{red}$f_1(1)$} & $f_1(2)$ & $\dots$  \\
+                      $f_{\color{blue}2}$ & $f_2(0)$ & $f_2(1)$ & {\color{red}$f_2(2)$} & $\dots$  \\
+                      $\vd$ &    $\vd$ &    $\vd$ &    $\vd$ & $\ddots$ \\                        
+                    \end{tabular}
+                \end{minipage}
+                \begin{minipage}{.45\textwidth}
+                    Si definisca una funzione $g:\N\to\N_\perp$:
+                    $$ g(n) = \begin{cases}
+                        1 & f_n(n)=\perp\\
+                        f_n(n)+1 & f_n(n)\termina
+                    \end{cases} $$
+                    Sicuramente $g\in\N^\N_\perp$; deve quindi apparire nella lista per
+                    qualche ${\color{blue}k}\in\N$.
+                \end{minipage}
+                
+                Non esiste nessun $k$ tale che $f_k=g$; se si valutano le due funzioni nel
+                loro valore $k$ si vede che:
+                $$ g(k) = \begin{cases}
+                        1{\color{red}\neq f_k(k)} & f_k(k)=\perp\\
+                        f_k(k)+1{\color{red}\neq f_k(k)} & f_k(k)\termina
+                    \end{cases} $$
+                $g$ non è mai uguale a un qualsiasi $f_k$ visto che differisce sempre in un valore
+                {\color{red}diagonale}. Si è quindi trovato l'assurdo; ne segue che
+                $\N^\N_\perp\nsim\N$.
+            \end{proof}
+        \end{itemize}
 \end{itemize}
 
 \subsection{Esistono funzioni non calcolabili?}
@@ -996,7 +1035,7 @@ Si definirà ora un interprete $I_W$ scritto in WHILE di programmi RAM.
 
 La semantica dell'interprete $I_W$ è:
 $$\forall x,n\in\N: \semWHILE_{I_W}(\cantor{x,n})
-=\semRAM_n(x)=\semWHILE_P(x)$$
+=\semRAM_n(x)=\semRAM_P(x)$$
 
 Per questioni di comodità si usera una variante di WHILE in cui si potranno definire
 delle macro, ovvero delle chiamate a funzioni comunque definibili in WHILE puro; alcuni
@@ -1036,7 +1075,7 @@ $I_W$ salva lo stato della macchina RAM nel seguente modo:
     \item $x_1 \leftarrow L$ \hfill program counter
     \item $x_2 \leftarrow x$ \hfill dato di input del programma $P$
     \item $x_3 \leftarrow n$ \hfill lista di istruzioni che formano $P$
-    \item $x_4 \leftarrow \text{codice dell'istruzione da eseguire}$
+    \item $x_4 \leftarrow \text{codifica dell'istruzione da eseguire}$
 \end{itemize}
 
 Si noti come il valore di $n$ (primo punto), ovvero dell'indice del registro più alto 
@@ -1334,7 +1373,7 @@ Per dimostrare che $\ricPrim \subseteq F(\text{WHILE})$:
         \semWHILE_{G_k}=g_k $$
         e dimostro che $\comp(h,g_1,\dots,g_k)\in F(\text{WHILE})$ ovvero mostro un programma
         WHILE che calcola:
-        $$\comp(h,g_1,\dots,g_k)=h(g_1(\sottolinea{x}),\dots,g_k(\sottolinea{x}))$$
+        $$\comp(h,g_1,\dots,g_k)(\sottolinea{x})=h(g_1(\sottolinea{x}),\dots,g_k(\sottolinea{x}))$$
         \begin{center}
         \begin{minipage}{.85\textwidth}
         \begin{tcolorbox}[colback=white,sharp corners,boxrule=.2mm]
@@ -1419,7 +1458,7 @@ $$ \bm{\ricPrim \subset F(\text{WHILE})} $$
 ampliarlo introducendo una nuova operazione.}
 
 \subsubsection*{Sistema di calcolo FOR}
-Partendo dal linguaggio WHILE Si può introdurre un nuovo linguaggio, identico a quello WHILE,
+Partendo dal linguaggio WHILE si può introdurre un nuovo linguaggio, identico a quello WHILE,
 ma che cambia l'istruzione di ciclo: viene usata l'istruzione, ben conosciuta, di
 ciclo \texttt{for}:
 
@@ -1437,7 +1476,7 @@ ciclo \texttt{for}:
         \While{$k\leq y$}{
             \begin{}{
                 $t := H(t,k-1,\sottolinea{x})$\;
-                $k:=k+1$\;
+                $k := k+1$\;
             }
             \texttt{end}\;
         }}
@@ -1496,7 +1535,7 @@ Non si entrerà nel dettaglio ma basti sapere che $\mathscr{A}$ cresce troppo in
 essere ricorsiva primitiva.
 
 \textbf{Questo mostra che il sistema WHILE è più potente delle funzioni in $\ricPrim$ anche
-escludendo gli \quotes{inutili} cicli infiniti}.
+escludendo le funzioni parziali}.
 
 \subsubsection{RICPRIM non basta}
 La ricerca delle funzioni calcolabili ha portato fin'ora all'insieme delle funzioni ricorsive
@@ -1832,7 +1871,7 @@ Si vuole ora cercare di individuare alcune proprietà \quotes{buone}, auspicabil
 un sistema di calcolo, dette assiomi. Tutti i sistemi di programmazione che rispettano
 questi assiomi si diranno sistemi di programmazione accettabili.
 
-In questo moda si potranno dimostrare determinate proprietà non sul singolo sistema
+In questo modo si potranno dimostrare determinate proprietà non sul singolo sistema
 ma su tutti i sistemi accettabili.
 
 Per indicare un sistema di programmazione si userà la seguente notazione:
@@ -1867,7 +1906,7 @@ ne troppo potenti (oltre $\ricPar$).
 
 \subsubsection*{Secondo assioma}
 $\sistProg$ rispetta il secondo assioma se esiste un interpete universale ovvero:
-$$ \exists\mu\in\N : \forall x,n\in\N: \semRAM_\mu(\cantor{x,n})=
+$$ \exists u\in\N : \forall x,n\in\N: \semRAM_u(\cantor{x,n})=
 \semRAM_n(x) $$
 
 Vedi sezione \ref{sec:interpreteU} per il sistema RAM.
@@ -1989,7 +2028,7 @@ a un valore $y$:
     \end{tabular}
 \end{center}
 La codifica del programma $\bar{P}$ è:
-$$ cod(\bar{P}) = \bar{n} = \cantor{\underbrace{0,\dots,0}_{y\text{ volte}},s,t,n} $$
+$$ cod(\bar{P}) = \bar{n} = \cantor{\underbrace{0,\dots,0}_{y\text{ volte}},s,t,n} = S^1_1 $$
 Si può quindi notare che $S_1^1$ è:
 
 \begin{minipage}{.3\textwidth}
@@ -2530,9 +2569,10 @@ una routine $F$ che su input $i\in\N$ restituisce l'$i$-esimo elemento di $A$.
         \setstretch{1.2}
         \SetArgSty{relax}
         \SetAlgoNoEnd
+        \SetKwProg{while}{\texttt{while}}{}{}
         \SetKwSty{texttt}
         $i:=0$\;
-        \While{True}{
+        \while{True}{
             output($F(i)$)\;
             $i:=i+1$\;
         }
@@ -2562,9 +2602,10 @@ A questo punto si può scrivere un algoritmo che \quotes{tenta} di riconoscere $
         \SetArgSty{relax}
         \SetAlgoNoEnd
         \SetKwSty{texttt}
+        \SetKwProg{while}{\texttt{while}}{}{}
         input($x$)\;
         $i:=0$\;
-        \While{$F(i)\neq x$}{
+        \while{$F(i)\neq x$}{
             $i:=i+1$\;
         }
         output(1)\;
@@ -2617,9 +2658,10 @@ L'insieme $A\subset\N$ è ricorsivamente numerabile sse:
                     \SetArgSty{relax}
                     \SetAlgoNoEnd
                     \SetKwSty{texttt}
+                    \SetKwProg{while}{\texttt{while}}{}{}
                     input($x$)\;
                     $i:=0$\;
-                    \While{$F(i)\neq x$}{
+                    \while{$F(i)\neq x$}{
                         $i:=i+1$\;
                     }
                     output(1)\;
@@ -2642,7 +2684,7 @@ L'insieme $A\subset\N$ è ricorsivamente numerabile sse:
             Se $f\in\ricPar$ allora esiste un programma $P$ tale che $f=\semRAM_P$.
             $$ R_P = \{(x,y)\in\N^2:\text{$P$ su input $x$ termina in $y$ passi}\} $$
             Si definisca il seguente insieme:
-            $$ B=\{ x\ |\ \exists y:(x,y)\in R_p \} $$
+            $$ B=\{ x\ |\ \exists y:(x,y)\in R_P \} $$
             \begin{itemize}
                 \item[\textminus] $A\subseteq B$:
                     se $x\in A=\text{Dom}_{\semRAM_P}$ allora $P$ termina in $y$ passi,
@@ -2651,7 +2693,7 @@ L'insieme $A\subset\N$ è ricorsivamente numerabile sse:
                     su input $x$ termina in un numero finito di passi e quindi
                     $ x\in\text{Dom}_{\semRAM_P} \ \Rightarrow \ x\in A$
             \end{itemize}
-            Quindi $A=B=\{ x\ |\ \exists y:(x,y)\in R_p \}$ con $R_P$ relazione ricorsiva.
+            Quindi $A=B=\{ x\ |\ \exists y:(x,y)\in R_P \}$ con $R_P$ relazione ricorsiva.
         \end{itemize}
         \item $(3)\Rightarrow(1)$
             \begin{itemize}
@@ -2663,7 +2705,7 @@ L'insieme $A\subset\N$ è ricorsivamente numerabile sse:
                     \sx(n) & (\sx(n),\dx(n))\in R\\
                     a & \text{altrimenti}
                 \end{cases} $$
-                Poichè $R$ ricorsiva esiste un programma $P_R$ che la implementa:
+                Poichè $R$ ricorsiva esiste un programma $P_R$ che ne riconosce gli elementi.
 
                 \begin{minipage}{.32\textwidth}
                     \begin{tcolorbox}[
@@ -2963,7 +3005,7 @@ Infatti $A=\text{Dom}_{\semRAM_P}$ con $\semRAM_P\in\ricPar$.
                     1 & x\in A\cup B\\
                     \perp & \text{altrimenti}
                 \end{cases} $$
-                $$\text{Dom}_{\semRAM_{P''}} = A\cap B $$
+                $$\text{Dom}_{\semRAM_{P''}} = A\cup B $$
                 $$ \semRAM_{P''} \in \ricPar $$
             \end{minipage}
     \end{itemize}

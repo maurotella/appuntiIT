@@ -11,6 +11,7 @@
 \usepackage[italiano,noline]{algorithm2e}
 \usepackage{amsthm}
 \usepackage{setspace}
+\usepackage{graphicx}
 \usepackage{amssymb}
 \usepackage{cancel}
 \usepackage{multirow}
@@ -23,6 +24,7 @@
 \usepackage{esint}
 \usepackage{xfrac}
 \usepackage{caption}
+\usepackage{thmtools}
 \usepackage[table,dvipsnames]{xcolor}
 \usepackage{subcaption}
 %\usepackage{calrsfs} %corsivo strano
@@ -94,6 +96,7 @@
 \newcommand{\fsol}[1][\Pi]{\ensuremath{\Phi_{#1}}}
 \newcommand{\termina}{\ensuremath{\textup{\text{\textdownarrow}}}}
 \newcommand{\ntermina}{\ensuremath{\textup{\text{\textuparrow}}}}
+\newcommand{\vd}{\ensuremath{\vdots}}
 
 \newtheorem{theorem}{Teorema}
 \newtheorem{corollario}{Corollario}
@@ -102,11 +105,23 @@
 
 \begin{document}
 
-\title{Informatica Teorica}
-\author{Mauro Tellaroli}
-\date{Prof. Mereghetti}
+\title{
+    \includegraphics[width=\textwidth]{Mere.png}\\
+    Corso di Informatica Teorica\\
+    \Large Anno accademico 2023/24
+}
+\author{
+    \large Note di Mauro Tellaroli
+}
+\date{}
+
 \maketitle
 
+\thispagestyle{empty}
+
+\clearpage
+
+\addtocounter{page}{-1}
 \tableofcontents
 \clearpage
 

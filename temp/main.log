@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.8.23)  14 SEP 2024 15:57
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.8.23)  17 SEP 2024 22:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -685,29 +685,53 @@ Package caption Info: Standard document class detected.
 \c@continuedfloat=\count338
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
-) (c:/texlive/2024/texmf-dist/tex/latex/colortbl/colortbl.sty
+) (c:/texlive/2024/texmf-dist/tex/latex/thmtools/thmtools.sty
+Package: thmtools 2023/05/04 v0.76
+\thmt@toks=\toks48
+\c@thmt@dummyctr=\count339
+ (c:/texlive/2024/texmf-dist/tex/latex/thmtools/thm-patch.sty
+Package: thm-patch 2023/05/04 v0.76
+ (c:/texlive/2024/texmf-dist/tex/latex/thmtools/parseargs.sty
+Package: parseargs 2023/05/04 v0.76
+\@parsespec=\toks49
+)) (c:/texlive/2024/texmf-dist/tex/latex/thmtools/thm-kv.sty
+Package: thm-kv 2023/05/04 v0.76
+Package thm-kv Info: Theorem names will be uppercased on input line 42.
+Package thm-kv Info: kvsetkeys patch (v1.16 or later) on input line 158.
+) (c:/texlive/2024/texmf-dist/tex/latex/thmtools/thm-autoref.sty
+Package: thm-autoref 2023/05/04 v0.76
+ (c:/texlive/2024/texmf-dist/tex/latex/thmtools/aliasctr.sty
+Package: aliasctr 2023/05/04 v0.76
+)) (c:/texlive/2024/texmf-dist/tex/latex/thmtools/thm-listof.sty
+Package: thm-listof 2023/05/04 v0.76
+) (c:/texlive/2024/texmf-dist/tex/latex/thmtools/thm-restate.sty
+Package: thm-restate 2023/05/04 v0.76
+) (c:/texlive/2024/texmf-dist/tex/latex/thmtools/thm-amsthm.sty
+Package: thm-amsthm 2023/05/04 v0.76
+\thmt@style@headstyle=\toks50
+)) (c:/texlive/2024/texmf-dist/tex/latex/colortbl/colortbl.sty
 Package: colortbl 2024/07/06 v1.0i Color table columns (DPC)
  (c:/texlive/2024/texmf-dist/tex/latex/tools/array.sty
 Package: array 2024/06/14 v2.6d Tabular extension package (FMi)
 \col@sep=\dimen307
 \ar@mcellbox=\box92
 \extrarowheight=\dimen308
-\NC@list=\toks48
+\NC@list=\toks51
 \extratabsurround=\skip85
 \backup@length=\skip86
 \ar@cellbox=\box93
 )
-\everycr=\toks49
+\everycr=\toks52
 \minrowclearance=\skip87
-\rownum=\count339
+\rownum=\count340
 ) (c:/texlive/2024/texmf-dist/tex/latex/graphics/dvipsnam.def
 File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
 ) (c:/texlive/2024/texmf-dist/tex/latex/caption/subcaption.sty
 Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
 Package caption Info: New subtype `subfigure' on input line 238.
-\c@subfigure=\count340
+\c@subfigure=\count341
 Package caption Info: New subtype `subtable' on input line 238.
-\c@subtable=\count341
+\c@subtable=\count342
 ) (c:/texlive/2024/texmf-dist/tex/generic/mathdots/mathdots.sty
 Package: mathdots 2014/06/11 v0.9 Improve and add various macros for dots in math.
 \MDo@unit=\dimen309
@@ -720,10 +744,10 @@ Package: mathalpha 2021/11/18 - 1.143mathalpha (License LPPL) Michael Sharpe
  `mathalpha' v1.143, 2021/11/18, a renaming of mathalfa (msharpe) (c:/texlive/2024/texmf-dist/tex/latex/xkeyval/xkeyval.sty
 Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
  (c:/texlive/2024/texmf-dist/tex/generic/xkeyval/xkeyval.tex (c:/texlive/2024/texmf-dist/tex/generic/xkeyval/xkvutils.tex
-\XKV@toks=\toks50
-\XKV@tempa@toks=\toks51
+\XKV@toks=\toks53
+\XKV@tempa@toks=\toks54
 )
-\XKV@depth=\count342
+\XKV@depth=\count343
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
 LaTeX Font Info:    Overwriting math alphabet `\mathscr' in version `bold'
@@ -739,41 +763,41 @@ Package bm Info: No bold for \U/msb/m/n, using \pmb.
 Package bm Info: No bold for \U/esint/m/n, using \pmb.
 LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 149.
 )
-\c@theorem=\count343
-\c@corollario=\count344
+\c@theorem=\count344
+\c@corollario=\count345
  (c:/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
 File: l3backend-xetex.def 2024-05-08 L3 backend support: XeTeX
-\g__graphics_track_int=\count345
+\g__graphics_track_int=\count346
 \l__pdf_internal_box=\box95
-\g__pdf_backend_annotation_int=\count346
-\g__pdf_backend_link_int=\count347
+\g__pdf_backend_annotation_int=\count347
+\g__pdf_backend_link_int=\count348
 ) (temp/main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 103.
-LaTeX Font Info:    ... okay on input line 103.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 103.
-LaTeX Font Info:    ... okay on input line 103.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 103.
-LaTeX Font Info:    ... okay on input line 103.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 103.
-LaTeX Font Info:    ... okay on input line 103.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 103.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 103.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 106.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 106.
  (c:/texlive/2024/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 103.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 103.
-LaTeX Font Info:    ... okay on input line 103.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 103.
-LaTeX Font Info:    ... okay on input line 103.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 103.
-LaTeX Font Info:    ... okay on input line 103.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 103.
-LaTeX Font Info:    ... okay on input line 103.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 103.
-LaTeX Font Info:    ... okay on input line 103.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -809,47 +833,53 @@ LaTeX Font Info:    ... okay on input line 103.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 103.
+Package hyperref Info: Link coloring OFF on input line 106.
 (temp/main.out) (temp/main.out)
 \@outlinefile=\write4
 \openout4 = `main.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 109.
+File: Mere.png Graphic file (type bmp)
+<Mere.png>
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 119.
  (c:/texlive/2024/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 109.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 119.
  (c:/texlive/2024/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 109.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 119.
  (c:/texlive/2024/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 109.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 119.
  (c:/texlive/2024/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 109.
+(Font)              <12> on input line 119.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 109.
+(Font)              <8> on input line 119.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 109.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 109.
+(Font)              <6> on input line 119.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 119.
  (c:/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 109.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 119.
  (c:/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+esint on input line 109.
+LaTeX Font Info:    Trying to load font information for U+esint on input line 119.
  (c:/texlive/2024/texmf-dist/tex/latex/esint/uesint.fd
 File: uesint.fd 
-) (temp/main.toc
+)
+
+[1
+
+] (temp/main.toc
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10> on input line 6.
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -862,19 +892,17 @@ LaTeX Font Info:    Font shape `U/BOONDOX-scro/m/n' will be
 (Font)              scaled to size 7.35002pt on input line 6.
 LaTeX Font Info:    Font shape `U/BOONDOX-scro/m/n' will be
 (Font)              scaled to size 5.25002pt on input line 6.
-
-
-[1
-
-])
+)
 \tf@toc=\write5
 \openout5 = `main.toc'.
 
 
 
-[2] (./sections/00_intro.tex)
+[1
 
-[3
+] (./sections/00_intro.tex)
+
+[2
 
 ] (./sections/01_prerequisiti_matematici.tex
 LaTeX Font Info:    Font shape `U/BOONDOX-scro/m/n' will be
@@ -885,9 +913,13 @@ LaTeX Font Info:    Font shape `U/BOONDOX-scro/m/n' will be
 (Font)              scaled to size 6.30002pt on input line 4.
 
 
-[4
+[3
 
-] (./figures/chiusura_insieme.tex)
+]
+
+[4] (./figures/chiusura_insieme.tex)
+Package hyperref Info: bookmark level for unknown theorem defaults to 0 on input line 154.
+
 
 [5])
 
@@ -931,11 +963,6 @@ LaTeX Font Info:    Font shape `U/BOONDOX-scro/m/n' will be
 [18]
 
 [19]
-Underfull \hbox (badness 10000) in paragraph at lines 812--814
-
- []
-
-
 
 [20]
 
@@ -960,7 +987,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 812--814
 [30]
 
 [31]
-Overfull \hbox (327.03827pt too wide) in paragraph at lines 1572--1581
+Overfull \hbox (327.03827pt too wide) in paragraph at lines 1611--1620
 \TU/lmr/m/n/10 e dimostro che $[]\OT1/lmr/m/n/10 (\OML/lmm/m/it/10 h; g[]; [] ; g[]\OT1/lmr/m/n/10 ) \OMS/lmsy/m/n/10 2 \OML/lmm/m/it/10 F\OT1/lmr/m/n/10 ([])$\TU/lmr/m/n/10 : già visto nella sezione []2.7.2[]. $[]$ 
  []
 
@@ -977,9 +1004,11 @@ Overfull \hbox (327.03827pt too wide) in paragraph at lines 1572--1581
 [36] (./figures/S11.tex)
 
 [37]
+Package hyperref Info: bookmark level for unknown corollario defaults to 0 on input line 2116.
+
 
 [38]
-Overfull \vbox (3.65643pt too high) detected at line 2170
+Overfull \vbox (3.65643pt too high) detected at line 2209
  []
 
 
@@ -1010,15 +1039,15 @@ LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-07-20>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 67D8A404C83EA9F4DE81340AC5F1F33C;7994.
+(rerunfilecheck)             Checksum: F6D4C366FE48045A506985EBC11B3FC1;7465.
  ) 
 Here is how much of TeX's memory you used:
- 29693 strings out of 476178
- 568162 string characters out of 5785805
- 1945612 words of memory out of 5000000
- 51653 multiletter control sequences out of 15000+600000
+ 30214 strings out of 476178
+ 579593 string characters out of 5785805
+ 1944612 words of memory out of 5000000
+ 52144 multiletter control sequences out of 15000+600000
  661911 words of font info for 191 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  116i,27n,121p,646b,1503s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on temp/main.xdv (49 pages, 877704 bytes).
+Output written on temp/main.xdv (50 pages, 888808 bytes).
