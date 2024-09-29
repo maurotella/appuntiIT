@@ -1,10 +1,10 @@
 # Fdb version 4
-["xdvipdfmx"] 1726604950.72045 "temp/main.xdv" "temp/main.pdf" "temp/main" 1726604951.44664 0
-  "temp/main.xdv" 1726604950 888900 ea6e0661e5f8e6d48834b872e180aee2 "xelatex"
+["xdvipdfmx"] 1727638603.71613 "temp/main.xdv" "temp/main.pdf" "temp/main" 1727638604.5675 0
+  "temp/main.xdv" 1727638603 888900 94fab8cf8d9bedee212367613c1ac5a0 "xelatex"
   (generated)
   "temp/main.pdf"
   (rewritten before read)
-["xelatex"] 1726604948.98752 "d:/OneDrive - Università degli Studi di Milano/Università/Magistrale/Informatica teorica/Appunti Latex/main.tex" "temp/main.xdv" "main" 1726604951.43519 0
+["xelatex"] 1727638599.84046 "d:/OneDrive - Università degli Studi di Milano/Università/Magistrale/Informatica teorica/Appunti Latex/main.tex" "temp/main.xdv" "main" 1727638604.55585 0
   "Mere.png" 1726603382 443170 f22cbbe9cad8897d31022a60bfcaeebe ""
   "c:/texlive/2024/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1714641880 1528 7e12f4c0fcf5a072cebdcfbfc610f54c ""
   "c:/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1714641792 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -246,10 +246,10 @@
   "main.tex" 1726604948 4085 21b3ebce871cce60bdfba8683fad7d65 ""
   "sections/00_intro.tex" 1724363728 575 c991f274d05045569a5f66e9298cdce4 ""
   "sections/01_prerequisiti_matematici.tex" 1726596730 7263 b638febd28594648a06967f2854c5d4c ""
-  "sections/02_calcolabilita.tex" 1726600815 129798 44e84b23c5c463e781f157fb1fd09b25 ""
-  "temp/main.aux" 1726604950 12030 16cb61e997777b600cae259cb8d06df5 "xelatex"
-  "temp/main.out" 1726604950 7465 f6d4c366fe48045a506985ebc11b3fc1 "xelatex"
-  "temp/main.toc" 1726604950 4150 b4c503cc272deaa0dea515d2c5d88ea7 "xelatex"
+  "sections/02_calcolabilita.tex" 1727638599 129798 7027dd727740f01ec313be510f991999 ""
+  "temp/main.aux" 1727638603 12030 16cb61e997777b600cae259cb8d06df5 "xelatex"
+  "temp/main.out" 1727638603 7465 f6d4c366fe48045a506985ebc11b3fc1 "xelatex"
+  "temp/main.toc" 1727638603 4150 b4c503cc272deaa0dea515d2c5d88ea7 "xelatex"
   (generated)
   "temp/main.aux"
   "temp/main.log"
